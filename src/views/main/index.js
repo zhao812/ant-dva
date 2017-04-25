@@ -6,6 +6,7 @@ import React from 'react'
 
 import { Layout } from 'antd';
 import SiderMenu from '../../components/siderMenu'
+import Headers from '../../components/header'
 const { Header, Footer, Sider, Content } = Layout;
 import style from './index.css'
 
@@ -19,7 +20,7 @@ class App extends React.Component {
     render(){
         return (
             <Layout className={style.layout}>
-                <Header>Header</Header>
+                <Headers />
                 <Layout>
                     <Sider className={style.sider}><SiderMenu /></Sider>
                     <Content>
