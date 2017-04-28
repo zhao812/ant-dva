@@ -21,12 +21,13 @@ const routingMiddleware = routerMiddleware(hashHistory);
 
 // 利用compose增强store，这个 store 与 applyMiddleware 和 redux-devtools 一起使用
 let store, middleware, enhancer;
+console.log(process.env.NODE_ENV)
 if(process.env.NODE_ENV != "production"){
     let DevTools = require('./devTools') ;// 利用redux-logger打印日志
 	let {createLogger} = require('redux-logger') ;// 调用日志打印方法
     // 调用日志打印方法
     const loggerMiddleware = createLogger()
-    middleware = applyMiddleware(routingMiddleware, loggerMiddleware, thunk);
+    middleware = applyMiddleware(routingMiddleware, thunk, loggerMiddleware);
 
     enhancer = compose(
         middleware,
@@ -44,7 +45,7 @@ if(process.env.NODE_ENV != "production"){
     );
     store = createStore(reducer, enhancer);
 }
-console.log(hashHistory)
+
 const history = syncHistoryWithStore(hashHistory, store);
 
 export {store, history}

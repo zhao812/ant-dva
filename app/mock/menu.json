@@ -1,0 +1,12 @@
+{
+    "data":{
+        "menu":"Navigation One",
+        "children":[{
+            "name":"Option 1",
+            "url":"/"
+        },{
+            "name":"Option 2",
+            "url":"/user"
+        }]
+    }
+}

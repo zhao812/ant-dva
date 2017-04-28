@@ -4,24 +4,24 @@ import { Menu, Icon, Button } from 'antd'
 const SubMenu = Menu.SubMenu;
 const MenuItemGroup = Menu.ItemGroup;
 import './index.css' 
-let pathname="/"
+
 class SiderMenu extends React.Component{
-    constructor(props) {
-        super(props);
+    constructor(props,context) {
+        super(props,context);
         this.state={
-            current: pathname,
             SelectedKeys:['1'],
             openKeys: ['sub1']
         }
     }
     handleMenuClick(e){
         this.setState({
-            name:e.key
+            name:e.key.split('_')[0]
         })
-        this.props.changeTitle(e.key)
+        this.props.changeTitle(e.key.split('_')[0])
     }
     componentDidMount(){
-        this.props.changeTitle('Option 1')
+        //this.props.changeTitle('Option 1')
+        //this.props.getMenu();
     }
     render(){
         const { SelectedKeys ,openKeys}=this.state;
@@ -36,21 +36,17 @@ class SiderMenu extends React.Component{
                  title={<span><Icon type="mail" /><span>Navigation One</span></span>}
                  onClick={(e)=>this.handleMenuClick(e)}
                 >
-                <MenuItemGroup key="g1" title="Item 1">
-                    <Menu.Item key="1" ><Link to="/">Option 1</Link></Menu.Item>
-                    <Menu.Item key="2" ><Link to="/user">Option 2</Link></Menu.Item>
-                </MenuItemGroup>
-                <MenuItemGroup key="g2" title="Item 2">
-                    <Menu.Item key="3">Option 3</Menu.Item>
-                    <Menu.Item key="4">Option 4</Menu.Item>
-                </MenuItemGroup>
+                    <Menu.Item key="Option 1_1"><Link to="/">Option 1</Link></Menu.Item>
+                    <Menu.Item key="Option 2_2"><Link to="/user">Option 2</Link></Menu.Item>
+                    <Menu.Item key="Option 3_3">Option 3</Menu.Item>
+                    <Menu.Item key="Option 4_4">Option 4</Menu.Item>
                 </SubMenu>
                 <SubMenu key="sub2" title={<span><Icon type="appstore" /><span>Navigation Two</span></span>}>
-                <Menu.Item key="5">Option 5</Menu.Item>
-                <Menu.Item key="6">Option 6</Menu.Item>
+                <Menu.Item key="Option 5_1">Option 5</Menu.Item>
+                <Menu.Item key="Option 6_2">Option 6</Menu.Item>
                 <SubMenu key="sub3" title="Submenu">
-                    <Menu.Item key="7">Option 7</Menu.Item>
-                    <Menu.Item key="8">Option 8</Menu.Item>
+                    <Menu.Item key="Option 7_1">Option 7</Menu.Item>
+                    <Menu.Item key="Option 8_2">Option 8</Menu.Item>
                 </SubMenu>
                 </SubMenu>
                 <SubMenu key="sub4" title={<span><Icon type="setting" /><span>Navigation Three</span></span>}>

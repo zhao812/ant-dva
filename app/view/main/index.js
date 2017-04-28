@@ -1,10 +1,13 @@
 import React from 'react'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
 import Headers from '../../components/header'
 import SiderMenu from '../../components/siderMenu'
 import { Layout } from 'antd';
 const { Header, Footer, Sider, Content } = Layout;
 import style from 'antd/dist/antd.css'
 import './index.css'
+import {getMenu} from './reducer/action'
 
 class App extends React.Component {
     constructor(props) {
@@ -18,10 +21,9 @@ class App extends React.Component {
 
     componentWillMount(){
     }
-
-    componentWillUpdate(){
+    componentDidMount(){
+        this.props.getMenu();
     }
-    
     render(){
         return (
             <Layout style={{ height: '100%' }}>
@@ -40,4 +42,16 @@ class App extends React.Component {
     }
 }
 
-export default App
+
+
+App.propTypes = {
+}
+
+let mapStateToProps = state => ({
+})
+
+let mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({ getMenu } , dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)
