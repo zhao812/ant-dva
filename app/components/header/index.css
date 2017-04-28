@@ -1,0 +1,19 @@
+.logo {
+  color: red;
+  width:160px;
+  float:left;
+}
+.ant-menu.menuUl{
+  background:none;
+  height:65px;
+  line-height:61px;
+  float:right;
+}
+.ant-menu-horizontal .ant-menu-item.menuLi{
+  margin-top:0px;
+}
+.input{
+  width:300px;
+  margin-left:20px;
+  margin-right:20px;
+}

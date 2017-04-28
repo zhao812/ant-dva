@@ -1,0 +1,17 @@
+.title{
+    margin-left:6px;
+    padding-left:10px;
+    line-height:38px;
+    height:38px;
+    border:1px solid #d9d9d9;
+    background:#f7f7f7;
+}
+
+.wrap{
+    margin-left:6px;
+    padding:10px;
+    border:1px solid #d9d9d9;
+    border-top:0px;
+    background:#fff;
+    height:calc(100% - 40px);
+}

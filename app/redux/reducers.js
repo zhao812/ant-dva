@@ -1,0 +1,1 @@
+export indexReducer from '../view/main/reducer/reducer'
