@@ -7,33 +7,48 @@ import { Layout } from 'antd';
 const { Header, Footer, Sider, Content } = Layout;
 import style from 'antd/dist/antd.css'
 import './index.css'
-import {getMenu} from './reducer/action'
+import { getMenu } from './reducer/action'
 
 class App extends React.Component {
     constructor(props) {
         super(props)
-        this.state = {title: ""}
-    }
-    
-    changeTitle(name){
-        this.setState({title: name})
+        this.state = { title: "" }
     }
 
-    componentWillMount(){
+    changeTitle(name) {
+        this.setState({ title: name })
     }
-    componentDidMount(){
+
+    componentWillMount() {
+    }
+    componentDidMount() {
         this.props.getMenu();
     }
-    render(){
+    render() {
+        let menu
+        console.log(this.props.location.pathname)
+        switch(this.props.location.pathname){
+            case "/":
+                menu = ""
+                break;
+            case "search_list":
+                menu = ""
+                break
+            default:
+                menu = <Sider className="sider"><SiderMenu changeTitle={this.changeTitle.bind(this)} /></Sider>
+                break
+        }
+
+
         return (
             <Layout style={{ height: '100%' }}>
                 <Headers />
                 <Layout>
-                    <Sider className="sider"><SiderMenu changeTitle={this.changeTitle.bind(this)} /></Sider>
-                   <Content>
+                    {<menu />}
+                    <Content>
                         <div className="title">{this.state.title}</div>
                         <div className="wrap">
-                             { React.cloneElement(this.props.children, { key: this.props.location.pathname }) }
+                            {React.cloneElement(this.props.children, { key: this.props.location.pathname })}
                         </div>
                     </Content>
                 </Layout>
@@ -51,7 +66,7 @@ let mapStateToProps = state => ({
 })
 
 let mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({ getMenu } , dispatch)
+    return bindActionCreators({ getMenu }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)
