@@ -1,0 +1,30 @@
+{
+    "data":[
+        {
+            "icon":"mail",
+            "name":"Navigation One",
+            "children":[{
+                "name":"Option 1",
+                "url":"/",
+                "icon":""
+            },{
+                "name":"Option 2",
+                "url":"/user",
+                "icon":""
+            }]
+        },
+        {
+            "icon":"appstore",
+            "name":"Navigation Two",
+            "children":[{
+                "name":"Option 3",
+                "url":"/option3",
+                "icon":""
+            },{
+                "name":"Option 4",
+                "url":"/option4",
+                "icon":""
+            }]
+        }
+    ]
+}

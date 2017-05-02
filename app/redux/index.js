@@ -27,7 +27,7 @@ if(process.env.NODE_ENV != "production"){
 	let {createLogger} = require('redux-logger') ;// 调用日志打印方法
     // 调用日志打印方法
     const loggerMiddleware = createLogger()
-    middleware = applyMiddleware(routingMiddleware, thunk, loggerMiddleware);
+    middleware = applyMiddleware(routingMiddleware, loggerMiddleware, thunk);
 
     enhancer = compose(
         middleware,

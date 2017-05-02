@@ -1,5 +1,5 @@
 var HTTPUtil = {};  
-  
+  import 'whatwg-fetch'  // 可以引入fetch来进行Ajax
 /** 
  * 基于 fetch 封装的 GET请求 
  * @param url 
@@ -7,36 +7,30 @@ var HTTPUtil = {};
  * @param headers 
  * @returns {Promise} 
  */  
-HTTPUtil.get = function(url, params, headers) {  
-    if (params) {  
-        let paramsArray = [];  
-        //encodeURIComponent  
-        Object.keys(params).forEach(key => paramsArray.push(key + '=' + params[key]))  
-        if (url.search(/\?/) === -1) {  
-            url += '?' + paramsArray.join('&')  
-        } else {  
-            url += '&' + paramsArray.join('&')  
-        }  
-    }  
-    return new Promise(function (resolve, reject) {  
-      return fetch(url, {  
+export function fetchGet (url, params, headers) {
+    return (dispatch, getState) => {
+        if (params) {  
+            let paramsArray = [];  
+            //encodeURIComponent  
+            Object.keys(params).forEach(key => paramsArray.push(key + '=' + params[key]))  
+            if (url.search(/\?/) === -1) {  
+                url += '?' + paramsArray.join('&')  
+            } else {  
+                url += '&' + paramsArray.join('&')  
+            }  
+        }
+        return fetch(url, {  
             method: 'GET',  
             headers: headers,  
-          })  
-          .then((response) => {  
-              if (response.ok) {  
-                  return response.json();  
-              } else {  
-                  reject({status:response.status})  
-              }  
-          })  
-          .then((response) => {  
-              resolve(response);  
-          })  
-          .catch((err)=> {  
-            reject({status:-1});  
-          })  
-    })  
+        })  
+        .then((response) => {  
+            return response.json();
+        })  
+        .then((data) => {  
+            return data;
+        })  
+    }
+    
 }  
   
   
@@ -48,13 +42,14 @@ HTTPUtil.get = function(url, params, headers) {
  * @returns {Promise} 
  */  
 HTTPUtil.post = function(url, formData, headers) {  
-    return new Promise(function (resolve, reject) {  
+    return new Promise(function (resolve, reject) {
+        
       fetch(url, {  
             method: 'POST',  
             headers: headers,  
             body:formData,  
           })  
-          .then((response) => {  
+          .then((response) => {
               if (response.ok) {  
                   return response.json();  
               } else {  
@@ -69,5 +64,3 @@ HTTPUtil.post = function(url, formData, headers) {
           })  
     })  
 }  
-
-export default HTTPUtil;
