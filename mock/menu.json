@@ -2,27 +2,27 @@
     "data":[
         {
             "icon":"mail",
-            "name":"Navigation One",
+            "name":"画像营销",
             "children":[{
-                "name":"Option 1",
+                "name":"手机短信推送",
                 "url":"/",
                 "icon":""
             },{
-                "name":"Option 2",
+                "name":"h5微信推送",
+                "url":"/user",
+                "icon":""
+            },{
+                "name":"app消息推送",
                 "url":"/user",
                 "icon":""
             }]
         },
         {
-            "icon":"appstore",
-            "name":"Navigation Two",
+            "icon":"mail",
+            "name":"营销设置",
             "children":[{
-                "name":"Option 3",
-                "url":"/option3",
-                "icon":""
-            },{
-                "name":"Option 4",
-                "url":"/option4",
+                "name":"设置",
+                "url":"/",
                 "icon":""
             }]
         }

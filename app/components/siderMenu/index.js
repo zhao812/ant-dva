@@ -24,6 +24,7 @@ class SiderMenu extends React.Component{
     render(){
         const { SelectedKeys ,openKeys}=this.state;
         const {data} =this.props;
+        console.log(data)
         return (
              <Menu
                 onClick={(e)=>this.handleMenuClick(e)}
@@ -31,6 +32,7 @@ class SiderMenu extends React.Component{
                 defaultSelectedKeys={SelectedKeys}
                 defaultOpenKeys={openKeys}
                 mode="inline" >
+               
                 {
                     data.data&&data.data.map((item,key)=>(
                         <SubMenu key={key} title={
