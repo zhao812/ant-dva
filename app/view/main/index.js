@@ -12,7 +12,10 @@ import {getMenu} from './reducer/action'
 class App extends React.Component {
     constructor(props) {
         super(props)
-        this.state = {title: ""}
+        this.state = {
+            title: "",
+            data:""
+        }
     }
     
     changeTitle(name){
@@ -22,14 +25,19 @@ class App extends React.Component {
     componentWillMount(){
     }
     componentDidMount(){
-        this.props.getMenu();
+        this.props.getMenu().then((data)=>{
+            this.setState({
+                data:data
+            })
+        })
+        
     }
     render(){
         return (
             <Layout style={{ height: '100%' }}>
                 <Headers />
                 <Layout>
-                    <Sider className="sider"><SiderMenu changeTitle={this.changeTitle.bind(this)} /></Sider>
+                    <Sider className="sider"><SiderMenu changeTitle={this.changeTitle.bind(this)} data={this.state.data} /></Sider>
                    <Content>
                         <div className="title">{this.state.title}</div>
                         <div className="wrap">

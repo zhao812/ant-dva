@@ -44,6 +44,7 @@
     "redux-logger": "^3.0.1",
     "redux-thunk": "^2.2.0",
     "webpack-dev-server": "^2.4.5",
-    "webpack-md5-hash": "0.0.5"
+    "webpack-md5-hash": "0.0.5",
+    "whatwg-fetch": "^2.0.3"
   }
 }
