@@ -1,0 +1,24 @@
+.selectContainer{
+    padding: 10px;
+}
+
+.select-div{
+    // min-height: 40px;
+}
+
+.button-div{
+    margin-top: 10px;
+
+    span{
+        margin-right: 10px;
+    }
+
+    span:last-child{
+        margin-right: 0;
+    }
+
+    .left-div{
+        float: right;
+    }
+}
+

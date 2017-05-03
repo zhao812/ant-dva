@@ -1,0 +1,19 @@
+.selectItem{
+    display: inline-block;
+    margin-right: 20px;
+    margin-bottom: 10px;
+
+    .select{
+        width: 120px;
+        margin: 0 5px
+    }
+
+    .btn-close{
+        cursor: pointer;
+    }
+}
+
+.selectItem:last-child{
+    margin-right: 0;
+}
+
