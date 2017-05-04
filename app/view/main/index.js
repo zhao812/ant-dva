@@ -9,6 +9,8 @@ import style from 'antd/dist/antd.css'
 import './index.css'
 import menuData from '../../static/const/menu'
 
+import SiderSearchMenu from '../../components/siderSearch'
+
 class App extends React.Component {
     constructor(props) {
         super(props)
@@ -40,19 +42,19 @@ class App extends React.Component {
                 menu = ""
                 break;
             case "/search_list":
-                menu = ""
+                menu = <SiderSearchMenu />
                 break
             default:
-                menu = <Sider className="sider"><SiderMenu changeTitle={this.changeTitle.bind(this)} data={this.state.data} /></Sider>
+                menu = <SiderMenu changeTitle={this.changeTitle.bind(this)} data={this.state.data} />
                 break
         }
 
 
         return (
-            <Layout style={{ height: '100%' }}>
+            <Layout style={{ minHeight: '100%' }}>
                 <Headers />
                 <Layout>
-                    {menu}
+                    <Sider className="sider">{menu}</Sider>
                     <Content>
                         {/*<div className="title">{this.state.title}</div>*/}
                         <div className="wrap">
