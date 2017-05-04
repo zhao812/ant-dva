@@ -25,13 +25,13 @@ class SiderSearchMenu extends React.Component{
         let SubMenu = Menu.SubMenu
         let { filterMenuList, showMenuList, menuData } = this.props
         return menuData.map((data, index)=>
-            <SubMenu className="SubMenu" key={index} title={data.title} onClick={()=>this.onSubMenuHandler(index)}>
+            <SubMenu className="SubMenu" key={index} title={data.name} onClick={()=>this.onSubMenuHandler(index)}>
                 { 
-                    data.menuItem.map((item, i) => {
+                    data.list.map((item, i) => {
                         let key = item.id
                         return (
                             <Menu.Item className="MenuItem" key={key} style>
-                                <span>{item.title}</span>
+                                <span>{item.name}</span>
                                 <span className="btns">
                                     <Button className={"btn-filter " + (filterMenuList.find((obj)=>key==obj.id) ? "selected": "")} size="small" onClick={()=>this.onFilterHandler(key)}>筛选</Button>
                                     <Button className={"btn-show " + (showMenuList.find((obj)=>key==obj.id) ? "selected": "")} size="small" onClick={()=>this.onShowHandler(key)}>展示</Button>

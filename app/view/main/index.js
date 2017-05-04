@@ -8,6 +8,7 @@ const { Header, Footer, Sider, Content } = Layout;
 import style from 'antd/dist/antd.css'
 import './index.css'
 import { getMenu } from './reducer/action'
+import * as RouterConst from '../../static/const'
 
 import SiderSearchMenu from '../../components/siderSearch'
 
@@ -37,17 +38,17 @@ class App extends React.Component {
         let menu
         console.log(this.props.location.pathname)
         switch (this.props.location.pathname) {
-            case "/":
+            case RouterConst.ROUTER_HOME:
+            case RouterConst.USER_MIRROR:
                 menu = ""
                 break;
-            case "/search_list":
+            case RouterConst.SEARCH_LIST:
                 menu = <SiderSearchMenu />
                 break
             default:
                 menu = <SiderMenu changeTitle={this.changeTitle.bind(this)} data={this.state.data} />
                 break
         }
-
 
         return (
             <Layout style={{ minHeight: '100%' }}>

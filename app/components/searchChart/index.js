@@ -134,7 +134,6 @@ class SearchChart extends React.Component {
     render() {
         let { title, data, type } = this.props
 
-        data = [{ "count": 1000, release: 1989 }, { "count": 1000, release: 1990 }, { "count": 2000, release: 1991 }, { count: 3000, release: 1992 }]
         let width = 220, height = 220, forceFit = true;
         let Chart, plotCfg
         if (type == "pie") {
@@ -142,7 +141,6 @@ class SearchChart extends React.Component {
             Chart = this.getPieChart()
         } else if (type == "waterfall") {
             plotCfg = { margin: [10, 30, 40, 50] }
-            data = [{ "count": [0, 10], release: 1989 }, { "count": [8, 10], release: 1990 }, { "count": [4, 8], release: 1991 }, { count: [0, 4], release: 1992 }]
             Chart = this.getWaterfallChart()
         } else {
             plotCfg = { margin: [10, 30, 40, 50] }
