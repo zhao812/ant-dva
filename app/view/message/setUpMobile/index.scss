@@ -1,0 +1,58 @@
+.setUpmobile{
+    .radios span{
+        border:1px solid #d8d5d5;
+        width:100px;
+        line-height:30px;
+        display:inline-block;
+        margin-right:10px;
+        cursor:pointer;
+        i{
+            width:40px;
+            padding-right:10px;
+        }
+        &.active{
+            border:1px solid #108ee9;
+        }
+    }
+    .ant-radio-group{
+        width:100%;
+        .custRadio{
+            background:#eae8e8;
+            padding-left:10px;
+            border:1px solid #d8d5d5;
+            & + .content{
+                 border:1px solid #d8d5d5;
+                 border-top:0px;
+                 display: none;
+                 li{
+                     padding-left:10px;
+                     cursor: pointer;
+                 }
+                 &.active{
+                     display:block
+                 }
+            }
+            span i{
+                font-style:normal;
+                padding-left:20px;
+                color:#a5a0a0;
+            }
+            &.active{
+                background:#108ee9;
+
+            }
+        }
+    }
+}
+
+.seeEffect{
+    width:300px;
+    height:400px;
+    display:inline-block;
+    border:1px solid #108ee9;
+    background:#d9d9d9;
+}
+.stepTwoLeft{
+    width:500px;
+    flex:1;
+}

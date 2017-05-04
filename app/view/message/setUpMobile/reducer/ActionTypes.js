@@ -1,0 +1,1 @@
+export const HOME_UPDATE = 'TABLE_UPDATA'

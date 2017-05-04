@@ -8,10 +8,6 @@ import './index.css'
 class SiderMenu extends React.Component{
     constructor(props,context) {
         super(props,context);
-        this.state={
-            SelectedKeys:['1'],
-            openKeys: ['sub1']
-        }
     }
     handleMenuClick(e){
         this.setState({
@@ -22,27 +18,24 @@ class SiderMenu extends React.Component{
     componentDidMount(){
     }
     render(){
-        const { SelectedKeys ,openKeys}=this.state;
         const {data} =this.props;
-        console.log(data)
         return (
              <Menu
                 onClick={(e)=>this.handleMenuClick(e)}
                 className="silder"
-                defaultSelectedKeys={SelectedKeys}
-                defaultOpenKeys={openKeys}
+                defaultOpenKeys={['sub0']}
+                 defaultSelectedKeys={['child0']}
                 mode="inline" >
-               
                 {
                     data.data&&data.data.map((item,key)=>(
-                        <SubMenu key={key} title={
+                        <SubMenu key={'sub'+key} title={
                             <span>
                                 <Icon type={item.icon} />
                                 <span>{item.name}</span>
                             </span>}>
                             {
-                                item.children.map((menu) => (
-                                    <Menu.Item key={`${menu.name}`+"_"+`${menu.url}`}>
+                                item.children.map((menu,index) => (
+                                    <Menu.Item key={"child"+index}>
                                         <Link to={menu.url}>{menu.name}</Link>
                                     </Menu.Item>
                                 ))

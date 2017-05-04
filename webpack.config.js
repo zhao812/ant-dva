@@ -34,7 +34,7 @@ loaders.push({
 // 编译 sass
 loaders.push({
   test: /\.(scss|css)$/,
-  loaders: ['style-loader', 'css-loader', 'sass-loader']
+  loaders: ['style-loader', 'css-loader', 'sass-loader','postcss-loader']
 });
 
 //图片
@@ -51,6 +51,19 @@ plugins.push(
       // http://stackoverflow.com/questions/30030031/passing-environment-dependent-variables-in-webpack
       "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV || 'dev')
     })
+)
+plugins.push(
+  new webpack.LoaderOptionsPlugin({
+            options: {
+                postcss: function(){
+                    return [
+                        require("autoprefixer")({
+                            browsers: ['ie>=8','>1% in CN']
+                        })
+                    ]
+                }
+            }
+        })
 )
 // html 页面
 var HtmlwebpackPlugin = require('html-webpack-plugin');
@@ -87,6 +100,8 @@ var config = {
   module: {
       loaders : loaders
   },
+  
+ 
   plugins: plugins,
   devServer: {
       stats:{colors:true},

@@ -1,5 +1,5 @@
-{
-    "result":[
+let menuData={
+    "data":[
         {
             "icon":"mail",
             "name":"画像营销",
@@ -26,7 +26,6 @@
                 "icon":""
             }]
         }
-    ],
-    "message":"未登录",
-    "code":0
+    ]
 }
+export default menuData;
