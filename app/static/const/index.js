@@ -9,3 +9,9 @@ export const USER = ROUTER_ROOT + "/user"
 export const SEARCH_LIST = ROUTER_ROOT + "/search_list"
 
 export const USER_MIRROR = ROUTER_ROOT + "/userMirror"
+
+export const GET_MESSAGE = ROUTER_ROOT + "/message"
+
+export const MESSAGE_STEPUP = ROUTER_ROOT + "/message/setUp"
+
+export const MESSAGE_STEPUP_MOBILE = ROUTER_ROOT + "/message/setUpmobile"

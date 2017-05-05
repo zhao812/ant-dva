@@ -10,4 +10,5 @@
     border:1px solid #d9d9d9;
     border-top:0px;
     background:#fff;
+    overflow: auto;
 }

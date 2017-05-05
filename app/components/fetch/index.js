@@ -1,3 +1,4 @@
+import { Modal, Button } from 'antd';
 var HTTPUtil = {};  
   import 'whatwg-fetch'  // 可以引入fetch来进行Ajax
 /** 
@@ -27,7 +28,14 @@ export function fetchGet (url, params, headers) {
             return response.json();
         })  
         .then((data) => {  
-            return data;
+            if(data&&data.code!=0){
+                Modal.error({
+                    title: '提示',
+                    content: data.message,
+                });
+                return false;
+            }
+            return data.result;
         })  
     }
     

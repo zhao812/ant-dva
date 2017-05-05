@@ -12,6 +12,11 @@ const User = cb => require.ensure([], require => { cb(null, require('../view/use
 const Search = cb => require.ensure([], require => { cb(null, require('../view/search').default)}, "search")
 const UserMirror = cb => require.ensure([], require => { cb(null, require('../view/userMirror').default)}, "userMirror")
 
+const Message = cb => require.ensure([], require => { cb(null, require('../view/message/index').default)}, "Message")
+const MessageSetUp = cb => require.ensure([], require => { cb(null, require('../view/message/setUp').default)}, "SetUp")
+const MessageSetUpMobile = cb => require.ensure([], require => { cb(null, require('../view/message/setUpMobile').default)}, "SetUpMobile")
+
+
 
 const Routers = {
 	path: RouterConst.ROUTER_HOME,
@@ -31,7 +36,19 @@ const Routers = {
 		{
 			path: RouterConst.USER_MIRROR,
 			getComponent(nextState, cb){ UserMirror(cb) }
-		}
+		},
+		{	
+			path: RouterConst.GET_MESSAGE,
+			getComponent(nextState, cb){ Message(cb) }
+		},
+		{	
+			path: RouterConst.MESSAGE_STEPUP,
+			getComponent(nextState, cb){ MessageSetUp(cb) }
+		},
+		{	
+			path: RouterConst.MESSAGE_STEPUP_MOBILE,
+			getComponent(nextState, cb){ MessageSetUpMobile(cb) }
+		},
 	]
 }
 

@@ -9,7 +9,7 @@ let receiveData = data => ({
 //加载数据
 export const getSearchMenu = () => dispatch => {
     let url = "/mock/searchMenu.json";
-    dispatch(HTTPUtil.fetchGet(url, null, null)).then(data=>dispatch(receiveData(data.data)))
+    dispatch(HTTPUtil.fetchGet(url, null, null)).then(data=>dispatch(receiveData(data)))
 }
 
 /**改变选择框中的值 */
@@ -66,6 +66,8 @@ let receiveReportData = data => ({
 export const getReportData = () => (dispatch, getState) => {
     let state = getState()
     let url = "/mock/reportData.json";
-    let opt = getShowData(state)
-    dispatch(HTTPUtil.fetchGet(url, opt, null)).then(data=>dispatch(receiveReportData(data.data)))
+    let opt = {
+        data: getShowData(state)
+    }
+    dispatch(HTTPUtil.fetchGet(url, opt, null)).then(data=>dispatch(receiveReportData(data)))
 }

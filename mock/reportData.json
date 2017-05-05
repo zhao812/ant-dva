@@ -1,5 +1,5 @@
 {
-    "data": {
+    "result": {
         "userTotal": 10000,
         "riseTime": 100,
         "reportCount": 20,
@@ -351,5 +351,7 @@
                 ]
             }
         ]
-    }
+    },
+    "code": 0,
+    "message": ""
 }

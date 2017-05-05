@@ -1,0 +1,28 @@
+{
+    "result":[{
+            "key": 1,
+            "img":1,
+            "title":"title",
+            "pushChannel":"jd1",
+            "name": "John Brown",
+            "passageway":"tongdao 1",
+            "custnumber":33,
+            "number":34,
+            "status":"已激活",
+            "timer":"200s"
+            }, {
+            "key": 2,
+            "img":2,
+            "title":"title2",
+            "pushChannel":"jd1",
+            "name": "John Brown",
+            "passageway":"tongdao 1",
+            "custnumber":33,
+            "number":34,
+            "status":"已激活",
+            "timer":"200s"
+            }
+    ],
+    "message":"未登录",
+    "code":0
+}
