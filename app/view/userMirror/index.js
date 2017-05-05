@@ -22,6 +22,7 @@ class UserMirror extends React.Component{
     render(){
         return (
             <div className="user-mirror-container">
+                <div className="user-mirror-title">用户标签: {this.props.username}</div>
                 { this.props.data.map((obj, key) => <MirrorItem key={key} data={obj} />) }
             </div>
         )
@@ -29,11 +30,13 @@ class UserMirror extends React.Component{
 }
 
 UserMirror.PropTypes = {
-    data: PropTypes.object.isRequired
+    data: PropTypes.object.isRequired,
+    username: PropTypes.string.isRequired,
 }
 
 let mapStateToProps = state => ({
-    data: state.userMirror.mirrorData
+    data: state.userMirror.mirrorData,
+    username: state.userMirror.username
 })
 
 let mapDispatchToProps = (dispatch) => {
