@@ -1,4 +1,6 @@
 import React, { PropTypes } from 'react';
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
 
 import SearchChart from '../../../components/searchChart'
 
@@ -17,21 +19,27 @@ class AntVContainer extends React.Component {
         return (
             <div className="chart-container">
                 <div>
-                    <SearchChart title="姓名" type="pie" />
-                    <SearchChart title="姓名" type="pie" />
-                    <SearchChart title="姓名" type="pie" />
-
-                    <SearchChart title="姓名" type="bar" />
-                    <SearchChart title="姓名" type="bar" />
-                    
-                    <SearchChart title="姓名" type="pie" />
-                    <SearchChart title="姓名" type="pie" />
-                    <SearchChart title="姓名" type="waterfall" />
-                    <SearchChart title="姓名" type="waterfall" />
+                    {
+                        this.props.reports.map((obj, index) => 
+                            <SearchChart key={index} title={obj.name} type={obj.type} data={obj.data} />
+                        )
+                    }
                 </div>  
             </div>
         )
     }
 }
 
-export default AntVContainer
+AntVContainer.PropTypes = {
+    reports: PropTypes.array.isRequired
+}
+
+let mapStateToProps = state => ({
+    reports: state.searchList.reportList
+})
+
+let mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({  }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AntVContainer)
