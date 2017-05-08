@@ -81,7 +81,7 @@ class ImpWechat extends React.Component {
         return (
           <div className="wechatnext">
                 <Button type={status==1?"primary":""} >新建H5分享页面</Button>
-                <Button type={status==2?"primary":""} > 导入H5分享页面代码1111111111</Button>
+                <Button type={status==2?"primary":""} > 导入H5分享页面代码</Button>
                 <StepNav stepNum={stepNum}/>
                 <div className="flexs">
                     <div className="flex1">

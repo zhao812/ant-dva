@@ -1,4 +1,4 @@
-let menuData={
+let data={
     "data":[
         {
             "icon":"mail",
@@ -28,4 +28,24 @@ let menuData={
         }
     ]
 }
-export default menuData;
+
+
+
+let data2={
+    "data":[
+        {
+            "icon":"mail",
+            "name":"h5模版选择",
+            "children":[{
+                "name":"列表模版",
+                "url":"/wechart",
+                "icon":""
+            },{
+                "name":"瀑布流模版",
+                "url":"/user",
+                "icon":""
+            }]
+        }
+    ]
+}
+export {data , data2};

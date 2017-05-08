@@ -8,9 +8,8 @@ const { Header, Footer, Sider, Content } = Layout;
 import 'antd/dist/antd.css'
 import './index.css'
 
-import { getMenu } from './reducer/action'
 import * as RouterConst from '../../static/const'
-import menuData from '../../static/const/menu'
+import * as menuData from '../../static/const/menu'
 
 import SiderSearchMenu from '../../components/siderSearch'
 
@@ -29,17 +28,19 @@ class App extends React.Component {
 
 
     componentDidMount() {
-        // this.props.getMenu().then((data) => {
-        //     
-        // })
-        this.setState({
-                data: menuData
+        if(this.props.location.pathname.indexOf('wechart')==1||this.props.location.pathname.indexOf('importChart')==1){
+             this.setState({
+                data: menuData.data2
             })
+        }else{
+            this.setState({
+                    data: menuData.data
+                })
+        }
     }
 
     render() {
-        let menu
-        console.log(this.props.location.pathname)
+        let menu;
         switch (this.props.location.pathname) {
             case RouterConst.ROUTER_HOME:
             case RouterConst.USER_MIRROR:
