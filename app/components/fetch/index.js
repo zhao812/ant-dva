@@ -35,7 +35,7 @@ export function fetchGet (url, params, headers) {
                 });
                 return false;
             }
-            return data;
+            return data.result;
         })  
     }
     

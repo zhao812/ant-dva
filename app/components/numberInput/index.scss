@@ -1,0 +1,30 @@
+.numberInput{
+  width:100%;
+  overflow:hidden;
+  position: relative;
+  input,&:focus{
+    width:100%;
+    padding-left:10px;
+    outline: none;
+    &.oText{
+      width:100%;
+    }
+  }
+  span{
+    color:#d9d9d9;
+    position:absolute;
+    background:#fff;
+    right:3px;
+    bottom:6px;
+    display:block;
+    padding-right:6px;
+    height:20px;
+    line-height:20px;
+  }
+  textarea+span{
+    position: absolute;
+    padding:0px;
+    right: 6px;
+    bottom: 3px;
+  }
+}

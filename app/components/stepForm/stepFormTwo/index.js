@@ -3,7 +3,6 @@ import { Form, Select, Input, Button,Radio ,Icon,message,DatePicker,Checkbox} fr
 import './index.scss' 
 
 const FormItem = Form.Item;
-let oData="";
 class StepTwo extends React.Component{
     constructor(props) {
         super(props);

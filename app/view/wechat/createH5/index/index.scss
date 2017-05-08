@@ -1,0 +1,48 @@
+.avatar-uploader,
+.avatar-uploader-trigger,
+.avatar {
+  width: 150px;
+  height: 150px;
+}
+.avatar-uploader {
+  display: block;
+  border: 1px dashed #d9d9d9;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.avatar-uploader-trigger {
+  display: table-cell;
+  // vertical-align: middle;
+  font-size: 28px;
+  color: #999;
+}
+
+
+.wechat{
+    padding:20px;
+    button{
+      margin-right:20px;
+      margin-bottom:20px;
+    }
+}
+
+.flexs{
+  display:flex;
+  form{flex:1;}
+  .anticon-plus:before{
+    margin-top:58px;
+  }
+}
+.oHead{
+  padding:4px;
+  background:rgba(0,0,0,.3)
+}
+.oFooter{
+  padding:4px;
+}
+.ant-row.showFalse{
+  display:none;
+}
+.ant-row.showTrue{
+  display:block;
+}
