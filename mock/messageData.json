@@ -1,0 +1,41 @@
+{
+    "result": {
+        "list": [
+            {
+                "key": 1,
+                "icon": "1.jpg",
+                "name": "活动名称",
+                "channel": "新浪",
+                "way": "aaa",
+                "customer-number": 1000,
+                "activation-number": 2000,
+                "status": 1,
+                "date": "2017/5/9 10:00:00"
+            },
+            {
+                "key": 2,
+                "icon": "1.jpg",
+                "name": "活动名称",
+                "channel": "新浪",
+                "way": "aaa",
+                "customer-number": 1000,
+                "activation-number": 2000,
+                "status": 2,
+                "date": "2017/5/9 10:00:00"
+            },
+            {
+                "key": 3,
+                "icon": "1.jpg",
+                "name": "活动名称",
+                "channel": "新浪",
+                "way": "aaa",
+                "customer-number": 1000,
+                "activation-number": 2000,
+                "status": 0,
+                "date": "2017/5/9 10:00:00"
+            }
+        ]
+    },
+    "code": 0,
+    "message": ""
+}

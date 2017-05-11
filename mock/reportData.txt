@@ -1,0 +1,13 @@
+"userTotal": 用户总数,
+"riseTime": 计算时间,
+"reportCount": 生成表格个数,
+表格列表
+"reports": [
+    "name": 标题
+    "type": 类型 pie: 饼图 bar: 柱状图
+    数据
+    "data": [
+        "count": 数量,
+        "name": 名称
+    ]
+]

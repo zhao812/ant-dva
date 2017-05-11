@@ -1,0 +1,44 @@
+.header-div{
+  background: #fff !important;
+}
+
+.logo {
+  background: url(../../static/images/logo.png) no-repeat center;
+  width:140px;
+  height: 100%;
+  float:left;
+}
+.ant-menu.menuUl{
+  background:none;
+  height:100%;
+  line-height: 64px;
+  float:left;
+}
+.ant-menu-horizontal .ant-menu-item.menuLi{
+  margin: 0;
+  height: 100%;
+  font-size: 14px;
+  color: #4c4c4c;
+}
+
+.login-btns{
+  float: right;
+
+  button {
+    margin-left: 10px;
+    font-size: 14px;
+    height: 34px;
+  }
+
+  .bnLogin{
+    background: #ffffff;
+    color: #1a5bfb;
+    border: 1px solid #1a5bfb;
+    border-radius: 5px;
+  }
+
+  .bnRegister{
+    background: #1a5bfb;
+    color: #ffffff;
+  }
+}

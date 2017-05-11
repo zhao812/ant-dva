@@ -1,53 +1,49 @@
-import React from 'react';
-import './index.scss';
+import React, { PropTypes } from 'react';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import {getUserNumber} from './reducer/action';
+import { Input, Button } from 'antd'
+import HomeBanner from './homeBanner'
+import HomeTab from './homeTab'
+import CopyRights from './copyRight'
+
+import { getUserNumber } from './reducer/action';
+
+import './index.scss';
+
 class Index extends React.Component {
-    
-    constructor(props) {
-        super(props)
-        this.state = {
-            num:[]
-        }
-    }
-    componentWillMount(){
+
+    constructor(props, context) {
+        super(props, context)
     }
 
-    componentDidMount(){
-         let  sz=[];
-         this.props.getUserNumber().then((data) => {
-             let oData=data.result.toString();
-                for(var i=0;i<oData.length;i++){
-                    sz.push(oData[i])
-                }
-            }).then(()=>(this.setState({
-                num:sz
-            })))
+    componentDidMount() {
+        this.props.getUserNumber()
     }
-    
-    render(){
-        console.log(this.state.num)
+
+    render() {
         return (
             <div className="dataPlatform">
-                <h6>用户画像大数据平台</h6>
-                <div>
-                    {
-                        this.state.num.map(function(item,key){
-                            return(
-                                 <span key={key}>{item}</span>
-                            )
-                        })
-                    }
+                <HomeBanner data={this.props.number}/>
+                <HomeTab />
+                <div className="email-container">
+                    <p>立刻体验，即可享受个性化服务套餐</p>
+                    <div className="input-container">
+                        <Input className="email-input" placeholder="请输入您的电子邮箱" />
+                        <Button className="email-btn">立即体验</Button>
+                    </div>
+                    <div className="div-bg"></div>
                 </div>
+                <CopyRights />
             </div>
         );
     }
 }
-Index.propTypes = {
+Index.PropTypes = {
+    number: PropTypes.number.isRequired
 }
 
 let mapStateToProps = state => ({
+    number: state.homeReducer.number
 })
 
 let mapDispatchToProps = (dispatch) => {

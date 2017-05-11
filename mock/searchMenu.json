@@ -5,12 +5,13 @@
                 "name": "人口标签",
                 "list": [
                     {
-                        "id": 1,
-                        "name": "性别",
+                        "id": 1,            
+                        "name": "性别",     
                         "defaultValue": 0,
+                        "type": "select",
                         "options": [
                             {
-                                "name": "全部",
+                                "name": "全部", 
                                 "value": 0
                             },
                             {
@@ -26,6 +27,7 @@
                     {
                         "id": 2,
                         "name": "年龄",
+                        "type": "select",
                         "defaultValue": 0,
                         "options": [
                             {
@@ -57,6 +59,7 @@
                     {
                         "id": 3,
                         "name": "婚姻",
+                        "type": "select",
                         "defaultValue": 0,
                         "options": [
                             {

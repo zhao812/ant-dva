@@ -15,6 +15,7 @@ const UserMirror = cb => require.ensure([], require => { cb(null, require('../vi
 const Message = cb => require.ensure([], require => { cb(null, require('../view/message/index').default)}, "Message")
 const MessageSetUp = cb => require.ensure([], require => { cb(null, require('../view/message/setUp').default)}, "SetUp")
 const MessageSetUpMobile = cb => require.ensure([], require => { cb(null, require('../view/message/setUpMobile').default)}, "SetUpMobile")
+const MessageList = cb => require.ensure([], require => { cb(null, require('../view/messageList').default)}, "MessageList")
 
 
 
@@ -48,6 +49,10 @@ const Routers = {
 		{	
 			path: RouterConst.MESSAGE_STEPUP_MOBILE,
 			getComponent(nextState, cb){ MessageSetUpMobile(cb) }
+		},
+		{
+			path: RouterConst.MESSAGE_LIST,
+			getComponent(nextState, cb){ MessageList(cb) }
 		},
 	]
 }
