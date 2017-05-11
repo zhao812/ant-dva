@@ -1,15 +1,18 @@
 import * as ActionTypes from './ActionTypes'
 
 const initialState = {
-    oUrl:""
+    fileString:"",
+    pageUrl:""
 }
 export default function update (state = initialState, action){
     console.log(action.type)
      switch(action.type){
-        case ActionTypes.WECHART_NEXT:
+        case ActionTypes.IMPORT_CHART:
             return {
-                        oUrl:action.data.oUrl
-                }
+                    ...state,
+                    fileString: action.data.fileString,
+                    pageUrl:action.data.pageUrl
+            }
         default:
             return state
     }

@@ -2,20 +2,20 @@ import * as ActionTypes from './ActionTypes'
 
 const initialState = {
     title:"",
-    url:"",
     content:"",
-    imageUrl:"",
-    essay:""
+    url:"",
+    logoUrl:"",
+    data:[]
 }
 export default function update (state = initialState, action){
      switch(action.type){
         case ActionTypes.WECHART:
             return {
                         title:action.data.title,
-                        url:action.data.url,
                         content:action.data.content,
-                        imageUrl:action.data.imageUrl,
-                        essay:action.data.essay
+                        url:action.data.url,
+                        logoUrl:action.data.logoUrl,
+                        data:action.data.data
                 }
         default:
             return state

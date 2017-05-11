@@ -2,10 +2,11 @@ import React, {PropTypes} from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { Table, Icon,Button ,Input ,Form,Upload, message } from 'antd'
+import { hashHistory } from 'react-router'
 import StepNav from '../../../../components/stepNav'
 import NumberInput from '../../../../components/numberInput'
 import Mobile from '../../../../components/mobilePhone'
-import {commitWechatNext} from './reducer/action'
+import {commitWechatNext,generateAd,getMessage} from './reducer/action'
 import './index.scss'
 const FormItem = Form.Item;
 
@@ -39,11 +40,7 @@ class Wechat extends React.Component {
             oUrl:""
         }
     }
-    handlerChangeLang(e){
-        this.setState({
-            reLang:e.target.value
-        })
-    }
+   
     handlerChangeUrl(e){
         this.setState({
             oUrl:e.target.value
@@ -56,60 +53,53 @@ class Wechat extends React.Component {
         }
     }
     handlerClick(){
-        const {reLang,oUrl,imageUrl} = this.state;
-        if(!reLang){
-            message.error('请输入推荐语');
-        }else if(!oUrl){
-            message.error('请输入推荐图');
+        const {oUrl} = this.state;
+        if(!oUrl){
+            message.error('请先生成H5链接');
         }
-        else if(!imageUrl){
-            message.error('请输入H5链接');
-        }
-        this.props.commitWechatNext(this.state)
+        this.props.commitWechatNext({url:oUrl})
+    }
+    handlerWechart(){
+            hashHistory.push("/wechart")
+    }
+    handlerImport(){
+            hashHistory.push("/importChart")
+    }
+    handlerGenerateAd(){
+      this.props.generateAd().then((data)=>this.setState({
+          oUrl:data.url
+      }))
+        
+    }
+    handlergetMessage(){
+        const {mobileNo}=this.state;
+        let reg=/^1\d{10}$/;
+        mobileNo&&reg.test(mobileNo)==true&&this.props.getMessage(mobileNo);
+    }
+    handlerChangeMobile(e){
+        this.setState({
+            mobileNo:e.target.value
+        })
     }
     render() {
-        const {stepNum,imageUrl,status, reLang, oUrl}=this.state;
+        const {stepNum,imageUrl,status, oUrl}=this.state;
+        let comp=this.props.location.query.status==1?
+        <Mobile title={this.props.title} url={this.props.url} content={this.props.content} data={this.props.data}/>:
+        <Mobile iframeUrl={this.props.odata.pageUrl} fileString={this.props.odata.fileString}/>
         return (
           <div className="wechatnext">
-                <Button type={status==1?"primary":""} >新建H5分享页面</Button>
-                <Button>导入H5分享页面代码</Button>
+                <Button type={this.props.location.query.status==1?"primary":""} onClick={this.handlerWechart.bind(this)}>新建H5分享页面</Button>
+                <Button  type={this.props.location.query.status==2?"primary":""} onClick={this.handlerImport.bind(this)}>导入H5分享页面代码</Button>
                 <StepNav stepNum={stepNum}/>
                 <div className="flexs">
                     <div className="flex1">
-                        <Form >
-                        <FormItem
-                            label="推荐语"
-                            labelCol={{ span: 4 }}
-                            wrapperCol={{ span: 16 }}
-                            ><Input type="textarea" rows={4}  onChange={(e)=>this.handlerChangeLang(e)}/>
-                            </FormItem>
-                            
-                            <FormItem
-                            label="推荐图"
-                            labelCol={{ span: 4 }}
-                            wrapperCol={{ span: 16 }}
-                            >
-                            <Upload
-                                className="avatar-uploader"
-                                name="avatar"
-                                showUploadList={false}
-                                action="//jsonplaceholder.typicode.com/posts/"
-                                beforeUpload={beforeUpload}
-                                onChange={this.handleChange}
-                                >
-                                {
-                                    imageUrl ?
-                                    <img src={imageUrl} alt="" className="avatar" /> :
-                                    <Icon type="plus" className="avatar-uploader-trigger" />
-                                }
-                                </Upload>
-                            </FormItem>
-
+                        <Form  style={{textAlign:'center'}}>
+                        <Button style={{marginBottom:20}} onClick={this.handlerGenerateAd.bind(this)}>生成推广连接</Button>
                         <FormItem
                             label="H5链接"
                             labelCol={{ span: 4 }}
                             wrapperCol={{ span: 16 }}
-                            ><Input onChange={this.handlerChangeUrl.bind(this)}/>
+                            ><Input value={oUrl} readOnly/>
                             </FormItem>
                         </Form>
                         
@@ -119,7 +109,7 @@ class Wechat extends React.Component {
                                 <div>
                                     <ul>
                                         <li>手机转发<span>将短信发送给自己，再转发短信给客户</span></li>
-                                        <li>我的手机号：13361997280<Button>发送到我的手机</Button><Button>收不到短信？点我</Button></li>
+                                        <li>我的手机号：<Input style={{width:100}} onChange={this.handlerChangeMobile.bind(this)}/><Button onClick={this.handlergetMessage.bind(this)}>发送到我的手机</Button><Button>收不到短信？点我</Button></li>
                                     </ul>
                                 </div>
                             </div>
@@ -142,16 +132,9 @@ class Wechat extends React.Component {
                             </div>
                         </div>
                     </div>
-                    <Mobile reLang={reLang||""} 
-                             oUrl={oUrl||""} 
-                             oImg={imageUrl||""}
-                             title={this.props.data.title} 
-                             url={this.props.data.url} 
-                             content={this.props.data.content} 
-                             imageUrl={this.props.data.imageUrl} 
-                             essay={this.props.data.essay}/>
-                </div>
-                <Button type="primary" style={{marginLeft:90}} onClick={this.handlerClick.bind(this)}>保存，下一步</Button>
+                    {comp}
+                 </div>
+                <Button type="primary" style={{marginLeft:90}} onClick={this.handlerClick.bind(this)}>保存</Button>
           </div>
         );
     }
@@ -159,18 +142,19 @@ class Wechat extends React.Component {
 
 
 Wechat.propTypes = {
-    data: PropTypes.object.isRequired
 }
 
 let mapStateToProps = state => ({
-    data: state.wechatReducer,
-    imageUrl:state.wechatNextReducer.imageUrl,
-    reLang:state.wechatNextReducer.reLang, 
-    oUrl:state.wechatNextReducer.oUrl
+    oUrl:state.wechatNextReducer.oUrl,
+    title: state.wechatReducer.title,
+    url: state.wechatReducer.url,
+    content: state.wechatReducer.content,
+    data: state.wechatReducer.data,
+    odata:state.importChart
 })
 
 let mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({ commitWechatNext }, dispatch)
+    return bindActionCreators({ commitWechatNext,generateAd ,getMessage}, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Wechat)

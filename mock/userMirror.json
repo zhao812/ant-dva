@@ -6,7 +6,16 @@
                 "name": "入口",
                 "children": [
                     {
-                        "name": "性别"
+                        "name": "性别",
+                        "children": [
+                            {
+                                "name": "男"
+                            },
+                            {
+                                "name": "女"
+                            }
+                        ]
+
                     },
                     {
                         "name": "行为规则",

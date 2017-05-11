@@ -18,7 +18,7 @@ const MessageSetUpMobile = cb => require.ensure([], require => { cb(null, requir
 
 const Wechart = cb => require.ensure([], require => { cb(null, require('../view/wechat/createH5/index').default)}, "wechat")
 const WechartNext= cb => require.ensure([], require => { cb(null, require('../view/wechat/createH5/next').default)}, "wechartNext")
-const Importchart= cb => require.ensure([], require => { cb(null, require('../view/wechat/importH5').default)}, "importChart")
+const Importchart= cb => require.ensure([], require => { cb(null, require('../view/wechat/importH5/index').default)}, "importChart")
 
 
 

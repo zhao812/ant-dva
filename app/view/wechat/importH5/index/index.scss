@@ -51,6 +51,10 @@
     margin-top:20px;
     .flex1{
       flex:1;
+      .ant-upload-list-item{
+        display:none;
+        height:0px;
+      }
       form,.method{
         padding:20px 0px 10px 0px;
         background:#f7f6f6;
