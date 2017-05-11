@@ -20,6 +20,11 @@ export function fetchGet (url, params, headers) {
                 url += '&' + paramsArray.join('&')  
             }  
         }
+
+        if(process.env.NODE_ENV == "develop"){
+            url = "mock/" + url + ".json"
+        }
+
         return fetch(url, {  
             method: 'GET',  
             headers: headers,  

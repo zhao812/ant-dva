@@ -1,5 +1,7 @@
 export homeReducer from '../view/home/reducer'
 
+export loginReducer from '../view/login/reducer'
+
 export searchList from '../view/search/reducer'
 
 export userMirror from '../view/userMirror/reducer'

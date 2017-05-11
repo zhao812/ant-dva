@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { Input, Button } from 'antd'
 import HomeBanner from './homeBanner'
 import HomeTab from './homeTab'
-import CopyRights from './copyRight'
+import CopyRights from '../../components/copyRight'
 
 import { getUserNumber } from './reducer/action';
 

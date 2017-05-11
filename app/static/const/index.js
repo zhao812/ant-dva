@@ -1,8 +1,15 @@
 let ROUTER_ROOT = ""
 
-
 /**首页 */
 export const ROUTER_HOME = ROUTER_ROOT + "/"
+
+export const ROUTER_LOGIN = ROUTER_ROOT + "/login"
+
+export const ROUTER_REGISTER = ROUTER_ROOT + "/register"
+
+export const ROUTER_FORGET_PW = ROUTER_ROOT + "/forgetPw"
+
+export const ROUTER_RESET_PW = ROUTER_ROOT + "/resetPw"
 
 export const USER = ROUTER_ROOT + "/user"
 

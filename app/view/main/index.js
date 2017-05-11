@@ -43,6 +43,10 @@ class App extends React.Component {
         let menu;
         switch (this.props.location.pathname) {
             case RouterConst.ROUTER_HOME:
+            case RouterConst.ROUTER_LOGIN:
+            case RouterConst.ROUTER_REGISTER:
+            case RouterConst.ROUTER_FORGET_PW:
+            case RouterConst.ROUTER_RESET_PW:
             case RouterConst.USER_MIRROR:
                 menu = ""
                 break;

@@ -1,10 +1,11 @@
-import React, { PropTypes } from 'react';
+import React, { PropTypes } from 'react'
+import { hashHistory } from 'react-router'
 import { Layout, Menu, Icon, Input, Button } from 'antd'
+
+import * as RouterConst from '../../static/const'
+
 import './index.scss'
 
-const { Header } = Layout;
-const SubMenu = Menu.SubMenu;
-const MenuItemGroup = Menu.ItemGroup;
 class Headers extends React.Component {
     constructor(props, context) {
         super(props, context)
@@ -23,6 +24,8 @@ class Headers extends React.Component {
     }
 
     render() {
+        let { Header } = Layout, SubMenu = Menu.SubMenu, MenuItemGroup = Menu.ItemGroup
+
         return(
             <Header className="header-div">
                 <div className="logo"></div>
@@ -35,8 +38,8 @@ class Headers extends React.Component {
                 </Menu>
 
                 <div className="login-btns">
-                    <Button className="bnLogin">登录</Button>
-                    <Button className="bnRegister">立即注册</Button>
+                    <Button className="bnLogin" onClick={() => hashHistory.push(RouterConst.ROUTER_LOGIN) }>登录</Button>
+                    <Button className="bnRegister" onClick={() => hashHistory.push(RouterConst.ROUTER_REGISTER) }>立即注册</Button>
                 </div>
             </Header>
         )

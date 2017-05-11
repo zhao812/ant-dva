@@ -7,6 +7,6 @@ const receiveData = data => ({
 })
 //进入加载数据
 export const getUserNumber = () => dispatch => {
-    let url = "/mock/userNumber.json";
+    let url = "/userNumber";
     dispatch(HTTPUtil.fetchGet(url, null, null)).then(data=>dispatch(receiveData(data)))
 }

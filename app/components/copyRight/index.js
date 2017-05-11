@@ -17,7 +17,7 @@ class CopyRights extends React.Component{
                         <p>Copyright © 1998-2016 Ficus-hederacea. All Rights Reserved.</p>
                         <p>藤榕网络 版权所有</p>
                     </div>
-                    <QRCode className="qrcode" value="https://www.qbao.com/" size="58" />
+                    <QRCode value="https://www.qbao.com/" size={58} />
                 </div>
             </div>
         )
