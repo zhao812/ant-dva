@@ -1,0 +1,30 @@
+.ip{
+  background:url(./ip.jpg) no-repeat;
+  width:222px;
+  height:450px;
+  .oIp{
+    width:196px;
+    height:346px;
+    background:#cccbc8;
+    margin-top:52px;
+    margin-left:13px;
+    overflow:auto;
+  }
+  .showImg,.ant-upload.ant-upload-select{
+    width:100%;
+    display:block;
+  }
+  .avatar-uploader, .avatar-uploader-trigger, .avatar{
+    width:100%;
+    height:auto;
+  }
+  .tuijian{
+    background:#fff;
+    padding-left:8px;
+  }
+}
+.iframes{
+  iframe{
+    height:346px;
+  }
+}

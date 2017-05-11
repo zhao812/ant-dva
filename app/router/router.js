@@ -17,7 +17,9 @@ const MessageSetUp = cb => require.ensure([], require => { cb(null, require('../
 const MessageSetUpMobile = cb => require.ensure([], require => { cb(null, require('../view/message/setUpMobile').default)}, "SetUpMobile")
 const MessageList = cb => require.ensure([], require => { cb(null, require('../view/messageList').default)}, "MessageList")
 
-
+const Wechart = cb => require.ensure([], require => { cb(null, require('../view/wechat/createH5/index').default)}, "wechat")
+const WechartNext= cb => require.ensure([], require => { cb(null, require('../view/wechat/createH5/next').default)}, "wechartNext")
+const Importchart= cb => require.ensure([], require => { cb(null, require('../view/wechat/importH5/index').default)}, "importChart")
 
 const Routers = {
 	path: RouterConst.ROUTER_HOME,
@@ -53,6 +55,18 @@ const Routers = {
 		{
 			path: RouterConst.MESSAGE_LIST,
 			getComponent(nextState, cb){ MessageList(cb) }
+		},
+		{	
+			path: RouterConst.WECHART,
+			getComponent(nextState, cb){ Wechart(cb) }
+		},
+		{	
+			path: RouterConst.WECHARTNEXT,
+			getComponent(nextState, cb){ WechartNext(cb) }
+		},
+		{	
+			path: RouterConst.IMPORTCHART,
+			getComponent(nextState, cb){ Importchart(cb) }
 		},
 	]
 }

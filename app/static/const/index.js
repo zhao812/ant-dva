@@ -17,3 +17,9 @@ export const MESSAGE_STEPUP = ROUTER_ROOT + "/message/setUp"
 export const MESSAGE_STEPUP_MOBILE = ROUTER_ROOT + "/message/setUpmobile"
 
 export const MESSAGE_LIST = ROUTER_ROOT + '/messageList'
+
+export const WECHART = ROUTER_ROOT + "/wechart"
+
+export const WECHARTNEXT = ROUTER_ROOT + "/wechartNext"
+
+export const IMPORTCHART = ROUTER_ROOT + "/importChart"

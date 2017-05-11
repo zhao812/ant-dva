@@ -1,0 +1,62 @@
+.wechatnext{
+  padding:20px;
+  >button{
+    margin-right:20px;
+    margin-bottom:20px;
+  }
+}
+.avatar-uploader,
+.avatar-uploader-trigger,
+.avatar {
+  width: 150px;
+  height: 150px;
+}
+.avatar-uploader {
+  display: block;
+  border: 1px dashed #d9d9d9;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.avatar-uploader-trigger {
+  display: table-cell;
+  // vertical-align: middle;
+  font-size: 28px;
+  color: #999;
+}
+
+ .avatar-uploader .anticon-plus:before{
+    margin-top:58px;
+  }
+  .method>div{
+    display:flex;
+    margin-left:20px;
+    li{
+      margin-bottom:10px;
+      button{margin:0px 10px;}
+    }
+  }
+  .code{
+    background:url('./code.jpg') no-repeat;
+    background-size:100%;
+    width:100px;
+    height:100px;
+  }
+  .oflex{
+    display:flex;
+    align-items: center;
+    padding-left:16px;
+  }
+  .flexs{
+    display:flex;
+    .flex1{
+      flex:1;
+      form,.method{
+        padding:20px 0px 10px 0px;
+        background:#f7f6f6;
+        border-radius:10px;
+        margin-bottom:20px;
+        margin-right:20px;
+        border:1px solid #ece8e8
+      }
+    }
+  }

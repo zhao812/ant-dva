@@ -1,0 +1,1 @@
+export const WECHART_NEXT = 'WECHART_NEXT'
