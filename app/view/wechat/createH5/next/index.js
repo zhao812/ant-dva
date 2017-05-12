@@ -84,7 +84,7 @@ class Wechat extends React.Component {
     render() {
         const {stepNum,imageUrl,status, oUrl}=this.state;
         let comp=this.props.location.query.status==1?
-        <Mobile title={this.props.title} url={this.props.url} content={this.props.content} data={this.props.data}/>:
+        <Mobile title={this.props.title} url={this.props.url} content={this.props.content} data={this.props.data} logo={this.props.logo}/>:
         <Mobile iframeUrl={this.props.odata.pageUrl} fileString={this.props.odata.fileString}/>
         return (
           <div className="wechatnext">
@@ -132,7 +132,8 @@ class Wechat extends React.Component {
                             </div>
                         </div>
                     </div>
-                    {comp}
+                    
+                     {comp}
                  </div>
                 <Button type="primary" style={{marginLeft:90}} onClick={this.handlerClick.bind(this)}>保存</Button>
           </div>
@@ -150,7 +151,8 @@ let mapStateToProps = state => ({
     url: state.wechatReducer.url,
     content: state.wechatReducer.content,
     data: state.wechatReducer.data,
-    odata:state.importChart
+    logo: state.wechatReducer.logoUrl,
+    odata:state.importChart,
 })
 
 let mapDispatchToProps = (dispatch) => {

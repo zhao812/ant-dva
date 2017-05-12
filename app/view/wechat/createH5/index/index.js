@@ -9,7 +9,7 @@ import NumberInput from '../../../../components/numberInput'
 import Mobile from '../../../../components/mobilePhone'
 import Pic from '../../../../components/pic'
 import DW from '../../../../components/shortEssay'
-import {commitWechat} from './reducer/action'
+import {commitWechat,changeTitle,changeContent,changeUrl,changeLogo,changePic,changeTxt,addPic,addTxt} from './reducer/action'
 import './index.scss'
 const FormItem = Form.Item;
 
@@ -38,31 +38,20 @@ class Wechat extends React.Component {
     super(props)
     this.state = {
             stepNum:2,
-            title:"",
-            content: "",
-            url:"",
-            logoUrl:"",
             status:1,
-            pictureNum: 1,
             data: [{type:"pic"},{type:"txt"}]
         }
     }
 
 
 handlerChangeTitle(msg){
-    this.setState({
-     title:msg
-    })
+    this.props.changeTitle(msg)
 }
 handlerChangeContent(msg){
-    this.setState({
-     content:msg
-    })
+    this.props.changeContent(msg)
 }
-handlerChangeUrl(e){
-    this.setState({
-       url:e.target.value
-    })
+handlerChangeUrl(msg){
+    this.props.changeUrl(msg.currentTarget.value)
 }
 handlerchangeEssay(e){
     this.setState({
@@ -78,29 +67,25 @@ handlerAddClickLj(){
     })
 }
 handlerAddClickPic(){
-    data = this.state.data
-    data.push({type:"pic"})
-    this.setState({data: data});
+    this.props.addPic({type:"pic"})
 }
 handlerAddClickDw(){
-    data = this.state.data
-    data.push({type:"txt"})
-    this.setState({data: data});
+    this.props.addTxt({type:"txt"})
 }
 
 goNext(){
-    console.log(this.state.data)
-    if(!this.state.title){
+    
+    const {title,content,linkurl,logoUrl,data}=this.props;
+    if(!title){
          message.error('请输入消息标题');
-    }else if(!this.state.content){
+    }else if(!content){
         message.error('请输入消息内容');
-    }else if(!this.state.url){
+    }else if(!linkurl){
         message.error('请输入跳转链接');
-    }else if(!this.state.logoUrl){
+    }else if(!logoUrl){
         message.error('请输入LOGO图');
     }else{
-        const {title,content,url,logoUrl,data}=this.state;
-        this.props.commitWechat({title:title,content:content,url:url,logoUrl:logoUrl,data:data})
+        this.props.commitWechat({title:title,content:content,linkurl:linkurl,logoUrl:logoUrl,data:data})
             hashHistory.push({
                 pathname:'wechartNext',
                 query:{
@@ -114,23 +99,26 @@ handlerImport(){
 }
 handleChangeLogo = (info) => {
     if (info.file.status === 'done') {
-        getBase64(info.file.originFileObj, logoUrl => this.setState({ logoUrl }));
+        getBase64(info.file.originFileObj, logoUrl => this.props.changeLogo(logoUrl));
     }
 }
 handlerPic(index,msg){
-    data = this.state.data
-    data[index].value= msg
-    this.setState({data:data})
+    this.props.changePic(index,msg)
     
 }
 handlerShort(index,msg){
-    data = this.state.data
-    data[index].value= msg
-    this.setState({data:data})
+    this.props.changeTxt(msg,index)
+
+    // data = this.props.data
+    // data[index].value= msg
+    // console.log(data)
+    // this.props.changeTxt(data)
     
 }
 render() {
-    const {stepNum,title,content,url,status,imageUrl,logoUrl,data}=this.state;
+    const {stepNum,status}=this.state;
+    const {title,content,linkurl,logoUrl,data}=this.props;
+    console.log(data,333333333333333333333333333389)
     let components = data.map((data, index)=>{
         if(data.type == "pic"){
             return <Pic key={index} pic={(value)=>this.handlerPic(index, value)} />
@@ -180,8 +168,8 @@ render() {
                                 beforeUpload={beforeUpload}
                                 onChange={this.handleChangeLogo}>
                             {
-                            logoUrl ?
-                            <img src={logoUrl} alt="" className="avatar"/> :
+                            this.props.logoUrl ?
+                            <img src={this.props.logoUrl} alt="" className="avatar"/> :
                             <Icon type="plus" className="avatar-uploader-trigger"/>
                             }
                         </Upload>
@@ -196,7 +184,12 @@ render() {
                         </Button>
                     </FormItem>
                 </Form>
-                <Mobile title={title} url={url} content={content} data={data}/>
+                
+                <Mobile title={title} 
+                        url={linkurl} 
+                        content={content} 
+                        data={data}
+                        logo={logoUrl}/>
             </div>
     </div>
     );
@@ -210,13 +203,13 @@ Wechat.propTypes = {
 let mapStateToProps = state => ({
     title:state.wechatReducer.title,
     content:state.wechatReducer.content,
-    url:state.wechatReducer.url,
+    linkurl:state.wechatReducer.linkurl,
     logoUrl:state.wechatReducer.logoUrl,
     data:state.wechatReducer.data
 })
 
 let mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({ commitWechat }, dispatch)
+    return bindActionCreators({ commitWechat,changeTitle,changeContent,changeUrl,changeLogo,changePic ,changeTxt,addPic,addTxt}, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Wechat)

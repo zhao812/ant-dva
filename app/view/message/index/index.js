@@ -64,7 +64,7 @@ class Message extends React.Component {
     componentDidMount() {
       this.props.getTableData().then((data) => {
         this.setState({
-          data:data.result
+          data:data
         })
       })
     }

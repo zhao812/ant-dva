@@ -11,3 +11,15 @@ export const commitImport = (data) => dispatch => {
             dispatch(importData(data));
     })
 }
+export const setFileString = (file) => dispatch => {
+    dispatch({
+        type : ActionTypes.File_String,
+        file:file
+    })
+}
+export const setUrl = (url) => dispatch => {
+    dispatch({
+        type : ActionTypes.Set_Url,
+        url:url
+    })
+}

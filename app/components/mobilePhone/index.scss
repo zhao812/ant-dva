@@ -5,10 +5,14 @@
   .oIp{
     width:196px;
     height:346px;
-    background:#cccbc8;
+    background:#fff;
     margin-top:52px;
     margin-left:13px;
     overflow:auto;
+    border: 1px solid #dedede;
+  }
+  .showTitle{
+    padding:4px;
   }
   .showImg,.ant-upload.ant-upload-select{
     width:100%;
