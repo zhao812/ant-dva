@@ -18,7 +18,7 @@ class StepThree extends React.Component{
         this.state=this.props.allData;
     }
     handlerNext(e){
-
+        console.log(this.props.allData)
     }
     handlerPrev(e){
         this.props.goStep(2)

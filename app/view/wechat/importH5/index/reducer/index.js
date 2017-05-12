@@ -9,9 +9,17 @@ export default function update (state = initialState, action){
      switch(action.type){
         case ActionTypes.IMPORT_CHART:
             return {
+                    ...state
+            }
+        case ActionTypes.File_String:
+            return {
                     ...state,
-                    fileString: action.data.fileString,
-                    pageUrl:action.data.pageUrl
+                    fileString: action.file
+            }
+        case ActionTypes.Set_Url:
+            return {
+                    ...state,
+                    pageUrl: action.url
             }
         default:
             return state
