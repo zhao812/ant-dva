@@ -1,1 +1,1 @@
-export const HOME_UPDATE = 'TABLE_UPDATA'
+export const Active_List = 'Active_List'

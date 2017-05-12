@@ -1,45 +1,37 @@
 import React from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { Table, Icon,Button } from 'antd';
+import { Table, Icon,Button ,Pagination } from 'antd';
 import {getTableData} from './reducer/action';
-
+import './index.scss';
 
 const columns = [{
   title: '预览',
-  dataIndex: 'img',
-  key: 'img'
+  dataIndex: 'img'
 }, {
   title: '活动名称',
-  dataIndex: 'title',
-  key: 'title',
+  dataIndex: 'name'
 }, {
   title: '推送渠道',
-  dataIndex: 'pushChannel',
-  key: 'pushChannel',
+  dataIndex: 'sendTunnel'
 },{
   title: '通道',
-  dataIndex: 'passageway',
-  key: 'passageway',
+  dataIndex: 'tunnelName',
+  key: 'tunnelName',
 },{
   title: '目标客户数量',
-  dataIndex: 'custnumber',
-  key: 'custnumber',
+  dataIndex: 'selectNum'
 },{
   title: '激活用户数量',
-  dataIndex: 'number',
-  key: 'number',
+  dataIndex: 'actNum'
 },{
   title: '状态',
-  dataIndex: 'status',
-  key: 'status',
+  dataIndex: 'status'
 },{
   title: '操作时间',
-  dataIndex: 'timer',
-  key: 'timer',
+  dataIndex: 'createTime'
 },{
   title: '跟踪',
-  key: 'track',
   render: (text, record) => (
     <span>
       <a >报表</a>
@@ -62,18 +54,26 @@ class Message extends React.Component {
     changeTitle(name) {
     }
     componentDidMount() {
-      this.props.getTableData().then((data) => {
-        this.setState({
-          data:data
-        })
-      })
+      this.props.getTableData({"size":10,"page":1})
+    }
+
+    handleTableChange(e){
+      console.log(e,1111)
+      this.props.getTableData({"size":10,"page":e})
     }
 
     render() {
         return (
           <div>
-            <Button>新建推送活动</Button>
-            <Table columns={columns} dataSource={""||this.state.data} />
+            <Button><Icon type="link" />新建短信推送</Button>
+            <Button><Icon type="link" />新建微信推送</Button>
+            <Table 
+              rowKey="id"
+              columns={columns} 
+              dataSource={this.props.data} 
+              onChange={this.handleTableChange.bind()} />
+              <Pagination 
+              onChange={(e)=>this.handleTableChange(e)} total={this.props.count} />
           </div>
         );
     }
@@ -84,6 +84,8 @@ Message.propTypes = {
 }
 
 let mapStateToProps = state => ({
+    data:state.activeList.data,
+    count:state.activeList.count,
 })
 
 let mapDispatchToProps = (dispatch) => {

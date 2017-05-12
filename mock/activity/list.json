@@ -1,0 +1,105 @@
+{
+  "success": true,
+  "message": "消息内容",
+  "data": {
+    "count": 123,
+    "dataList": [
+      {
+        "id": 4,
+        "createTime": "创建时间2",
+        "name": "活动名称2",
+        "sendTunnel": "短信",
+        "tunnelId": "渠道id2",
+        "tunnelName": "电信",
+        "selectNum": "目标客户数量2",
+        "actNum": "激活用户数量2",
+        "status": "状态2",
+        "userSelectGoupId": "客群id"
+      },
+      {
+        "id": 5,
+        "createTime": "创建时间2",
+        "name": "活动名称2",
+        "sendTunnel": "短信",
+        "tunnelId": "渠道id2",
+        "tunnelName": "电信",
+        "selectNum": "目标客户数量2",
+        "actNum": "激活用户数量2",
+        "status": "状态2",
+        "userSelectGoupId": "客群id"
+      },
+      {
+        "id": 6,
+        "createTime": "创建时间2",
+        "name": "活动名称2",
+        "sendTunnel": "短信",
+        "tunnelId": "渠道id2",
+        "tunnelName": "电信",
+        "selectNum": "目标客户数量2",
+        "actNum": "激活用户数量2",
+        "status": "状态2",
+        "userSelectGoupId": "客群id"
+      },
+      {
+        "id": 7,
+        "createTime": "创建时间2",
+        "name": "活动名称2",
+        "sendTunnel": "短信",
+        "tunnelId": "渠道id2",
+        "tunnelName": "微信",
+        "selectNum": "目标客户数量2",
+        "actNum": "激活用户数量2",
+        "status": "状态2",
+        "userSelectGoupId": "客群id"
+      },
+      {
+        "id": 8,
+        "createTime": "创建时间2",
+        "name": "活动名称2",
+        "sendTunnel": "android",
+        "tunnelId": "渠道id2",
+        "tunnelName": "微信",
+        "selectNum": "目标客户数量2",
+        "actNum": "激活用户数量2",
+        "status": "状态2",
+        "userSelectGoupId": "客群id"
+      },
+      {
+        "id": 9,
+        "createTime": "创建时间2",
+        "name": "活动名称2",
+        "sendTunnel": "微信",
+        "tunnelId": "渠道id2",
+        "tunnelName": "微信",
+        "selectNum": "目标客户数量2",
+        "actNum": "激活用户数量2",
+        "status": "状态2",
+        "userSelectGoupId": "客群id"
+      },
+      {
+        "id": 10,
+        "createTime": "创建时间2",
+        "name": "活动名称2",
+        "sendTunnel": "微信",
+        "tunnelId": "渠道id2",
+        "tunnelName": "极光推送",
+        "selectNum": "目标客户数量2",
+        "actNum": "激活用户数量2",
+        "status": "状态2",
+        "userSelectGoupId": "客群id"
+      },
+      {
+        "id": 11,
+        "createTime": "创建时间2",
+        "name": "活动名称2",
+        "sendTunnel": "微信",
+        "tunnelId": "渠道id2",
+        "tunnelName": "极光推送",
+        "selectNum": "目标客户数量2",
+        "actNum": "激活用户数量2",
+        "status": "状态2",
+        "userSelectGoupId": "客群id"
+      }
+    ]
+  }
+}

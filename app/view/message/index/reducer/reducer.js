@@ -1,7 +1,28 @@
 import * as ActionTypes from './ActionTypes'
 const initialState = {
-    a : ""
+    data:[],
+    count:0
+}
+function getData(msg){
+    return msg.map((item, key)=>{
+        switch (item.sendTunnel){
+            case '短信':
+                return {  img: "1" , ...item }
+            case '微信':
+                return {  img: "2" , ...item }
+            default:
+                 return {  img: "3" , ...item}
+        }
+    })
 }
 export default function update (state = initialState, action){
-     return state
+    switch(action.type){
+        case ActionTypes.Active_List:
+            return { 
+                data: getData(action.data.dataList ),
+                count:action.data.count
+            }
+        default:
+            return state
+    }
 }

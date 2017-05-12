@@ -1,7 +1,3 @@
-/**
- * Created by zhao 
- * 2017/3/14.
- */
 import React, { PropTypes } from 'react'
 import { Router, Route, IndexRoute } from 'react-router'
 
@@ -61,6 +57,18 @@ const Routers = {
 			getComponent(nextState, cb){ UserMirror(cb) }
 		},
 		{	
+			path: RouterConst.WECHART,
+			getComponent(nextState, cb){ Wechart(cb) }
+		},
+		{	
+			path: RouterConst.WECHARTNEXT,
+			getComponent(nextState, cb){ WechartNext(cb) }
+		},
+		{	
+			path: RouterConst.IMPORTCHART,
+			getComponent(nextState, cb){ Importchart(cb) }
+		},
+		{	
 			path: RouterConst.GET_MESSAGE,
 			getComponent(nextState, cb){ Message(cb) }
 		},
@@ -75,18 +83,6 @@ const Routers = {
 		{
 			path: RouterConst.MESSAGE_LIST,
 			getComponent(nextState, cb){ MessageList(cb) }
-		},
-		{	
-			path: RouterConst.WECHART,
-			getComponent(nextState, cb){ Wechart(cb) }
-		},
-		{	
-			path: RouterConst.WECHARTNEXT,
-			getComponent(nextState, cb){ WechartNext(cb) }
-		},
-		{	
-			path: RouterConst.IMPORTCHART,
-			getComponent(nextState, cb){ Importchart(cb) }
 		},
 	]
 }

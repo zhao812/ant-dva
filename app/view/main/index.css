@@ -1,7 +1,7 @@
-body{
+/*body{
     width: 1280px;
     margin: 0 auto;
-}
+}*/
 
 .title{
     padding-left:10px;
@@ -15,4 +15,23 @@ body{
     border-top:0px;
     background:#fff;
     overflow: auto;
+}
+.wapper {
+    width: 1280px;
+    margin: 0 auto;
+}
+.sider{
+    flex: 0 0 280px !important;
+    width: 280px  !important;
+}
+.ant-menu-root.ant-menu-inline{
+    background:#e2e6ef;
+    height:100%;
+}
+.ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
+    background-color: none;
+    color:#000;
+}
+.ant-menu-item > a{
+    color:#999999;
 }

@@ -9,6 +9,10 @@ var HTTPUtil = {};
  * @returns {Promise} 
  */  
 export function fetchGet (url, params, headers) {
+
+    if(process.env.NODE_ENV == "develop"){
+            url = "mock/" + url + ".json"
+        }
     return (dispatch, getState) => {
         if (params) {  
             let paramsArray = [];  
@@ -21,10 +25,6 @@ export function fetchGet (url, params, headers) {
             }  
         }
 
-        if(process.env.NODE_ENV == "develop"){
-            url = "mock/" + url + ".json"
-        }
-
         return fetch(url, {  
             method: 'GET',  
             headers: headers,  
@@ -33,14 +33,14 @@ export function fetchGet (url, params, headers) {
             return response.json();
         })  
         .then((data) => {  
-            if(data&&data.code!=0){
+            if(data&&data.success!=true){
                 Modal.error({
                     title: '提示',
                     content: data.message,
                 });
                 return false;
             }
-            return data.result;
+            return data.data;
         })  
     }
     

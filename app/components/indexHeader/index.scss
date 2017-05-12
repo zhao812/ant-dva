@@ -1,0 +1,34 @@
+.header-div{
+  background: #0f85fb !important;
+}
+
+.logo {
+  background: url(../../static/images/logoIndex.png) no-repeat center;
+  width:140px;
+  height: 60px;
+  float:left;
+}
+.ant-menu.menuUl{
+  background:none;
+  height:100%;
+  line-height: 64px;
+  float:left;
+  border:0px;
+  float:right;
+}
+.ant-menu-horizontal .ant-menu-item.menuLi{
+  margin: 0;
+  height: 100%;
+  font-size: 14px;
+  color: #fff;
+}
+.ant-menu-horizontal > .ant-menu-item-selected,.ant-menu-horizontal > .ant-menu-item:hover{
+  color:#fff !important;
+  border-bottom:0px !important;
+}
+.ant-menu-horizontal > .ant-menu-item
+.wapper{
+  width:1280px;
+  margin:0 auto;
+  overflow:hidden;
+}

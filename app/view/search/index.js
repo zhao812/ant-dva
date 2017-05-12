@@ -21,6 +21,7 @@ class SearchList extends React.Component {
         return (
             <div>
                 <SelectContainer />
+                <AntVContainer />
             </div>
         )
     }

@@ -126,11 +126,6 @@ if(process.env.NODE_ENV == 'production'){
       dry: false
     })
   )
-  // config.plugins.push(new webpack.optimize.UglifyJsPlugin({
-  //   compressor: {
-  //     warnings: false
-  //   }
-  // }))
 }else{
   
   config.plugins.push(new webpack.HotModuleReplacementPlugin());

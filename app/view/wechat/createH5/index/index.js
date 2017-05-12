@@ -108,17 +108,11 @@ handlerPic(index,msg){
 }
 handlerShort(index,msg){
     this.props.changeTxt(msg,index)
-
-    // data = this.props.data
-    // data[index].value= msg
-    // console.log(data)
-    // this.props.changeTxt(data)
     
 }
 render() {
     const {stepNum,status}=this.state;
     const {title,content,linkurl,logoUrl,data}=this.props;
-    console.log(data,333333333333333333333333333389)
     let components = data.map((data, index)=>{
         if(data.type == "pic"){
             return <Pic key={index} pic={(value)=>this.handlerPic(index, value)} />
