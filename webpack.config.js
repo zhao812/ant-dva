@@ -28,13 +28,14 @@ loaders.push({
     test: /\.js$/,
     exclude: /node_modules/,
     loader: ['babel-loader'],
-    include: [path.join(__dirname, './')]
+    include: [path.join(__dirname, './')],
+
 });
 
 // 编译 sass
 loaders.push({
-  test: /\.(scss|css)$/,
-  loaders: ['style-loader', 'css-loader', 'sass-loader', 'postcss-loader']
+  test: /\.(scss|css|less)$/,
+  loaders: ['style-loader', 'css-loader', 'sass-loader', 'postcss-loader', 'less-loader']
 });
 
 //图片

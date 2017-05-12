@@ -5,7 +5,6 @@ import Headers from '../../components/header'
 import SiderMenu from '../../components/siderMenu'
 import { Layout } from 'antd';
 const { Header, Footer, Sider, Content } = Layout;
-import 'antd/dist/antd.css'
 import './index.css'
 
 import * as RouterConst from '../../static/const'

@@ -1,4 +1,5 @@
 import { Modal, Button } from 'antd';
+
 var HTTPUtil = {};
 import 'whatwg-fetch'  // 可以引入fetch来进行Ajax
 /** 
@@ -9,6 +10,10 @@ import 'whatwg-fetch'  // 可以引入fetch来进行Ajax
  * @returns {Promise} 
  */
 export function fetchGet(url, params, headers) {
+    if (process.env.NODE_ENV == "develop") {
+        url = "mock/" + url + ".json"
+    }
+
     return (dispatch, getState) => {
         if (params) {
             let paramsArray = [];
@@ -21,10 +26,6 @@ export function fetchGet(url, params, headers) {
             }
         }
 
-        if (process.env.NODE_ENV == "develop") {
-            url = "mock/" + url + ".json"
-        }
-
         return fetch(url, {
             method: 'GET',
             headers: headers,
@@ -33,14 +34,14 @@ export function fetchGet(url, params, headers) {
             return response.json();
         })
         .then((data) => {
-            if (data && data.code != 0) {
+            if (data && !data.success) {
                 Modal.error({
                     title: '提示',
                     content: data.message,
                 });
                 return false;
             }
-            return data.result;
+            return data.data;
         })
     }
 
@@ -51,34 +52,40 @@ export function fetchGet(url, params, headers) {
  * 基于 fetch 封装的 POST请求  FormData 表单数据 
  * @param url 
  * @param formData   
- * @param headers 
  * @returns {Promise} 
  */
-export function fetchPost(url, formData, headers) {
+export function fetchPost(url, formData) {
 
     return (dispatch, getState) => {
-
+        let method = "POST"
         if (process.env.NODE_ENV == "develop") {
             url = "mock/" + url + ".json"
+            method = "GET"
+        }
+
+        let headers = {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            "Access-Control-Allow-Methods":"PUT,POST,GET,DELETE,OPTIONS"
         }
 
         return fetch(url, {
-                method: 'POST',
+                method: method,
                 headers: headers,
-                body: formData,
+                //body: JSON.stringify(formData)
             })
             .then((response) => {
                 return response.json();
             })
             .then((data) => {
-                if (data && data.code != 0) {
+                if (data && !data.success) {
                     Modal.error({
                         title: '提示',
                         content: data.message,
                     });
                     return false;
                 }
-                return data.result;
+                return data.data || null;
             })
     }
 }  

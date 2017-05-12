@@ -1,10 +1,17 @@
 import React, { PropTypes } from 'react'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+
 import { Link } from 'react-router'
-import { Input, Checkbox, Button } from 'antd'
+import { Input, Checkbox, Button, Modal } from 'antd'
 
 import * as RouterConst from '../../../static/const'
+import * as ErrorMessage from '../../../static/const/errorMessage'
 
 import CopyRights from '../../../components/copyRight'
+
+import { userRegister } from '../reducer/action'
+import { checkEmail } from '../../../utils'
 
 import './index.scss'
 
@@ -12,23 +19,58 @@ class Register extends React.Component{
 
     constructor(props, context){
         super(props, context)
+
+        this.state = {
+            username: "",
+            password: "",
+            passwordAgain: ""
+        }
+    }
+
+    onInputChange(e, type){
+        let state = {}
+        state[type] = e.currentTarget.value
+        this.setState(state)
+    }
+
+    onRegisterHandler(){
+        let { username, password, passwordAgain } = this.state, msg = ""
+        if(username == ""){
+            msg = ErrorMessage.Error_Email_Empty
+        }else if(!checkEmail(username)){
+            msg = ErrorMessage.Error_Email_Invalid
+        }else if(password == ""){
+            msg = ErrorMessage.Error_Password_Empty
+        }else if(passwordAgain == ""){
+            msg = ErrorMessage.Error_Password_Again_Empty
+        }else if(password == passwordAgain){
+            msg = ErrorMessage.Error_Password_Inconsistency
+        }
+        if(msg){
+            Modal.error({ title: '提示', content: msg });
+            return
+        }
+
+        this.props.userRegister(username, password)
     }
 
     render(){
+        let { username, password, passwordAgain } = this.state
+
         return(
             <div>
                 <div className="register-container">
                     <div className="register-div">
                         <p className="register-title">注册</p>
-                        <Input className="email-input" placeholder="注册邮箱" />
-                        <Input className="password-input" type="password" placeholder="6-12位登录密码" />
-                        <Input className="password-input-again" type="password" placeholder="再次确认登录密码" />
+                        <Input className="email-input" placeholder="注册邮箱" value={username} onChange={(e)=>this.onInputChange(e, "username")} />
+                        <Input className="password-input" type="password" placeholder="6-12位登录密码" maxLength="12" value={password} onChange={(e)=>this.onInputChange(e, "password")} />
+                        <Input className="password-input-again" type="password" placeholder="再次确认登录密码" maxLength="12" value={passwordAgain} onChange={(e)=>this.onInputChange(e, "passwordAgain")} />
 
                         <div>
                             <Checkbox className="checkbox" onChange={(e)=>console.log(e.target.checked)}>我阅读并同意Qbao UserMirror服务条款</Checkbox>
                         </div>
 
-                        <Button className="bnRegister">注册</Button>
+                        <Button className="bnRegister" onClick={()=>this.onRegisterHandler()}>注册</Button>
                         <div className="register-tip">已有账户?  <Link to={RouterConst.ROUTER_LOGIN}>立即登录</Link></div>
                     </div>
                 </div>
@@ -38,4 +80,11 @@ class Register extends React.Component{
     }
 }
 
-export default Register
+let mapStateToProps = state => ({
+})
+
+let mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({ userRegister }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Register)
