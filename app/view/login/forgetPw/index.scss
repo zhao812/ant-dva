@@ -1,0 +1,50 @@
+.forgetPw-container{
+    width: 100%;
+    height: 740px;
+    background: url(../images/login-bg.jpg) no-repeat center;
+    padding-top: 120px;
+
+    .forgetPw-div{
+        width: 360px;
+        margin: 0 auto;
+        text-align: center;
+
+        .forgetPw-title{
+            font-size: 20px;
+            color: #ffffff;
+            margin-bottom: 22px;
+        }
+
+        .email-input{
+            height: 50px;
+            font-size: 14px;
+            margin-bottom: 22px;
+        }
+
+        .email-tip{
+            font-size: 12px;
+            color: #ffffff;
+        }
+
+        .bnForgetPw{
+            width: 200px;
+            height: 46px;
+            border-radius: 46px;
+            background: #1e75fb;
+            border: 1px solid #56d8ef;
+            font-size: 16px;
+            color: #ffffff;
+            margin: 16px 0;
+        }
+
+        .forgetPw-tip{
+            font-size: 12px;
+            color: #ffffff;
+
+            a{
+                color: #6ffffb;
+                text-decoration: underline;
+            }
+        }
+    }
+}

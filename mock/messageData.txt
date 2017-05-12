@@ -1,0 +1,17 @@
+//返回结果
+"result": {
+        //消息列表
+        "list": [
+            {
+                "key": 唯一ID
+                "icon": 效果图
+                "name": 活动名称
+                "channel": 推送渠道
+                "way": 通道
+                "customer-number": 目标客户数量,
+                "activation-number": 激活用户数量,
+                "status": 状态 1：成功 0 失败,
+                "date": 日期
+            }
+        ]
+}

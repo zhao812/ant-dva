@@ -1,0 +1,41 @@
+.resetPw-container{
+    width: 100%;
+    height: 740px;
+    background: url(../images/login-bg.jpg) no-repeat center;
+    padding-top: 120px;
+
+    .resetPw-div{
+        width: 360px;
+        margin: 0 auto;
+        text-align: center;
+
+        .resetPw-title{
+            font-size: 20px;
+            color: #ffffff;
+            margin-bottom: 16px;
+        }
+
+        .resetPw-tip{
+            font-size: 12px;
+            color: #ffffff;
+            margin-bottom: 16px;
+        }
+
+        .password-input, .password-input-again{
+            height: 50px;
+            font-size: 14px;
+            margin-bottom: 22px;
+        }
+
+        .bnResetPw{
+            width: 200px;
+            height: 46px;
+            border-radius: 46px;
+            background: #1e75fb;
+            border: 1px solid #56d8ef;
+            font-size: 16px;
+            color: #ffffff;
+            margin: 16px 0;
+        }
+    }
+}

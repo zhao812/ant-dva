@@ -34,14 +34,14 @@ loaders.push({
 // 编译 sass
 loaders.push({
   test: /\.(scss|css)$/,
-  loaders: ['style-loader', 'css-loader', 'sass-loader','postcss-loader']
+  loaders: ['style-loader', 'css-loader', 'sass-loader', 'postcss-loader']
 });
 
 //图片
 loaders.push({
   // test: /\.(png|jpg)$/,
   //loader: "file-loader?limit=1000&name=images/[hash:8].[name].[ext]",
-  test: /\.(png|jpg)$/,
+  test: /\.(png|jpg|gif|svg)$/,
 　loader: 'url-loader?limit=1000&name=images/[hash:8].[name].[ext]'
 });
 

@@ -1,0 +1,22 @@
+﻿标签列表
+menus: [
+    一级标签
+    name: 一级标签名称
+    二级标签列表
+    list: [
+        id: 二级标签唯一ID
+        name: 二级标签名称
+        defaultValue: 二级标签默认值
+        type: 二级标签组件类型 select:选项框, checkbox:单选框, city:城市
+        选项数据列表
+        options: [
+            name: 选项名称
+            value: 选项值
+        ]
+    ]
+]
+收藏列表
+favorites: [
+    "name": 名称,
+    "id": 唯一ID
+] 

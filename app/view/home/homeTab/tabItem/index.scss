@@ -1,0 +1,46 @@
+.tab-item{
+    display: inline-block;
+    position: relative;
+    margin: 0 10px;
+    vertical-align: top;
+
+    .tab-item-icon-group{
+        height: 45px;
+
+        .circle-bg{
+            position: absolute;
+            top: 0;
+            left: calc(50% - 22.5px);
+        }
+
+        .circle-animation{
+            animation: circle-rotate 1s linear infinite;
+        }
+
+        .tab-item-icon{
+            position: absolute;
+            top: 9px;
+            left: calc(50% - 13px);
+        }
+    }
+
+    .tab-item-name{
+        font-size: 14px;
+        color: #999999;
+        margin-top: 16px;
+    }
+}
+
+.tab-item.selected{
+
+    .tab-item-name{
+        font-size: 14px;
+        color: #1b5cfb;
+    }
+}
+
+@keyframes circle-rotate
+{
+    0%   {transform:rotate(0deg);}
+    100% {transform:rotate(360deg);}
+}

@@ -1,0 +1,44 @@
+.tab-container{
+    margin-top: 440px;
+    padding-top: 55px;
+
+    .tabs-title{
+        margin-bottom: 50px;
+        font-size: 24px;
+        color: #000;
+    }
+
+    .tab-item-div{
+        display: inline-block;
+        vertical-align: top;
+
+        .tabs-line{
+            width: 70px;
+            height: 22.5px;
+            display: inline-block;
+            border-bottom: 2px solid #999;
+        }
+    }
+
+    .tab-content-div{
+        margin: 0 auto;
+        width: 940px;
+    }
+
+    .tab-content-arrow{
+        width: 64px;
+        height: 15px;
+        background: url(../image/content-arrow.png) no-repeat center bottom;
+        transition: all 0.5s;
+    }
+
+    .tab-content{
+        width: 100%;
+        text-align: left;
+        padding: 10px 20px;
+        background-color: #f0f0f0;
+        color: #000;
+        font-size: 14px;
+        line-height: 26px;
+    }
+}
