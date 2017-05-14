@@ -4,17 +4,25 @@ let data={
             "icon":"mail",
             "name":"画像营销",
             "children":[{
+                "name":"营销活动列表",
+                "url":"/message",
+                "icon":"",
+                "id":"a"
+            },{
                 "name":"手机短信推送",
-                "url":"/",
-                "icon":""
-            },{
-                "name":"h5微信推送",
                 "url":"/user",
-                "icon":""
+                "icon":"",
+                "id":"b"
             },{
-                "name":"app消息推送",
+                "name":"H5微信推送",
                 "url":"/user",
-                "icon":""
+                "icon":"",
+                "id":"c"
+            },{
+                "name":"APP应用推送（建设中）",
+                "url":"/user",
+                "icon":"",
+                "id":"d"
             }]
         },
         {
@@ -23,7 +31,8 @@ let data={
             "children":[{
                 "name":"设置",
                 "url":"/",
-                "icon":""
+                "icon":"",
+                "id":"e"
             }]
         }
     ]

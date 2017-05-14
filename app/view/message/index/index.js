@@ -34,8 +34,8 @@ const columns = [{
   title: '跟踪',
   render: (text, record) => (
     <span>
-      <a >报表</a>
-      <a >重发</a>
+      <Button size="small" className="sbutton" >报表</Button>
+      <Button size="small" className="sbutton"  >重发</Button>
     </span>
   ),
 }];
@@ -58,22 +58,25 @@ class Message extends React.Component {
     }
 
     handleTableChange(e){
-      console.log(e,1111)
       this.props.getTableData({"size":10,"page":e})
     }
 
     render() {
         return (
-          <div>
-            <Button><Icon type="link" />新建短信推送</Button>
-            <Button><Icon type="link" />新建微信推送</Button>
-            <Table 
-              rowKey="id"
-              columns={columns} 
-              dataSource={this.props.data} 
-              onChange={this.handleTableChange.bind()} />
-              <Pagination 
-              onChange={(e)=>this.handleTableChange(e)} total={this.props.count} />
+          <div className="content-wrapper">
+            <h6 className="title">营销活动</h6>
+            <div className="white-bg">
+              <Button className="oButton"><Icon type="link" />新建短信推送</Button>
+              <Button className="oButton"><Icon type="link" />新建微信推送</Button>
+               <Table 
+                            rowKey="id"
+                            columns={columns} 
+                            dataSource={this.props.data} 
+                            onChange={this.handleTableChange.bind()} />
+                            <Pagination 
+                            onChange={(e)=>this.handleTableChange(e)} total={this.props.count} />
+            </div>
+            
           </div>
         );
     }

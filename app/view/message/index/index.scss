@@ -3,5 +3,63 @@
 }
 .ant-pagination {
     text-align:center;
-    margin-top:10px;
+    margin-top:18px;
+}
+.content-wrapper{
+    margin-top:20px;
+    margin-left:20px;
+    h6{
+        font-size:20px;
+        font-weight:normal;
+        color:#666;
+        padding-bottom:10px;
+        padding-top:4px;
+        margin-bottom:18px;
+        border:0px;
+        border-bottom:1px solid #b7b8ba;
+        height:auto;
+        background:#ececec;
+    }
+    .oButton{
+        background:#f3f6fb;
+        border:2px solid #dfe5ef;
+        border-radius:3px;
+        width:130px;
+        height:30px;
+        line-height:29px;
+        text-align:center;
+        margin-right: 18px;
+        margin-bottom:16px;
+        margin-top:6px;
+    }
+    .white-bg{
+        background:#fff;
+        border:3px solid #e2e6ef;
+        padding:18px;
+    }
+    .ant-table-thead > tr > th{
+        background:#fff;
+        border-bottom:1px solid #e4e8f0;
+        span{
+            font-weight:bolder;
+        }
+    }
+    .ant-pagination-item{
+        border:0px;
+    }
+    .ant-pagination-item-active{
+        background:#fff;
+        a{
+            color:#6692fc;
+        }
+    }
+    .sbutton{
+        background:#eaecf1;
+        &:nth-child(2){
+        margin-left:8px;
+        }
+    }
+    .ant-table-tbody > tr:hover{
+        background:#ecf3fc;
+    }
 }

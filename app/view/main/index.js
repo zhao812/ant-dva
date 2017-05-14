@@ -6,7 +6,6 @@ import IndexHeader from '../../components/indexHeader'
 import SiderMenu from '../../components/siderMenu'
 import { Layout } from 'antd';
 const { Header, Footer, Sider, Content } = Layout;
-import 'antd/dist/antd.css'
 import './index.css'
 
 import * as RouterConst from '../../static/const'
@@ -21,10 +20,6 @@ class App extends React.Component {
             title: "",
             data: ""
         }
-    }
-
-    changeTitle(name) {
-        this.setState({ title: name })
     }
 
 
@@ -57,7 +52,7 @@ class App extends React.Component {
                 menu = <SiderSearchMenu />
                 break
             default:
-                menu = <SiderMenu changeTitle={this.changeTitle.bind(this)} data={this.state.data} />
+                menu = <SiderMenu  data={this.state.data} />
                 top = <IndexHeader/>
                 break
         }
@@ -77,15 +72,3 @@ class App extends React.Component {
 }
 export default  App;
 
-
-// App.propTypes = {
-// }
-
-// let mapStateToProps = state => ({
-// })
-
-// let mapDispatchToProps = (dispatch) => {
-//     //return bindActionCreators({ getMenu }, dispatch)
-// }
-
-// export default connect(mapStateToProps, mapDispatchToProps)(App)

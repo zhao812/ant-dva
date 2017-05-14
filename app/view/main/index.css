@@ -1,7 +1,6 @@
-/*body{
-    width: 1280px;
-    margin: 0 auto;
-}*/
+body{
+    min-width:1280px;
+}
 
 .title{
     padding-left:10px;
@@ -13,7 +12,6 @@
 
 .wrap{
     border-top:0px;
-    background:#fff;
     overflow: auto;
 }
 .wapper {
@@ -29,9 +27,18 @@
     height:100%;
 }
 .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
-    background-color: none;
+    background-color: #f5f9fe;
+}
+.ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected a,.ant-menu-item > a:hover{
     color:#000;
 }
-.ant-menu-item > a{
+.ant-menu-item > a, .ant-menu-inline .ant-menu-submenu-title{
     color:#999999;
+    font-size:14px;
+}
+.ant-menu-sub.ant-menu-inline{
+    background:#f5f9fe;
+}
+.ant-menu-inline .ant-menu-item:after, .ant-menu-vertical .ant-menu-item:after{
+    border:0px;
 }

@@ -13,7 +13,7 @@
         "tunnelName": "电信",
         "selectNum": "目标客户数量2",
         "actNum": "激活用户数量2",
-        "status": "状态2",
+        "status": "等待中",
         "userSelectGoupId": "客群id"
       },
       {
@@ -25,7 +25,7 @@
         "tunnelName": "电信",
         "selectNum": "目标客户数量2",
         "actNum": "激活用户数量2",
-        "status": "状态2",
+        "status": "草稿",
         "userSelectGoupId": "客群id"
       },
       {
@@ -37,7 +37,7 @@
         "tunnelName": "电信",
         "selectNum": "目标客户数量2",
         "actNum": "激活用户数量2",
-        "status": "状态2",
+        "status": "完成",
         "userSelectGoupId": "客群id"
       },
       {
@@ -49,7 +49,7 @@
         "tunnelName": "微信",
         "selectNum": "目标客户数量2",
         "actNum": "激活用户数量2",
-        "status": "状态2",
+        "status": "完成",
         "userSelectGoupId": "客群id"
       },
       {
@@ -61,7 +61,7 @@
         "tunnelName": "微信",
         "selectNum": "目标客户数量2",
         "actNum": "激活用户数量2",
-        "status": "状态2",
+        "status": "完成",
         "userSelectGoupId": "客群id"
       },
       {
@@ -73,7 +73,7 @@
         "tunnelName": "微信",
         "selectNum": "目标客户数量2",
         "actNum": "激活用户数量2",
-        "status": "状态2",
+        "status": "完成",
         "userSelectGoupId": "客群id"
       },
       {
@@ -85,7 +85,7 @@
         "tunnelName": "极光推送",
         "selectNum": "目标客户数量2",
         "actNum": "激活用户数量2",
-        "status": "状态2",
+        "status": "等待中",
         "userSelectGoupId": "客群id"
       },
       {
@@ -97,7 +97,7 @@
         "tunnelName": "极光推送",
         "selectNum": "目标客户数量2",
         "actNum": "激活用户数量2",
-        "status": "状态2",
+        "status": "草稿",
         "userSelectGoupId": "客群id"
       }
     ]

@@ -1,0 +1,13 @@
+.f_selected{
+    background:#f5f9fe;
+    span{
+        color:#1a5bfb;
+    }
+}
+.ant-menu-submenu{
+    height:42px !important;
+    overflow:hidden;
+    &.f_selected {
+        height:auto !important ;
+    }
+}

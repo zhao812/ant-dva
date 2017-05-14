@@ -14,6 +14,10 @@ class ForgetPW extends React.Component{
         super(props, context)
     }
 
+    onSendHandler(){
+        
+    }
+
     render(){
         return(
             <div>
@@ -24,7 +28,7 @@ class ForgetPW extends React.Component{
 
                         <p className="email-tip">我们将发送一个新的验证邮件到您的注册邮箱</p>
 
-                        <Button className="bnForgetPw">发送</Button>
+                        <Button className="bnForgetPw" onClick={()=>this.onSendHandler()}>发送</Button>
                         <div className="forgetPw-tip">还没有账户?  <Link to={RouterConst.ROUTER_REGISTER}>立即注册</Link></div>
                     </div>
                 </div>
