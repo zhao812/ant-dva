@@ -38,6 +38,7 @@ class App extends React.Component {
     render() {
         let menu;
         let top;
+        let oClass;
         switch (this.props.location.pathname) {
             case RouterConst.ROUTER_HOME:
             case RouterConst.ROUTER_LOGIN:
@@ -47,6 +48,7 @@ class App extends React.Component {
             case RouterConst.USER_MIRROR:
                 menu = ""
                 top=<Headers />
+                oClass=""
                 break;
             case RouterConst.SEARCH_LIST:
                 menu = <SiderSearchMenu />
@@ -54,13 +56,14 @@ class App extends React.Component {
             default:
                 menu = <SiderMenu  data={this.state.data} />
                 top = <IndexHeader/>
+                oClass="wapper"
                 break
         }
 
         return (
             <Layout style={{ minHeight: '100%' }}>
                 {top}
-                <Layout className="wapper">
+                <Layout className={oClass}>
                     { menu ? <Sider className="sider">{menu}</Sider> : "" }
                     <Content className="wrap">
                         {React.cloneElement(this.props.children, { key: this.props.location.pathname })}
