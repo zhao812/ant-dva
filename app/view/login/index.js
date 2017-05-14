@@ -6,7 +6,7 @@ import { Input, Checkbox, Button, Modal } from 'antd'
 import CopyRights from '../../components/copyRight'
 
 import * as RouterConst from '../../static/const'
-import * as ErrorMessage from '../../static/const/errorMessage'
+import ErrorMessage from '../../static/const/errorMessage'
 
 import { userLogin } from './reducer/action'
 import { checkEmail } from '../../utils'
@@ -21,27 +21,28 @@ class Login extends React.Component{
         this.state = {
             username: "",
             password: "",
+            validCode: ""
         }
     }
 
-    onEmailChange(e){
-        let value = e.currentTarget.value.replace(/\s/g,'')
-        this.setState({username: value})
+    /**输入框改变事件 */
+    onInputChange(e, type){
+        let value = e.currentTarget.value.replace(/\s/g,''), state = {}
+        state[type] = value
+        this.setState(state)
     }
 
-    onPwChange(e){
-        let value = e.currentTarget.value.replace(/\s/g,'')
-        this.setState({password: value})
-    }
-
+    /**登录按钮事件 */
     onLoginHandler(){
-        let { username, password } = this.state, msg=""
+        let { username, password, validCode } = this.state, msg=""
         if(username == ""){
             msg = ErrorMessage.Error_Email_Empty
         }else if(!checkEmail(username)){
             msg = ErrorMessage.Error_Email_Invalid
         }else if(password == ""){
             msg = ErrorMessage.Error_Password_Empty
+        }else if(validCode == ""){
+            msg = ErrorMessage.Error_ValidCode_Empty
         }
         if(msg){
             Modal.error({
@@ -51,11 +52,11 @@ class Login extends React.Component{
             return
         }
 
-        this.props.userLogin(username, password)
+        this.props.userLogin(username, password, validCode)
     }
 
     render(){
-        let { username, password } = this.state
+        let { username, password, validCode } = this.state
 
         return(
             <div>
@@ -63,16 +64,16 @@ class Login extends React.Component{
                     <div className="login-div">
                         <p className="login-title">用户登录</p>
                         <div className="email-div">
-                            <Input className="email-input" value={username} onChange={(e)=>this.onEmailChange(e)} placeholder="注册邮箱" />
+                            <Input className="email-input" value={username} onChange={(e)=>this.onInputChange(e, "username")} placeholder="注册邮箱" />
                         </div>
                         <div className="password-div">
-                            <Input className="password-input" type="password" placeholder="6-12位登录密码" maxLength="12" value={password} onChange={(e)=>this.onPwChange(e)} />
+                            <Input className="password-input" type="password" placeholder="6-12位登录密码" maxLength="12" value={password} onChange={(e)=>this.onInputChange(e, "password")} />
                             <span className="forgetPw-txt" onClick={()=>hashHistory.push(RouterConst.ROUTER_FORGET_PW)}>忘记密码?</span>
                         </div>
                         <div className="login-code">
                             {/*<Checkbox className="checkbox" onChange={(e)=>console.log(e.target.checked)}>7日内免登陆</Checkbox>*/}
-                            <Input name="validCode" value="validCode" placeholder="验证码" type="text" />
-                            <span><img onClick={()=>this.src='/captcha/generate.do?t='+new Date().getTime()} alt="看不清？点击换一张" src="/captcha/generate.do" /></span>
+                            <Input className="validCode" value={validCode} placeholder="验证码" onChange={(e)=>this.onInputChange(e, "validCode")} />
+                            <span><img onClick={(e)=>e.currentTarget.src='/captcha/generate.do?t='+new Date().getTime()} alt="看不清？点击换一张" src="/captcha/generate.do" /></span>
                         </div>
                         <Button className="bnLogin" onClick={()=>this.onLoginHandler()}>登录</Button>
                         <div className="login-tip">还没有账户?  <Link to={ RouterConst.ROUTER_REGISTER }>立即前往</Link></div>

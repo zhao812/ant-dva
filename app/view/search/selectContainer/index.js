@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
-import { Button, Select } from 'antd'
+import { Button, Select, Tabs } from 'antd'
 import SelectItem from '../../../components/searchSelectItem'
 
 import { changeFilterMenuList, changeFilterMenuSelect, getReportData } from '../reducer/actions'
@@ -35,12 +35,37 @@ class SelectContainer extends React.Component {
         return this.props.favorites.map((obj, index)=><Select.Option key={index} value={obj.id + ""}>{obj.name}</Select.Option>)
     }
 
+    getTabs(){
+        let TabPane = Tabs.TabPane
+
+        return this.props.menuData.map((menu, key)=>
+            <TabPane tab={menu.name} key={key}>
+                {
+                    menu.list.map((item, index) => 
+                        <div>
+                            <SelectItem 
+                                key={index} 
+                                title={item.name}
+                                defautlValue={item.defaultValue}
+                                options={item.options || []}
+                                onChangeHandler={(value)=>this.props.changeFilterMenuSelect(item.id, value)}
+                                onCloseHandler={()=>this.props.changeFilterMenuList(item.id)} 
+                            />
+                        </div>
+                    )
+                }
+            </TabPane>
+        )
+    }
+
     render(){
 
         let { userTotal, riseTime, reportCount, getReportData} = this.props
 
         return (
             <div className="selectContainer">
+                <Tabs defaultActiveKey="0">{ this.getTabs() }</Tabs>
+
                 <div className="select-div">{ this.getSelectItems() }</div>
                 <div className="button-div">
                     <span><Button size="large" onClick={getReportData}>用户画像计算</Button></span>
@@ -58,6 +83,8 @@ class SelectContainer extends React.Component {
 }
 
 SelectContainer.PropTypes = {
+    menuData: PropTypes.array.isRequired,
+
     favorites: PropTypes.array.isRequired,
     filterMenuList: PropTypes.array.isRequired,
     userTotal: PropTypes.number.isRequired,
@@ -66,6 +93,8 @@ SelectContainer.PropTypes = {
 }
 
 let mapStateToProps = state => ({
+    menuData: state.searchList.menuData,
+
     favorites: state.searchList.favorites,
     filterMenuList: state.searchList.filterMenuList,
     userTotal: state.searchList.userTotal,

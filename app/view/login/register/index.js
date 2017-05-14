@@ -6,7 +6,7 @@ import { Link } from 'react-router'
 import { Input, Checkbox, Button, Modal } from 'antd'
 
 import * as RouterConst from '../../../static/const'
-import * as ErrorMessage from '../../../static/const/errorMessage'
+import ErrorMessage from '../../../static/const/errorMessage'
 
 import CopyRights from '../../../components/copyRight'
 
@@ -23,19 +23,24 @@ class Register extends React.Component{
         this.state = {
             username: "",
             password: "",
-            passwordAgain: ""
+            passwordAgain: "",
+            isAgree: false
         }
     }
 
+    /**输入框改变事件 */
     onInputChange(e, type){
-        let state = {}
+        let value = e.currentTarget.value.replace(/\s/g,''), state = {}
         state[type] = e.currentTarget.value
         this.setState(state)
     }
 
+    /**注册按钮事件 */
     onRegisterHandler(){
-        let { username, password, passwordAgain } = this.state, msg = ""
-        if(username == ""){
+        let { username, password, passwordAgain, isAgree } = this.state, msg = ""
+        if(isAgree == false){
+            msg = ErrorMessage.Error_Read_And_Agree
+        }else if(username == ""){
             msg = ErrorMessage.Error_Email_Empty
         }else if(!checkEmail(username)){
             msg = ErrorMessage.Error_Email_Invalid
@@ -43,7 +48,7 @@ class Register extends React.Component{
             msg = ErrorMessage.Error_Password_Empty
         }else if(passwordAgain == ""){
             msg = ErrorMessage.Error_Password_Again_Empty
-        }else if(password == passwordAgain){
+        }else if(password != passwordAgain){
             msg = ErrorMessage.Error_Password_Inconsistency
         }
         if(msg){
@@ -67,7 +72,7 @@ class Register extends React.Component{
                         <Input className="password-input-again" type="password" placeholder="再次确认登录密码" maxLength="12" value={passwordAgain} onChange={(e)=>this.onInputChange(e, "passwordAgain")} />
 
                         <div>
-                            <Checkbox className="checkbox" onChange={(e)=>console.log(e.target.checked)}>我阅读并同意Qbao UserMirror服务条款</Checkbox>
+                            <Checkbox className="checkbox" onChange={(e)=>this.setState({isAgree: e.target.checked})}>我阅读并同意Qbao UserMirror服务条款</Checkbox>
                         </div>
 
                         <Button className="bnRegister" onClick={()=>this.onRegisterHandler()}>注册</Button>

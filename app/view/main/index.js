@@ -35,8 +35,23 @@ class App extends React.Component {
         }
     }
 
+    getMenuByRouter(){
+        switch (this.props.location.pathname) {
+            case RouterConst.ROUTER_HOME:
+            case RouterConst.ROUTER_LOGIN:
+            case RouterConst.ROUTER_REGISTER:
+            case RouterConst.ROUTER_FORGET_PW:
+            case RouterConst.ROUTER_RESET_PW:
+            case RouterConst.USER_MIRROR:
+                return ""
+            case RouterConst.SEARCH_LIST:
+                return <Sider className="sider siderSearchMenu"><SiderSearchMenu /></Sider>
+            default:
+                return <Sider className="sider"><SiderMenu  data={this.state.data} /></Sider>
+        }
+    }
+
     render() {
-        let menu;
         let top;
         let oClass;
         switch (this.props.location.pathname) {
@@ -46,15 +61,13 @@ class App extends React.Component {
             case RouterConst.ROUTER_FORGET_PW:
             case RouterConst.ROUTER_RESET_PW:
             case RouterConst.USER_MIRROR:
-                menu = ""
                 top=<Headers />
                 oClass=""
                 break;
             case RouterConst.SEARCH_LIST:
-                menu = <SiderSearchMenu />
+                top=<Headers />
                 break
             default:
-                menu = <SiderMenu  data={this.state.data} />
                 top = <IndexHeader/>
                 oClass="wapper"
                 break
@@ -63,8 +76,8 @@ class App extends React.Component {
         return (
             <Layout style={{ minHeight: '100%' }}>
                 {top}
-                <Layout className={oClass}>
-                    { menu ? <Sider className="sider">{menu}</Sider> : "" }
+                <Layout className="wapper">
+                    { this.getMenuByRouter() }
                     <Content className="wrap">
                         {React.cloneElement(this.props.children, { key: this.props.location.pathname })}
                     </Content>

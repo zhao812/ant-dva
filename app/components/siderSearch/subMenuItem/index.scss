@@ -1,0 +1,35 @@
+.submenu-item{
+    height: 100%;
+    padding-left: 24px;
+    
+    .icon-group{
+        width: 30px;
+        height: 100%;
+        display: block;
+        position: relative;
+        float: left;
+
+        .circle-bg{
+            position: absolute;
+            top: 17px;
+            left: 0;
+        }
+
+        .item-icon{
+            position: absolute;
+            top: 24px;
+            left: 7px;
+        }
+    }
+
+    .submenu-title{
+        display: block;
+        height: 100%;
+        line-height: 64px;
+        float: left;
+        margin-left: 10px;
+        color: #000;
+        font-size: 16px;
+    }
+}
+

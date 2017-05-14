@@ -1,14 +1,16 @@
 {
-    "result": {
+    "data": {
         "menus": [
             {
                 "name": "人口标签",
+                "icon": "people",
                 "list": [
                     {
                         "id": 1,            
                         "name": "性别",     
                         "defaultValue": 0,
                         "type": "select",
+                        "isShow": true,
                         "options": [
                             {
                                 "name": "全部", 
@@ -108,6 +110,7 @@
             },
             {
                 "name": "资产标签",
+                "icon": "pig",
                 "list": [
                     {
                         "id": 11,
@@ -143,6 +146,6 @@
             }
         ]
     },
-    "code": 0,
+    "success": true,
     "message": ""
 }

@@ -47,6 +47,24 @@
             }
         }
 
+        .login-code{
+            height: 50px;
+            text-align: left;
+            .validCode{
+                height: 100%;
+                width: 60%;
+                vertical-align: middle;
+            }
+
+            span{
+                float: right;
+                img{
+                    height: 50px;
+                    cursor: pointer;
+                }
+            }
+        }
+
         .checkbox{
             font-size: 12px;
             color: #ffffff;

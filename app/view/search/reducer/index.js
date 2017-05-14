@@ -22,8 +22,20 @@ let changeFilterMenuList = (state, id) => ({
 //改变显示项目
 let changeShowMenuList = (state, id) => ({
     ...state,
-    showMenuList: changeListById(state.showMenuList, getItemById(state.menuData, id))
+    menuData: state.menuData.map(obj=>{
+        return {
+            ...obj,
+            list: obj.list.map(item=>{
+                if(item.id == id) return {
+                    ...item,
+                    isShow: !item.isShow
+                }
+                return item
+            })
+        }
+    })
 })
+
 
 let getItemById = (data, id) => {
     let res;
