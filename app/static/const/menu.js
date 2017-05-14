@@ -10,17 +10,17 @@ let data={
                 "id":"a"
             },{
                 "name":"手机短信推送",
-                "url":"/user",
+                "url":"/wechart",
                 "icon":"",
                 "id":"b"
             },{
                 "name":"H5微信推送",
-                "url":"/user",
+                "url":"/importChart",
                 "icon":"",
                 "id":"c"
             },{
                 "name":"APP应用推送（建设中）",
-                "url":"/user",
+                "url":"",
                 "icon":"",
                 "id":"d"
             }]
@@ -30,7 +30,7 @@ let data={
             "name":"营销设置",
             "children":[{
                 "name":"设置",
-                "url":"/",
+                "url":"/message/setUp",
                 "icon":"",
                 "id":"e"
             }]
@@ -40,21 +40,5 @@ let data={
 
 
 
-let data2={
-    "data":[
-        {
-            "icon":"mail",
-            "name":"h5模版选择",
-            "children":[{
-                "name":"列表模版",
-                "url":"/wechart",
-                "icon":""
-            },{
-                "name":"瀑布流模版",
-                "url":"/user",
-                "icon":""
-            }]
-        }
-    ]
-}
-export {data , data2};
+
+export {data };

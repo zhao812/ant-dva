@@ -1,5 +1,7 @@
 body{
     min-width:1280px;
+    min-height:100%;
+    overflow:hidden;
 }
 
 .title{
@@ -13,8 +15,7 @@ body{
     background:#fff;
 }
 .oBg{
-    background:#f6f7fa;
-    
+    height:100%;
     .wrap{
         border-top:0px;
         overflow: auto;
@@ -22,6 +23,9 @@ body{
     .wapper {
         width: 1280px;
         margin: 0 auto;
+    }
+    .ant-layout{
+        background:#f6f7fa
     }
     .sider{
         flex: 0 0 280px !important;

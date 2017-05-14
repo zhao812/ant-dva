@@ -9,7 +9,7 @@ import StepThree from '../../../components/stepForm/stepFormThree'
 import {getUser} from './reducer/action';
 
 import './index.scss'
-let oData1,oData2,oData3;
+let oData1,o,oData3;
 class setUpMobile extends React.Component {
   state = {
     stepNum:1

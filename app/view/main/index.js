@@ -24,15 +24,9 @@ class App extends React.Component {
 
 
     componentDidMount() {
-        if(this.props.location.pathname.indexOf('wechart')==1||this.props.location.pathname.indexOf('importChart')==1){
-             this.setState({
-                data: menuData.data2
-            })
-        }else{
             this.setState({
                     data: menuData.data
                 })
-        }
     }
 
     render() {
@@ -62,17 +56,17 @@ class App extends React.Component {
         }
 
         return (
-            <Layout style={{ minHeight: '100%' }}>
-                {top}
-                <div className={oClass}>
-                    <Layout className="wapper">
-                        { menu ? <Sider className="sider">{menu}</Sider> : "" }
-                        <Content className={oClass?"oBg wrap":"wrap"}>
-                            {React.cloneElement(this.props.children, { key: this.props.location.pathname })}
-                        </Content>
-                    </Layout>
-                </div>
-            </Layout>
+           <div className={oClass}>
+                <Layout style={{ minHeight: '100%' }}>
+                    {top}
+                        <Layout className="wapper">
+                            { menu ? <Sider className="sider">{menu}</Sider> : "" }
+                            <Content className={oClass?"oBg wrap":"wrap"}>
+                                {React.cloneElement(this.props.children, { key: this.props.location.pathname })}
+                            </Content>
+                        </Layout>
+                </Layout>
+            </div>
         );
     }
 }

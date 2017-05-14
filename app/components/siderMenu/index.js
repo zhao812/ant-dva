@@ -17,6 +17,7 @@ class SiderMenu extends React.Component{
         this.setState({
             name:e.key.split('_')[0]
         })
+        console.log(e,1111111111)
     }
     componentDidMount(){
     }
@@ -46,7 +47,7 @@ class SiderMenu extends React.Component{
                             </span>}>
                             {
                                 item.children.map((menu,index) => (
-                                    <Menu.Item key={menu.id+index}>
+                                    <Menu.Item key={menu.id+index} disabled={menu.id=="d"?true:false}>
                                         <Link to={menu.url}>{menu.name}</Link>
                                     </Menu.Item>
                                 ))
