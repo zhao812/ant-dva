@@ -13,6 +13,7 @@ import * as menuData from '../../static/const/menu'
 
 import SiderSearchMenu from '../../components/siderSearch'
 
+
 class App extends React.Component {
     constructor(props) {
         super(props)
@@ -28,8 +29,11 @@ class App extends React.Component {
                     data: menuData.data
                 })
     }
-
+    handlerCurrent(e){
+        console.log(e)
+    }
     render() {
+        let curr=this.props.location.query.current;
         let menu;
         let top;
         let oClass;
@@ -49,7 +53,7 @@ class App extends React.Component {
                 oClass=""
                 break
             default:
-                menu = <SiderMenu  data={this.state.data} />
+                menu = <SiderMenu  data={this.state.data} oCurrent={curr} />
                 top = <IndexHeader/>
                 oClass="oBg"
                 break

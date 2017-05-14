@@ -1,11 +1,4 @@
-.f_selected{
-    background:#f5f9fe;
-    span{
-        color:#1a5bfb;
-    }
-}
-.ant-menu-submenu{
-    &.f_selected {
-        height:auto !important ;
-    }
+
+.oBg .ant-menu-submenu-open .ant-menu-submenu-title span{
+    color:#1a5bfb !important;
 }

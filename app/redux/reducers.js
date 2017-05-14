@@ -15,3 +15,5 @@ export wechatReducer from '../view/wechat/createH5/index/reducer'
 export wechatNextReducer from '../view/wechat/createH5/next/reducer'
 
 export importChart from '../view/wechat/importH5/index/reducer'
+
+export sildermenuCurrent from '../components/siderMenu/reducer/reducer'
