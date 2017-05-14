@@ -6,7 +6,7 @@ import IndexHeader from '../../components/indexHeader'
 import SiderMenu from '../../components/siderMenu'
 import { Layout } from 'antd';
 const { Header, Footer, Sider, Content } = Layout;
-import './index.css'
+import './index.scss'
 
 import * as RouterConst from '../../static/const'
 import * as menuData from '../../static/const/menu'
@@ -52,23 +52,26 @@ class App extends React.Component {
                 break;
             case RouterConst.SEARCH_LIST:
                 menu = <SiderSearchMenu />
+                oClass=""
                 break
             default:
                 menu = <SiderMenu  data={this.state.data} />
                 top = <IndexHeader/>
-                oClass="wapper"
+                oClass="oBg"
                 break
         }
 
         return (
             <Layout style={{ minHeight: '100%' }}>
                 {top}
-                <Layout className={oClass}>
-                    { menu ? <Sider className="sider">{menu}</Sider> : "" }
-                    <Content className="wrap">
-                        {React.cloneElement(this.props.children, { key: this.props.location.pathname })}
-                    </Content>
-                </Layout>
+                <div className={oClass}>
+                    <Layout className="wapper">
+                        { menu ? <Sider className="sider">{menu}</Sider> : "" }
+                        <Content className={oClass?"oBg wrap":"wrap"}>
+                            {React.cloneElement(this.props.children, { key: this.props.location.pathname })}
+                        </Content>
+                    </Layout>
+                </div>
             </Layout>
         );
     }
