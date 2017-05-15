@@ -21,7 +21,7 @@ export const GET_MESSAGE = ROUTER_ROOT + "/message"
 
 export const MESSAGE_STEPUP = ROUTER_ROOT + "/message/setUp"
 
-export const MESSAGE_STEPUP_MOBILE = ROUTER_ROOT + "/message/setUpmobile"
+export const MESSAGE_STEPUP_MOBILE = ROUTER_ROOT + "/message/setUpmessage"
 
 export const MESSAGE_LIST = ROUTER_ROOT + '/messageList'
 

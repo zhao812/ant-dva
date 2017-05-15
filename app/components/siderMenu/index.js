@@ -24,7 +24,7 @@ class SiderMenu extends React.Component{
         this.props.getOpenKeys(this.props.openKeys)
     }
     onOpenChange(openKeys){
-        const state = this.state;
+        const state = this.props;
         const latestOpenKey = openKeys.find(key => !(state.openKeys.indexOf(key) > -1));
         const latestCloseKey = state.openKeys.find(key => !(openKeys.indexOf(key) > -1));
         let nextOpenKeys = [];
@@ -33,7 +33,8 @@ class SiderMenu extends React.Component{
         }
         if (latestCloseKey) {
         nextOpenKeys = this.getAncestorKeys(latestCloseKey);
-        }
+    }
+        
         this.props.getOpenKeys(nextOpenKeys)
     }
     

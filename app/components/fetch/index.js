@@ -9,14 +9,34 @@ import 'whatwg-fetch'  // 可以引入fetch来进行Ajax
  * @param headers 
  * @returns {Promise} 
  */  
-export function fetchGet(url, params, headers) {
+
+export function fetchGet(url, params, headers){
+     return (dispatch, getState) => {
+        return new Promise(function(resolve, reject){
+            dispatch(fetchget(url, params, headers)).then(data=>{
+                console.log(data,2938494)
+                if (data && !data.success) {
+                    Modal.error({
+                        title: '提示',
+                        content: data.message,
+                    });
+                    return false;
+                }else if (data && data.success) {
+                    resolve&&resolve(data.data|| null)
+                }
+            })
+        })
+     }
+}
+
+let paramsArray = [];
+export function fetchget(url, params, headers) {
     if (process.env.NODE_ENV == "develop") {
         url = "mock/" + url + ".json"
     }
 
     return (dispatch, getState) => {
         if (params) {
-            let paramsArray = [];
             //encodeURIComponent  
             Object.keys(params).forEach(key => paramsArray.push(key + '=' + params[key]))  
             if (url.search(/\?/) === -1) {  
@@ -50,16 +70,6 @@ export function fetchGet(url, params, headers) {
         .then((response) => {
             return response.json();
         })
-        .then((data) => {
-            if (data && !data.success) {
-                Modal.error({
-                    title: '提示',
-                    content: data.message,
-                });
-                return false;
-            }
-            return data.data;
-        })  
         })
     }
 
@@ -72,7 +82,24 @@ export function fetchGet(url, params, headers) {
  * @param formData   
  * @returns {Promise} 
  */
-export function fetchPost(url, formData) {
+export function fetchPost(url, formData){
+     return (dispatch, getState) => {
+        return new Promise(function(resolve, reject){
+            dispatch(fetchpost(url, formData)).then(data=>{
+                if (data && !data.success) {
+                    Modal.error({
+                        title: '提示',
+                        content: data.message,
+                    });
+                    return false;
+                }else if (data && data.success) {
+                    resolve&&resolve(data.data|| null)
+                }
+            })
+        })
+     }
+}
+export function fetchpost(url, formData) {
 
     return (dispatch, getState) => {
         let method = "POST"
@@ -94,16 +121,6 @@ export function fetchPost(url, formData) {
             })
             .then((response) => {
                 return response.json();
-            })
-            .then((data) => {
-                if (data && !data.success) {
-                    Modal.error({
-                        title: '提示',
-                        content: data.message,
-                    });
-                    return false;
-                }
-                return data.data || null;
             })
     }
 }  

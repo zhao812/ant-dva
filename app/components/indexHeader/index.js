@@ -1,7 +1,9 @@
 import React, { PropTypes } from 'react'
-import { hashHistory } from 'react-router'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import { Router, Route, IndexRoute, Link ,hashHistory} from 'react-router';
 import { Layout, Menu, Icon, Input, Button } from 'antd'
-
+import {getOpenKeys} from '../siderMenu/reducer/action'
 import * as RouterConst from '../../static/const'
 
 import './index.scss'
@@ -18,6 +20,8 @@ class Headers extends React.Component {
 
     handleClick(e) {
         this.setState({selectedTab: e.key})
+        console.log(e.key)
+        this.props.getOpenKeys('sub0')
     }
     handlerSearch(e){
         this.setState({
@@ -37,9 +41,9 @@ class Headers extends React.Component {
                          <Icon type="search" className="search_icon" onClick={this.handlerSearch.bind(this)} />
                     </div>
                     <Menu onClick={(e) => this.handleClick(e)} selectedKeys={[this.state.selectedTab]} mode="horizontal" className="menuUl">
-                        <Menu.Item key="home" className="menuLi">首页</Menu.Item>
-                        <Menu.Item key="user" className="menuLi">用户画像</Menu.Item>
-                        <Menu.Item key="pic" className="menuLi">画像营销</Menu.Item>
+                        <Menu.Item key="home" className="menuLi"><Link to='/'>首页</Link></Menu.Item>
+                        <Menu.Item key="user" className="menuLi"><Link to='/searchList'>用户画像</Link></Menu.Item>
+                        <Menu.Item key="pic" className="menuLi"><Link to='/message'>画像营销</Link></Menu.Item>
                         <Menu.Item key="doc" className="menuLi">说明文档</Menu.Item>
                     </Menu>
                 </div>
@@ -50,4 +54,15 @@ class Headers extends React.Component {
 }
 
 
-export default Headers;
+
+Headers.propTypes = {
+}
+
+let mapStateToProps = state => ({
+})
+
+let mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({ getOpenKeys }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Headers)

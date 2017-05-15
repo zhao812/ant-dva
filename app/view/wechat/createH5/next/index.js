@@ -1,4 +1,5 @@
 import React, {PropTypes} from 'react'
+import QRCode from 'qrcode.react';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { Table, Icon,Button ,Input ,Form,Upload, message } from 'antd'
@@ -99,7 +100,7 @@ class Wechat extends React.Component {
                             label="H5链接"
                             labelCol={{ span: 4 }}
                             wrapperCol={{ span: 16 }}
-                            ><Input value={oUrl} readOnly/>
+                            ><Input value={oUrl} />
                             </FormItem>
                         </Form>
                         
@@ -113,6 +114,7 @@ class Wechat extends React.Component {
                                     </ul>
                                 </div>
                             </div>
+                            
                             <div>
                                 <span><Icon type="dingding"/>方式2：</span>
                                 <div>
@@ -120,13 +122,18 @@ class Wechat extends React.Component {
                                         <li>
                                             微信转发
                                             </li>
-                                        <li className="oflex">
-                                            <div className="code"></div>
+                                            {
+                                                oUrl?<li className="oflex">
+                                            <div className="code">
+                                                <QRCode value={oUrl}/>
+                                            </div>
                                             <div>
                                                 <div>1.使用微信扫一扫</div>
                                                 <div>2.转发给客户，或分享到朋友圈</div>
                                             </div>
-                                        </li>
+                                        </li>:""
+                                            }
+                                        
                                     </ul>
                                 </div>
                             </div>

@@ -9,24 +9,43 @@ import './index.scss';
 
 const columns = [{
   title: '预览',
-  dataIndex: 'img'
+  dataIndex: 'img',
+  render:(value)=>{
+    if(value==1){
+      return <span className="dx_icon yulan"></span>
+    }
+    else if(value==2){
+      return <span className="wx_icon yulan"></span>
+    }
+  }
 }, {
   title: '活动名称',
   dataIndex: 'name'
 }, {
   title: '推送渠道',
-  dataIndex: 'sendTunnel'
+  dataIndex: 'sendTunnel',
+  render:(value)=>{
+    if(value=="1"){
+      return "短信"
+    }
+    else if(value=="2"){
+      return "微信"
+    }
+  }
 },{
   title: '通道',
   dataIndex: 'tunnelName',
   key: 'tunnelName',
-},{
+},
+{
   title: '目标客户数量',
   dataIndex: 'selectNum'
-},{
-  title: '激活用户数量',
-  dataIndex: 'actNum'
-},{
+},
+// {
+//   title: '激活用户数量',
+//   dataIndex: 'actNum'
+// },
+{
   title: '状态',
   dataIndex: 'status',
   render:(value)=>{
@@ -44,7 +63,8 @@ const columns = [{
 },{
   title: '操作时间',
   dataIndex: 'createTime'
-},{
+},
+/*{
   title: '跟踪',
   render: (text, record) => (
     <span>
@@ -52,7 +72,8 @@ const columns = [{
       <Button size="small" className="sbutton"  >重发</Button>
     </span>
   ),
-}];
+}*/
+];
 
 const data = [];
 
@@ -77,11 +98,11 @@ class Message extends React.Component {
 
     handlerCreatMail(){
       this.props.getCurrent("b1")
-      hashHistory.push('/wechart')
+      hashHistory.push('/message/setUpmessage')
     }
     handlerCreateWeixin(){
        this.props.getCurrent("c2")
-      hashHistory.push('/importChart')
+      hashHistory.push('/wechart')
     }
     render() {
         return (

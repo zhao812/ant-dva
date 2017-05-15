@@ -14,7 +14,7 @@ export const commitWechatNext = (data) => dispatch => {
 
 //生成推广连接
 export const generateAd = (data) => dispatch => {
-    let url = "/mock/generateAd.json";
+    let url = "/message/sendLink";
     return dispatch(HTTPUtil.fetchGet(url, data, null))
 }
 

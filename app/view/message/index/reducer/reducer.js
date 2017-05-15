@@ -6,12 +6,10 @@ const initialState = {
 function getData(msg){
     return msg.map((item, key)=>{
         switch (item.sendTunnel){
-            case '短信':
+            case '1':
                 return {  img: "1" , ...item }
-            case '微信':
+            case '2':
                 return {  img: "2" , ...item }
-            default:
-                 return {  img: "3" , ...item}
         }
     })
 }

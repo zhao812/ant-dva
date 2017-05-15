@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react'
+import React, {PropTypes} from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
@@ -23,7 +23,8 @@ class Register extends React.Component{
         this.state = {
             username: "",
             password: "",
-            passwordAgain: ""
+            passwordAgain: "",
+            checked:false            
         }
     }
 
@@ -34,24 +35,35 @@ class Register extends React.Component{
     }
 
     onRegisterHandler(){
-        let { username, password, passwordAgain } = this.state, msg = ""
+        let { username, password, passwordAgain,checked } = this.state, msg = ""
+        
         if(username == ""){
             msg = ErrorMessage.Error_Email_Empty
         }else if(!checkEmail(username)){
             msg = ErrorMessage.Error_Email_Invalid
         }else if(password == ""){
             msg = ErrorMessage.Error_Password_Empty
-        }else if(passwordAgain == ""){
+        }else if(password.length<6||password.length>12){
+            msg = ErrorMessage.Error_PassWord_Invalid
+        }
+        else if(passwordAgain == ""){
             msg = ErrorMessage.Error_Password_Again_Empty
-        }else if(password == passwordAgain){
+        }else if(password != passwordAgain){
             msg = ErrorMessage.Error_Password_Inconsistency
+        }else if(checked==false){
+            msg = ErrorMessage.Error_Not_Read
         }
         if(msg){
             Modal.error({ title: '提示', content: msg });
-            return
+            return false;
+        }else{
+            this.props.userRegister(username, password)
         }
-
-        this.props.userRegister(username, password)
+    }
+    handlerChecked(e){
+        this.setState({
+            checked:e.target.checked
+        })
     }
 
     render(){
@@ -67,7 +79,7 @@ class Register extends React.Component{
                         <Input className="password-input-again" type="password" placeholder="再次确认登录密码" maxLength="12" value={passwordAgain} onChange={(e)=>this.onInputChange(e, "passwordAgain")} />
 
                         <div>
-                            <Checkbox className="checkbox" onChange={(e)=>console.log(e.target.checked)}>我阅读并同意Qbao UserMirror服务条款</Checkbox>
+                            <Checkbox className="checkbox" onChange={(e)=>{this.handlerChecked(e)}}>我阅读并同意Qbao UserMirror服务条款</Checkbox>
                         </div>
 
                         <Button className="bnRegister" onClick={()=>this.onRegisterHandler()}>注册</Button>
@@ -88,3 +100,4 @@ let mapDispatchToProps = (dispatch) => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Register)
+

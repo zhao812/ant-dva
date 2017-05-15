@@ -10,12 +10,12 @@ let data={
                 "id":"a"
             },{
                 "name":"手机短信推送",
-                "url":"/wechart",
+                "url":"/message/setUpmessage",
                 "icon":"",
                 "id":"b"
             },{
                 "name":"H5微信推送",
-                "url":"/importChart",
+                "url":"/wechart",
                 "icon":"",
                 "id":"c"
             },{

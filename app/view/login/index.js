@@ -42,6 +42,8 @@ class Login extends React.Component{
             msg = ErrorMessage.Error_Email_Invalid
         }else if(password == ""){
             msg = ErrorMessage.Error_Password_Empty
+        }else if(password.length<5||password.length>12){
+            msg = ErrorMessage.Error_PassWord_Invalid
         }
         if(msg){
             Modal.error({

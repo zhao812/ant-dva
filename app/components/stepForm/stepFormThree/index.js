@@ -39,7 +39,8 @@ class StepThree extends React.Component{
                     <ul>
                         <li>
                             <span>发给谁</span>
-                            <span className="flex1 h80 ">{allData.value}</span>
+                            {allData.value}
+                            <span className="flex1 h80 "></span>
                             <Button onClick={(e)=>this.handlerFirst(e)}>编辑</Button>
                         </li>
                         <li style={{height:200}}>
