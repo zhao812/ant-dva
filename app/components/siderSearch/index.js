@@ -4,7 +4,10 @@ import { connect } from 'react-redux'
 
 import { Menu, Icon, Button } from 'antd'
 
-import { changeFilterMenuList, changeShowMenuList } from '../../view/search/reducer/actions'
+import SubMenuItem from './subMenuItem'
+
+
+import { changeShowMenuList } from '../../view/search/reducer/actions'
 
 import '../../static/css/common.scss'
 import './index.scss'
@@ -25,17 +28,14 @@ class SiderSearchMenu extends React.Component{
         let SubMenu = Menu.SubMenu
         let { filterMenuList, showMenuList, menuData } = this.props
         return menuData.map((data, index)=>
-            <SubMenu className="SubMenu" key={index} title={data.name} onClick={()=>this.onSubMenuHandler(index)}>
+            <SubMenu className="search-subMenu" key={index} title={<SubMenuItem title={data.name} icon={data.icon} />}>
                 { 
                     data.list.map((item, i) => {
                         let key = item.id
                         return (
-                            <Menu.Item className="MenuItem" key={key} style>
-                                <span>{item.name}</span>
-                                <span className="btns">
-                                    <Button className={"btn-filter " + (filterMenuList.find((obj)=>key==obj.id) ? "selected": "")} size="small" onClick={()=>this.onFilterHandler(key)}>筛选</Button>
-                                    <Button className={"btn-show " + (showMenuList.find((obj)=>key==obj.id) ? "selected": "")} size="small" onClick={()=>this.onShowHandler(key)}>展示</Button>
-                                </span>
+                            <Menu.Item className={item.isShow ? "menu-item-show" : "menu-item-hide"} key={key}>
+                                <div className="menu-icon"></div>
+                                <div className="menu-item-title">{item.name}</div>
                             </Menu.Item>
                         )
                     }) 
@@ -44,24 +44,15 @@ class SiderSearchMenu extends React.Component{
         )
     }
 
-    onSubMenuHandler(val){
-        let { openKeys } = this.state
-        let index = openKeys.findIndex((key)=>key==val)
-        if(index >= 0){
-            openKeys.splice(index, 1)
-        }else{
-            openKeys.push(val)
+    onSubMenuHandler = (openKeys) => {
+        if(openKeys.length > 1){
+            openKeys.shift()
         }
-
-        this.setState({ openKeys: openKeys})
+        this.setState({openKeys: openKeys})
     }
 
-    onFilterHandler(id){
-        this.props.changeFilterMenuList(id)
-    }
-
-    onShowHandler(id){
-        this.props.changeShowMenuList(id)
+    handleClick = (e) => {
+        this.props.changeShowMenuList(e.key)
     }
 
     render(){
@@ -71,6 +62,9 @@ class SiderSearchMenu extends React.Component{
                 className="silder"
                 //defaultSelectedKeys={SelectedKeys}
                 defaultOpenKeys={openKeys}
+                openKeys={openKeys}
+                onOpenChange={this.onSubMenuHandler}
+                onClick={this.handleClick}
                 mode="inline" >
                 {this.getMenu()}
             </Menu>
@@ -79,19 +73,15 @@ class SiderSearchMenu extends React.Component{
 }
 
 SiderSearchMenu.PropTypes = {
-    menuData: PropTypes.array.isRequired,
-    filterMenuList: PropTypes.array.isRequired,
-    showMenuList: PropTypes.array.isRequired
+    menuData: PropTypes.array.isRequired
 }
 
 let mapStateToProps = state => ({
-    menuData: state.searchList.menuData,
-    filterMenuList: state.searchList.filterMenuList,
-    showMenuList: state.searchList.showMenuList,
+    menuData: state.searchList.menuData
 })
 
 let mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({ changeFilterMenuList, changeShowMenuList }, dispatch)
+    return bindActionCreators({ changeShowMenuList }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SiderSearchMenu)

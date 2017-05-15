@@ -1,0 +1,102 @@
+.favorite-mask{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    z-index: 999;
+
+    .favorite-container{
+        width: 1280px;
+        height: 100%;
+        margin: 0 auto;
+        position: relative;
+
+        .bnClose{
+            position: absolute;
+            width: 93px;
+            height: 93px;
+            background: url(../images/bn-close.png) no-repeat center;
+            right: 0;
+            box-shadow: none;
+            border: 0;
+            cursor: pointer;
+        }
+
+        .bnClose:active{
+            opacity: 0.5;
+        }
+
+        .bnClose:focus {
+            outline: none !important;
+        }
+
+        .favorite-div{
+            width: 480px;
+            height: 320px;
+            background: #fff;
+            border-radius: 10px;
+            position: absolute;
+            top: calc(~"50% - 160px");
+            left: calc(~"50% - 240px");
+            padding: 24px;
+
+            .favorite-title{
+                font-size: 18px;
+                color: #000000;
+                text-align: center;
+                margin-bottom: 12px;
+            }
+
+            div{
+                margin-top: 16px;
+
+                span{
+                    font-size: 14px;
+                    color: #666666;
+                    margin-right: 24px;
+                }
+
+                input{
+                    width: calc(~"100% - 84px");
+                }
+
+                textarea{
+                    width: calc(~"100% - 84px");
+                    height: 64px;
+                    vertical-align: top;
+                    resize: none;
+                }
+            }
+
+            .btn-div{
+                text-align: center;
+
+                .bnConfirm, .bnCancel{
+                    width: 120px;
+                    height: 36px;
+
+                    span{
+                        padding: 0;
+                        margin: 0;
+                        color: #fff;
+                    }
+                }
+
+                .bnConfirm{
+                    margin-right:10px;
+                    background: #1a5bfb;
+                }
+
+                .bnCancel{
+                    margin-left: 10px;
+                    background: #bfbfbf;
+                }
+            }
+
+            
+
+        }
+    }
+}

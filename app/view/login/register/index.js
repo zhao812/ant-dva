@@ -6,7 +6,7 @@ import { Link } from 'react-router'
 import { Input, Checkbox, Button, Modal } from 'antd'
 
 import * as RouterConst from '../../../static/const'
-import * as ErrorMessage from '../../../static/const/errorMessage'
+import ErrorMessage from '../../../static/const/errorMessage'
 
 import CopyRights from '../../../components/copyRight'
 
@@ -24,20 +24,21 @@ class Register extends React.Component{
             username: "",
             password: "",
             passwordAgain: "",
-            checked:false            
+            isAgree:false    
         }
     }
 
+    /**输入框改变事件 */
     onInputChange(e, type){
-        let state = {}
+        let value = e.currentTarget.value.replace(/\s/g,''), state = {}
         state[type] = e.currentTarget.value
         this.setState(state)
     }
 
+    /**注册按钮事件 */
     onRegisterHandler(){
-        let { username, password, passwordAgain,checked } = this.state, msg = ""
-        
-        if(username == ""){
+        let { username, password, passwordAgain,checked,isAgree } = this.state, msg = ""
+         if(username == ""){
             msg = ErrorMessage.Error_Email_Empty
         }else if(!checkEmail(username)){
             msg = ErrorMessage.Error_Email_Invalid
@@ -52,6 +53,8 @@ class Register extends React.Component{
             msg = ErrorMessage.Error_Password_Inconsistency
         }else if(checked==false){
             msg = ErrorMessage.Error_Not_Read
+        }else if(isAgree == false){
+            msg = ErrorMessage.Error_Read_And_Agree
         }
         if(msg){
             Modal.error({ title: '提示', content: msg });
@@ -62,7 +65,7 @@ class Register extends React.Component{
     }
     handlerChecked(e){
         this.setState({
-            checked:e.target.checked
+            isAgree:e.target.checked
         })
     }
 
@@ -80,6 +83,7 @@ class Register extends React.Component{
 
                         <div>
                             <Checkbox className="checkbox" onChange={(e)=>{this.handlerChecked(e)}}>我阅读并同意Qbao UserMirror服务条款</Checkbox>
+
                         </div>
 
                         <Button className="bnRegister" onClick={()=>this.onRegisterHandler()}>注册</Button>

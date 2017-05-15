@@ -1,21 +1,23 @@
 .search-chart-item{
-    width: 220px;
+    width: 320px;
     height: 250px;
     border: 1px solid #cccccc;
     text-align: center;
     display: inline-block;
-    margin-right: 10px;
+    margin-right: 40px;
+    margin-bottom: 20px;
+    background: #fff;
 
     .chart-title{
         line-height: 30px;
     }
 
     .chart-div{
-        width: 220px;
+        width: 320px;
         height: 220px;
     }
 }
 
-.search-chart-item:last-child{
+.search-chart-item:nth-child(3n){
     margin-right: 0;
 }

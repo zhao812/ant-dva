@@ -29,12 +29,28 @@ class App extends React.Component {
                     data: menuData.data
                 })
     }
+
+    getMenuByRouter(){
+        switch (this.props.location.pathname) {
+            case RouterConst.ROUTER_HOME:
+            case RouterConst.ROUTER_LOGIN:
+            case RouterConst.ROUTER_REGISTER:
+            case RouterConst.ROUTER_FORGET_PW:
+            case RouterConst.ROUTER_RESET_PW:
+            case RouterConst.USER_MIRROR:
+                return ""
+            case RouterConst.SEARCH_LIST:
+                return <Sider className="sider siderSearchMenu"><SiderSearchMenu /></Sider>
+            default:
+                return <Sider className="sider"><SiderMenu  data={this.state.data} /></Sider>
+        }
+    }
+
     handlerCurrent(e){
         console.log(e)
     }
     render() {
         let curr=this.props.location.query.current;
-        let menu;
         let top;
         let oClass;
         switch (this.props.location.pathname) {
@@ -44,27 +60,26 @@ class App extends React.Component {
             case RouterConst.ROUTER_FORGET_PW:
             case RouterConst.ROUTER_RESET_PW:
             case RouterConst.USER_MIRROR:
-                menu = ""
                 top=<Headers />
                 oClass=""
                 break;
             case RouterConst.SEARCH_LIST:
-                menu = <SiderSearchMenu />
-                oClass=""
+                top=<Headers />
+                oClass="oBg2"
                 break
             default:
-                menu = <SiderMenu  data={this.state.data} oCurrent={curr} />
                 top = <IndexHeader/>
                 oClass="oBg"
                 break
         }
 
         return (
+
            <div className={oClass}>
                 <Layout style={{ minHeight: '100%' }}>
                     {top}
                         <Layout className="wapper">
-                            { menu ? <Sider className="sider">{menu}</Sider> : "" }
+                            { this.getMenuByRouter() }
                             <Content className={oClass?"oBg wrap":"wrap"}>
                                 {React.cloneElement(this.props.children, { key: this.props.location.pathname })}
                             </Content>

@@ -1,7 +1,13 @@
-export const Error_Email_Empty = "邮箱地址不能为空"
-export const Error_Email_Invalid = "邮箱地址格式不正确"
-export const Error_Password_Empty = "密码不能为空"
-export const Error_Password_Again_Empty = "确认密码不能为空"
-export const Error_Password_Inconsistency = "密码不一致"
-export const Error_PassWord_Invalid="密码格式不正确"
-export const Error_Not_Read="请阅读并同意Qbao UserMirror服务条款"
+const ErrorMessage = {
+    Error_Email_Empty               : "邮箱地址不能为空",
+    Error_Email_Invalid             : "邮箱地址格式不正确",
+    Error_Password_Empty            : "密码不能为空",
+    Error_Password_Again_Empty      : "确认密码不能为空",
+    Error_Password_Inconsistency    : "密码不一致",
+    Error_ValidCode_Empty           : "验证码不能为空",
+    Error_Read_And_Agree            : "请先同意条款",
+    Error_PassWord_Invalid          : "密码格式不正确"      
+}
+
+export default ErrorMessage
+

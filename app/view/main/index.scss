@@ -1,6 +1,7 @@
 body{
     min-width:1280px;
     min-height:100%;
+    overflow:scroll;
 }
 
 .title{
@@ -13,6 +14,11 @@ body{
 .ant-layout{
     background:#fff;
 }
+
+.siderSearchMenu{
+    background:#f5f9fe;
+}
+
 .oBg{
     height:100%;
     .wrap{
@@ -50,5 +56,15 @@ body{
     }
     .ant-menu-inline .ant-menu-item:after, .ant-menu-vertical .ant-menu-item:after{
         border:0px;
+    }
+}
+.oBg2 .wapper {
+    width:1280px;
+    margin:0 auto;
+}
+
+.oBg2{
+    .ant-layout{
+        background:#f6f7fa
     }
 }

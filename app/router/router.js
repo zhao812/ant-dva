@@ -21,6 +21,8 @@ const Wechart = cb => require.ensure([], require => { cb(null, require('../view/
 const WechartNext= cb => require.ensure([], require => { cb(null, require('../view/wechat/createH5/next').default)}, "wechartNext")
 const Importchart= cb => require.ensure([], require => { cb(null, require('../view/wechat/importH5/index').default)}, "importChart")
 
+const Favorite = cb => require.ensure([], require => { cb(null, require('../view/favorite').default)}, "Favorite")
+
 const Routers = {
 	path: RouterConst.ROUTER_HOME,
 	getComponent(nextState, cb){ App(cb) },
@@ -84,6 +86,10 @@ const Routers = {
 			path: RouterConst.MESSAGE_LIST,
 			getComponent(nextState, cb){ MessageList(cb) }
 		},
+		{
+			path: RouterConst.ROUTER_FAVORITE,
+			getComponent(nextState, cb){ Favorite(cb) }
+		}
 	]
 }
 
