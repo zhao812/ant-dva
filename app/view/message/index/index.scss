@@ -18,14 +18,13 @@
         border:0px;
         border-bottom:1px solid #b7b8ba;
         height:auto;
-        background:#ececec;
     }
     .oButton{
         background:#f3f6fb;
         border:2px solid #dfe5ef;
-        border-radius:3px;
+        border-radius:6px;
         width:130px;
-        height:30px;
+        height:32px;
         line-height:29px;
         text-align:center;
         margin-right: 18px;
@@ -61,5 +60,17 @@
     }
     .ant-table-tbody > tr:hover{
         background:#ecf3fc;
+    }
+    .icons{
+        padding-left:16px;
+    }
+    .icon1{
+        background:url('../images/icon_1.png') no-repeat 0px center ;
+    }
+    .icon2{
+        background:url('../images/icon_2.png') no-repeat  0px center;
+    }
+    .icon3{
+        background:url('../images/icon_3.png') no-repeat 0px center ;
     }
 }

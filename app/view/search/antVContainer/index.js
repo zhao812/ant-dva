@@ -18,7 +18,10 @@ class AntVContainer extends React.Component {
     render(){
         return (
             <div className="chart-container">
-                <div>
+                <div className="chart-title-div">
+                    <p>标签图</p>
+                </div>
+                <div className="chart-list">
                     {
                         this.props.reports.map((obj, index) => 
                             <SearchChart key={index} title={obj.name} type={obj.type} data={obj.data} />

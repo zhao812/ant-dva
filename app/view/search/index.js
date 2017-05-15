@@ -6,8 +6,11 @@ import { Link } from 'react-router'
 import SelectResultContainer  from './selectResult'
 import SelectContainer from './selectContainer'
 import AntVContainer from './antVContainer'
+import FavoriteContainer from './favoritePop'
 
 import { getSearchMenu } from './reducer/actions'
+
+import * as RouterConst from '../../static/const'
 
 import './index.scss'
 
@@ -15,10 +18,22 @@ class SearchList extends React.Component {
 
     constructor(props,context) {
         super(props,context)
+
+        this.state = {
+            isShowFavorite: false
+        }
     }
     
     componentDidMount(){
         this.props.getSearchMenu()
+    }
+
+    onShowFavorite = () => {
+        this.setState({isShowFavorite: true})
+    }
+
+    onCloseFavorite = () => {
+        this.setState({isShowFavorite: false})
     }
 
     render(){
@@ -26,12 +41,13 @@ class SearchList extends React.Component {
             <div className="search-container">
                 <div className="search-title">
                     <span>筛选条件</span>
-                    <Link>查看收藏用户群</Link>
+                    <Link to={RouterConst.ROUTER_FAVORITE}>查看收藏用户群</Link>
                 </div>
                 
                 <SelectResultContainer />
-                <SelectContainer />
+                <SelectContainer onShowFavorite={()=>this.onShowFavorite()}/>
                 <AntVContainer />
+                {this.state.isShowFavorite ? <FavoriteContainer onCloseHandler={()=>this.onCloseFavorite()}/> : ""}
             </div>
         )
     }

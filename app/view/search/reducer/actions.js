@@ -13,21 +13,14 @@ export const getSearchMenu = () => dispatch => {
 }
 
 /**改变选择框中的值 */
-export const changeFilterMenuSelect = (id, value) => dispatch => {
+export const changeFilterMenuSelect = (id, index, value) => dispatch => {
     dispatch({
         type: ActionType.SEARCH_MENU_CHANGE_SELECT,
         data: {
             id: id,
+            index: index,
             value: value
         }
-    })
-}
-
-/**改变筛选项目显示状态*/
-export const changeFilterMenuList = id => dispatch => {
-    dispatch({
-        type: ActionType.CHANGE_FILTER_MENU_LIST,
-        data: id
     })
 }
 
@@ -39,22 +32,38 @@ export const changeShowMenuList = id => dispatch =>{
     })
 }
 
-let getShowData = state => {
-    let showList = state.searchList.showMenuList, filterList = state.searchList.filterMenuList
-    return showList.map( item => {
-        let menu = filterList.find( obj => obj.id == item.id)
-        if(menu){
-            return {
-                id: menu.id,
-                value: menu.defaultValue
+let getValueById = (list, id) => {
+    let result = []
+    for(let i=0; i<list.length; i++){
+        let menu = list[i]
+        for(let j = 0; j<menu.list.length; j++){
+            let item = menu.list[j]
+            if(item.id == id && item.defaultValue.toString() != ""){
+                result.push(item.defaultValue)
             }
         }
+    }
+    console.log(result)
+    return result
+}
 
-        return {
-            id:item.id,
-            value: item.defaultValue
+let getShowFilterData = state => {
+    let showList = state.searchList.menuData, filterList = state.searchList.filterMenuList
+    let result = []
+    for(let i=0; i<showList.length; i++){
+        let menu = showList[i]
+        for(let j = 0; j<menu.list.length; j++){
+            let item = menu.list[j]
+            if(item.isShow){
+                result.push({
+                    id: item.id,
+                    value: getValueById(filterList, item.id).join(",")
+                })
+            }
         }
-    })
+    }
+
+    return result
 }
 
 let receiveReportData = data => ({
@@ -67,7 +76,24 @@ export const getReportData = () => (dispatch, getState) => {
     let state = getState()
     let url = "reportData";
     let opt = {
-        data: getShowData(state)
+        data: getShowFilterData(state)
     }
-    dispatch(HTTPUtil.fetchGet(url, opt, null)).then(data=>dispatch(receiveReportData(data)))
+    console.log(opt, "aaaaaaaaaaaaaaaaaa")
+    dispatch(HTTPUtil.fetchPost(url, opt, null)).then(data=>dispatch(receiveReportData(data)))
+}
+
+/**添加筛选条件 */
+export const addFliterMenuList = id => dispatch =>{
+    dispatch({
+        type: ActionType.ADD_FILTER_MENU_LIST,
+        data: id
+    })
+}
+
+/**关闭筛选条件结果 */
+export const onCloseFilter = (id, index) => dispatch => {
+    dispatch({
+        type: ActionType.CLOSE_FILTER_MENU_LIST,
+        data: {id: id, index: index}
+    })
 }

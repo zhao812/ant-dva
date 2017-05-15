@@ -3,21 +3,10 @@ import * as ActionType from './actionType'
 
 const initialState = {
     menuData: [],
-    favorites: [],
     filterMenuList: [],
-    showMenuList: [],
 
-    userTotal: 0,
-    riseTime: 0,
-    reportCount: 0,
     reportList: []
 }
-
-//改变筛选项目
-let changeFilterMenuList = (state, id) => ({
-    ...state,
-    filterMenuList: changeListById(state.filterMenuList, getItemById(state.menuData, id))
-})
 
 //改变显示项目
 let changeShowMenuList = (state, id) => ({
@@ -42,7 +31,7 @@ let getItemById = (data, id) => {
     for(let i=0; i< data.length; i++){
         res = data[i].list.filter((obj)=>obj.id==id)
         if(res.length){
-            return res[0]
+            return {...res[0]}
         }
     }
     return null
@@ -59,21 +48,79 @@ let changeListById = (list, item) => {
     return result
 }
 
-let changeSelectValue = (state, data) => {
-    var item = state.filterMenuList.filter(obj=>obj.id==data.id)
-    item.defaultValue = data.value
+/**改变选项框的值 */
+let changeSelectValue = (state, data) => (
+    {
+        ...state,
+        filterMenuList: state.filterMenuList.map(menu=>({
+            ...menu,
+            list: menu.list.map((obj, index) => {
+                if(obj.id == data.id && index==data.index){
+                    if(data.value == ""){
+                        return {
+                            ...obj,
+                            defaultValue: data.value,
+                            isShowResult: false
+                        }
+                    }else{
+                        return {
+                            ...obj,
+                            defaultValue: data.value,
+                            isShowResult: true
+                        }
+                    }
+                }
+                return obj
+            })
+        }))
+    }
+)
+
+
+let addFilterMenuList = (state, id) => {
+    let item = getItemById(state.menuData, id)
+    if(!item) return state
+
+    item.isDel = true
+    item.create_time = Date.now()
     return {
         ...state,
-        filterMenuList: state.filterMenuList.map(obj=>{
-            if(obj.id == data.id){
+        filterMenuList: state.filterMenuList.map((menu, index) => {
+            if(menu.list.findIndex(obj=>obj.id == id) >= 0){
                 return {
-                    ...obj,
-                    defaultValue: data.value
+                    ...menu,
+                    list: [...menu.list, item].sort((a, b)=>{
+                        let create_a = a.create_time || 0,
+                        create_b = b.create_time || 0
+                        return a.id == b.id ? create_b < create_a ? 1 : -1 : b.id < a.id ? 1 : -1
+                    })
                 }
             }
-            return obj
+            return menu
         })
     }
+}
+
+let closeFilterMenuList = (state, data) => {
+    return {
+        ...state,
+        filterMenuList: state.filterMenuList.map(menu=>{
+            return {
+                ...menu,
+                list: menu.list.filter((item, index) => {
+                    if(item.id == data.id && index == data.index){
+                        if(!item.isDel){
+                            item.defaultValue = ""
+                            item.isShowResult = false
+                            return item
+                        }
+                    }else{
+                        return item
+                    }
+                })
+            }
+        })
+    } 
 }
 
 export default function update(state = initialState, action) {
@@ -82,10 +129,10 @@ export default function update(state = initialState, action) {
             return {
                 ...state,
                 menuData: action.data.menus,
-                favorites: action.data.favorites
+                filterMenuList: [...action.data.menus]
             }
-        case ActionType.CHANGE_FILTER_MENU_LIST:
-            return changeFilterMenuList(state, action.data)
+        case ActionType.ADD_FILTER_MENU_LIST:
+            return addFilterMenuList(state, action.data)
 
         case ActionType.CHANGE_SHOW_MENU_LIST:
             return changeShowMenuList(state, action.data)
@@ -97,11 +144,9 @@ export default function update(state = initialState, action) {
             return { 
                 ...state, 
                 reportList: action.data.reports,
-                userTotal: action.data.userTotal,
-                riseTime: action.data.riseTime,
-                reportCount: action.data.reportCount,
              }
-
+        case ActionType.CLOSE_FILTER_MENU_LIST:
+            return closeFilterMenuList(state, action.data)
         default:
             return state
     }

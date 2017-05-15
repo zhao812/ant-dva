@@ -30,3 +30,5 @@ export const WECHART = ROUTER_ROOT + "/wechart"
 export const WECHARTNEXT = ROUTER_ROOT + "/wechartNext"
 
 export const IMPORTCHART = ROUTER_ROOT + "/importChart"
+
+export const ROUTER_FAVORITE = ROUTER_ROOT + "/favorite"

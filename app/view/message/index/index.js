@@ -1,6 +1,7 @@
 import React from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import { hashHistory } from 'react-router'
 import { Table, Icon,Button ,Pagination } from 'antd';
 import {getTableData} from './reducer/action';
 import './index.scss';
@@ -26,7 +27,19 @@ const columns = [{
   dataIndex: 'actNum'
 },{
   title: '状态',
-  dataIndex: 'status'
+  dataIndex: 'status',
+  render:(value)=>{
+    if(value=="草稿"){
+      return <div className="icon2 icons">{value}</div>
+    }
+    else if(value=="完成"){
+      return <div className="icon3 icons">{value}</div>
+    }
+    else if(value=="等待中"){
+      return <div className="icon1 icons">{value}</div>
+    }
+    console.log(value)
+  }
 },{
   title: '操作时间',
   dataIndex: 'createTime'
@@ -61,13 +74,19 @@ class Message extends React.Component {
       this.props.getTableData({"size":10,"page":e})
     }
 
+    handlerCreatMail(){
+      hashHistory.push("/wechart")
+    }
+    handlerCreateWeixin(){
+      hashHistory.push("/importChart")
+    }
     render() {
         return (
           <div className="content-wrapper">
             <h6 className="title">营销活动</h6>
             <div className="white-bg">
-              <Button className="oButton"><Icon type="link" />新建短信推送</Button>
-              <Button className="oButton"><Icon type="link" />新建微信推送</Button>
+              <Button className="oButton" onClick={this.handlerCreatMail.bind(this)}><Icon type="mail"  />新建短信推送</Button>
+              <Button className="oButton" onClick={this.handlerCreateWeixin.bind(this)}><Icon type="link"  />新建微信推送</Button>
                <Table 
                             rowKey="id"
                             columns={columns} 

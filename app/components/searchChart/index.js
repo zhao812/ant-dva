@@ -21,20 +21,20 @@ class SearchChart extends React.Component {
                 count: {
                     title: null,
                 },
-                release: {
+                name: {
                     tickInterval: 1,
                     title: null,
                 }
             })
             chart.tooltip(true, {
                 map: {
-                    title: "release",
+                    title: "name",
                     name: "数量",
                     value: "count",
                 }
             })
 
-            chart.interval().position("release*count").color('release');
+            chart.interval().position("name*count").color('name');
             chart.render();
 
             // 监听双击事件，这里用于复原图表
@@ -61,7 +61,7 @@ class SearchChart extends React.Component {
                 count: {
                     title: null,
                 },
-                release: {
+                name: {
                     tickInterval: 1,
                     title: null,
                 }
@@ -69,13 +69,13 @@ class SearchChart extends React.Component {
 
             chart.tooltip(true, {
                 map: {
-                    title: "release",
+                    title: "name",
                     name: "数量",
                     value: "count",
                 }
             })
 
-            chart.intervalStack().position('count').color('release');
+            chart.intervalStack().position('count').color('name');
             chart.render();
 
             // 监听双击事件，这里用于复原图表
@@ -94,7 +94,7 @@ class SearchChart extends React.Component {
             chart.legend(false);
 
             chart.cols({
-                release: {
+                name: {
                     tickInterval: 1,
                 }
             })
@@ -104,19 +104,19 @@ class SearchChart extends React.Component {
                 //     return (val / 1000) + 'k';
                 // }
             });
-            chart.axis('release', {
+            chart.axis('name', {
                 title: null,
                 tickInterval: 1,
             })
             chart.tooltip(true, {
                 map: {
-                    title: "release",
+                    title: "name",
                     name: "数量",
                     value: "count",
                 }
             })
 
-            chart.interval().position('release*count').color("release")
+            chart.interval().position('name*count').color("name")
             chart.render();
 
             // 监听双击事件，这里用于复原图表
@@ -134,7 +134,7 @@ class SearchChart extends React.Component {
     render() {
         let { title, data, type } = this.props
 
-        let width = 220, height = 220, forceFit = true;
+        let width = 320, height = 220, forceFit = true;
         let Chart, plotCfg
         if (type == "pie") {
             plotCfg = { margin: [20, 20, 20, 20] }

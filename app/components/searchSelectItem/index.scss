@@ -3,13 +3,19 @@
     margin-right: 20px;
     margin-bottom: 10px;
 
-    .select{
-        width: 120px;
-        margin: 0 5px
+    .selectItem-title{
+        font-size: 12px;
+        color: #666666;
     }
 
-    .btn-close{
+    .select{
+        width: 120px;
+        margin-top: 2px;
+    }
+
+    .btn-add{
         cursor: pointer;
+        margin-left: 5px;
     }
 }
 

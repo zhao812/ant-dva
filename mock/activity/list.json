@@ -56,7 +56,7 @@
         "id": 8,
         "createTime": "创建时间2",
         "name": "活动名称2",
-        "sendTunnel": "android",
+        "sendTunnel": "短信",
         "tunnelId": "渠道id2",
         "tunnelName": "微信",
         "selectNum": "目标客户数量2",

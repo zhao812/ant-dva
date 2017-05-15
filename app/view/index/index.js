@@ -28,15 +28,9 @@ class App extends React.Component {
 
 
     componentDidMount() {
-        if(this.props.location.pathname.indexOf('wechart')==1||this.props.location.pathname.indexOf('importChart')==1){
-             this.setState({
-                data: menuData.data2
-            })
-        }else{
             this.setState({
                     data: menuData.data
                 })
-        }
     }
 
     render() {

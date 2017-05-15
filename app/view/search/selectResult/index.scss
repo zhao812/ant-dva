@@ -1,0 +1,24 @@
+.search-select-result-container{
+    padding: 20px 30px 10px 30px;
+    
+
+    .select-result-item{
+        border: 1px solid #b7b8ba;
+        border-radius: 5px;
+        padding: 5px;
+        display: inline-block;
+        color: #666666;
+        margin-right: 20px;
+        margin-bottom: 10px;
+
+        .bnClose{
+            margin-left: 5px;
+            cursor: pointer;
+        }
+    }
+
+    .select-result-item:last-child{
+        margin-right: 0;
+    }
+}
+

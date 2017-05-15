@@ -1,8 +1,5 @@
 {
-    "result": {
-        "userTotal": 10000,
-        "riseTime": 100,
-        "reportCount": 20,
+    "data": {
         "reports": [
             {
                 "name": "姓名",
@@ -352,6 +349,6 @@
             }
         ]
     },
-    "code": 0,
+    "success": true,
     "message": ""
 }

@@ -1,3 +1,17 @@
 .chart-container{
-    padding: 10px;
+    padding-top: 20px;
+
+    .chart-title-div{
+        padding-bottom: 16px;
+        border-bottom: 2px solid #a5a6a7;
+
+        p{
+            font-size: 20px;
+            color: #666666;
+        }
+    }
+
+    .chart-list{
+        margin-top: 30px;
+    }
 }

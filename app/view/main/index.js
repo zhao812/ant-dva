@@ -6,7 +6,7 @@ import IndexHeader from '../../components/indexHeader'
 import SiderMenu from '../../components/siderMenu'
 import { Layout } from 'antd';
 const { Header, Footer, Sider, Content } = Layout;
-import './index.css'
+import './index.scss'
 
 import * as RouterConst from '../../static/const'
 import * as menuData from '../../static/const/menu'
@@ -24,15 +24,9 @@ class App extends React.Component {
 
 
     componentDidMount() {
-        if(this.props.location.pathname.indexOf('wechart')==1||this.props.location.pathname.indexOf('importChart')==1){
-             this.setState({
-                data: menuData.data2
-            })
-        }else{
             this.setState({
                     data: menuData.data
                 })
-        }
     }
 
     getMenuByRouter(){
@@ -66,23 +60,27 @@ class App extends React.Component {
                 break;
             case RouterConst.SEARCH_LIST:
                 top=<Headers />
+                oClass="oBg2"
                 break
             default:
                 top = <IndexHeader/>
-                oClass="wapper"
+                oClass="oBg"
                 break
         }
 
         return (
-            <Layout style={{ minHeight: '100%' }}>
-                {top}
-                <Layout className="wapper">
-                    { this.getMenuByRouter() }
-                    <Content className="wrap">
-                        {React.cloneElement(this.props.children, { key: this.props.location.pathname })}
-                    </Content>
+
+           <div className={oClass}>
+                <Layout style={{ minHeight: '100%' }}>
+                    {top}
+                        <Layout className="wapper">
+                            { this.getMenuByRouter() }
+                            <Content className={oClass?"oBg wrap":"wrap"}>
+                                {React.cloneElement(this.props.children, { key: this.props.location.pathname })}
+                            </Content>
+                        </Layout>
                 </Layout>
-            </Layout>
+            </div>
         );
     }
 }
