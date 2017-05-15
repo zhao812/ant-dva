@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { Router, Route, IndexRoute, Link ,hashHistory} from 'react-router';
 import { Menu, Icon, Button } from 'antd'
-import {getCurrent} from './reducer/action'
+import {getCurrent,getOpenKeys} from './reducer/action'
 const SubMenu = Menu.SubMenu;
 const MenuItemGroup = Menu.ItemGroup;
 import './index.scss' 
@@ -12,7 +12,6 @@ class SiderMenu extends React.Component{
     constructor(props,context) {
         super(props,context);
         this.state = {
-            openTitle:['sub0'],
             openKeys: ['sub0']
             
         }
@@ -22,13 +21,12 @@ class SiderMenu extends React.Component{
     }
     componentDidMount(e){
         this.props.getCurrent('a0')
+        this.props.getOpenKeys(this.props.openKeys)
     }
     onOpenChange(openKeys){
-        console.log(openKeys)
         const state = this.state;
         const latestOpenKey = openKeys.find(key => !(state.openKeys.indexOf(key) > -1));
         const latestCloseKey = state.openKeys.find(key => !(openKeys.indexOf(key) > -1));
-
         let nextOpenKeys = [];
         if (latestOpenKey) {
         nextOpenKeys = this.getAncestorKeys(latestOpenKey).concat(latestOpenKey);
@@ -36,7 +34,7 @@ class SiderMenu extends React.Component{
         if (latestCloseKey) {
         nextOpenKeys = this.getAncestorKeys(latestCloseKey);
         }
-        this.setState({ openKeys: nextOpenKeys });
+        this.props.getOpenKeys(nextOpenKeys)
     }
     
     getAncestorKeys = (key) => {
@@ -50,7 +48,7 @@ class SiderMenu extends React.Component{
         const {openTitle} = this.state;
         return (
              <Menu
-                openKeys={this.state.openKeys}
+                openKeys={this.props.openKeys}
                 onClick={(e)=>this.handleMenuClick(e)}
                 onOpenChange={(e)=>this.onOpenChange(e)}
                 className="silder"
@@ -86,10 +84,11 @@ SiderMenu.propTypes = {
 
 let mapStateToProps = state => ({
     current:state.sildermenuCurrent.current,
+    openKeys:state.sildermenuCurrent.openKeys
 })
 
 let mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({ SiderMenu,getCurrent }, dispatch)
+    return bindActionCreators({ SiderMenu,getCurrent,getOpenKeys }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SiderMenu)

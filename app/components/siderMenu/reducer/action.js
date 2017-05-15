@@ -8,3 +8,9 @@ export const getCurrent =(current) => dispatch => {
         current: current
     })
 }
+export const getOpenKeys =(openKeys) => dispatch => {
+    dispatch({
+        type : ActionTypes.GetOpenKeys,
+        openKeys: openKeys
+    })
+}
