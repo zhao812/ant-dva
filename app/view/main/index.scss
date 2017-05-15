@@ -30,7 +30,8 @@ body{
         margin: 0 auto;
     }
     .ant-layout{
-        background:#f6f7fa
+        background:#f6f7fa;
+        overflow:hidden;
     }
     .sider{
         flex: 0 0 280px !important;

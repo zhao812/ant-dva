@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { hashHistory } from 'react-router'
 import { Table, Icon,Button ,Pagination } from 'antd';
 import {getTableData} from './reducer/action';
+import {getCurrent} from '../../../components/siderMenu/reducer/action';
 import './index.scss';
 
 const columns = [{
@@ -75,10 +76,12 @@ class Message extends React.Component {
     }
 
     handlerCreatMail(){
-      hashHistory.push("/wechart")
+      this.props.getCurrent("b1")
+      hashHistory.push('/wechart')
     }
     handlerCreateWeixin(){
-      hashHistory.push("/importChart")
+       this.props.getCurrent("c2")
+      hashHistory.push('/importChart')
     }
     render() {
         return (
@@ -111,7 +114,7 @@ let mapStateToProps = state => ({
 })
 
 let mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({ getTableData }, dispatch)
+    return bindActionCreators({ getTableData ,getCurrent}, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Message)
