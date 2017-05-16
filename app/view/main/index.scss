@@ -1,7 +1,6 @@
 body{
     min-width:1280px;
     min-height:100%;
-    overflow:scroll;
 }
 
 .title{
@@ -50,6 +49,9 @@ body{
     .ant-menu-item > a, .ant-menu-inline .ant-menu-submenu-title{
         color:#999999;
         font-size:14px;
+    }
+    .oBg .ant-menu-inline>.ant-menu-submenu-title{
+        color:#030000 ;
     }
     .ant-menu-sub.ant-menu-inline{
         background:#f5f9fe;

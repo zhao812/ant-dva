@@ -1,7 +1,7 @@
 let data={
     "data":[
         {
-            "icon":"mail",
+            "icon":"menu1",
             "name":"画像营销",
             "children":[{
                 "name":"营销活动列表",
@@ -26,7 +26,7 @@ let data={
             }]
         },
         {
-            "icon":"mail",
+            "icon":"menu2",
             "name":"营销设置",
             "children":[{
                 "name":"设置",

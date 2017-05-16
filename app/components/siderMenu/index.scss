@@ -1,4 +1,15 @@
 
+.sider_menuicon{
+    position: relative;
+    top:3px;
+    right:6px;
+}
 .oBg .ant-menu-submenu-open .ant-menu-submenu-title span{
     color:#1a5bfb !important;
+    .sider_menuicon{
+        color:#1a5bfb !important;
+    }
+}
+.oBg .ant-menu-inline li>.ant-menu-submenu-title{
+    color:#030000;
 }

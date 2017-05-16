@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { Router, Route, IndexRoute, Link ,hashHistory} from 'react-router';
 import { Menu, Icon, Button } from 'antd'
+import Icons from '../icon'
 import {getCurrent,getOpenKeys} from './reducer/action'
 const SubMenu = Menu.SubMenu;
 const MenuItemGroup = Menu.ItemGroup;
@@ -61,7 +62,7 @@ class SiderMenu extends React.Component{
                     data.data&&data.data.map((item,key)=>(
                         <SubMenu key={'sub'+key}  title={
                             <span>
-                                <Icon type={item.icon} />
+                                <Icons name={item.icon}  className="sider_menuicon"/>
                                 <span>{item.name}</span>
                             </span>}>
                             {

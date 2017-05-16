@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { hashHistory } from 'react-router'
 import { Table, Icon,Button ,Pagination } from 'antd';
+import Icons from '../../../components/icon'
 import {getTableData} from './reducer/action';
 import {getCurrent} from '../../../components/siderMenu/reducer/action';
 import './index.scss';
@@ -109,8 +110,8 @@ class Message extends React.Component {
           <div className="content-wrapper">
             <h6 className="title">营销活动</h6>
             <div className="white-bg">
-              <Button className="oButton" onClick={this.handlerCreatMail.bind(this)}><Icon type="mail"  />新建短信推送</Button>
-              <Button className="oButton" onClick={this.handlerCreateWeixin.bind(this)}><Icon type="link"  />新建微信推送</Button>
+              <Button className="oButton" onClick={this.handlerCreatMail.bind(this)}><Icons className="btn-icon" name="mail" color={'#666'} />新建短信推送</Button>
+              <Button className="oButton" onClick={this.handlerCreateWeixin.bind(this)}><Icons  className="btn-icon" name="weixing" color={'#666'} />新建微信推送</Button>
                <Table 
                             rowKey="id"
                             columns={columns} 

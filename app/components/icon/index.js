@@ -20,7 +20,7 @@ const Icon = props => {
   )
 }
 Icon.defaultProps = {
-  color: '#000',
+  // color: '#000',
   size: 16
 }
 export default Icon
