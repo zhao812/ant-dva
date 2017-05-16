@@ -14,7 +14,7 @@ export function fetchGet(url, params, headers){
      return (dispatch, getState) => {
         return new Promise(function(resolve, reject){
             dispatch(fetchget(url, params, headers)).then(data=>{
-                console.log(data,2938494)
+                console.log(params,2938494)
                 if (data && !data.success) {
                     Modal.error({
                         title: '提示',
@@ -29,15 +29,14 @@ export function fetchGet(url, params, headers){
      }
 }
 
-let paramsArray = [];
 export function fetchget(url, params, headers) {
     if (process.env.NODE_ENV == "develop") {
         url = "mock/" + url + ".json"
     }
-
     return (dispatch, getState) => {
         if (params) {
-            //encodeURIComponent  
+           
+            let paramsArray = [];
             Object.keys(params).forEach(key => paramsArray.push(key + '=' + params[key]))  
             if (url.search(/\?/) === -1) {  
                 url += '?' + paramsArray.join('&')  

@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { Router, Route, IndexRoute, Link ,hashHistory} from 'react-router';
 import { Layout, Menu, Icon, Input, Button } from 'antd'
-import {getOpenKeys} from '../siderMenu/reducer/action'
+import {getOpenKeys,getCurrent} from '../siderMenu/reducer/action'
 import * as RouterConst from '../../static/const'
 
 import './index.scss'
@@ -20,8 +20,9 @@ class Headers extends React.Component {
 
     handleClick(e) {
         this.setState({selectedTab: e.key})
-        console.log(e.key)
-        this.props.getOpenKeys('sub0')
+
+        this.props.getOpenKeys(['sub0'])
+        this.props.getCurrent('a0')
     }
     handlerSearch(e){
         this.setState({
@@ -62,7 +63,7 @@ let mapStateToProps = state => ({
 })
 
 let mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({ getOpenKeys }, dispatch)
+    return bindActionCreators({ getOpenKeys,getCurrent }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Headers)

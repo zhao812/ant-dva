@@ -29,6 +29,7 @@ class App extends React.Component {
                     data: menuData.data
                 })
     }
+    component
 
     getMenuByRouter(){
         switch (this.props.location.pathname) {
