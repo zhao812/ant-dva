@@ -1,6 +1,7 @@
 body{
     min-width:1280px;
     min-height:100%;
+    overflow-y:scroll;
 }
 
 .title{
@@ -69,7 +70,7 @@ body{
 }
 
 .oBg2{
-    padding-left: calc(100vw - 100%);
+    height:100%;
     .ant-layout{
         background:#f6f7fa;
     }

@@ -41,7 +41,7 @@ class StepOne extends React.Component{
         if(!activename){
             message.info('活动名称不能为空')
         }else{
-            this.props.goStep(2,this.state)
+            //this.props.goStep(2,this.state)
         }
     }
     render(){
