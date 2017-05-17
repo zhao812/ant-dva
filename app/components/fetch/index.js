@@ -1,4 +1,5 @@
 import { Modal, Button } from 'antd';
+import serverConfig from '../../static/const/serverConfig'
 
 var HTTPUtil = {};
 import 'whatwg-fetch'  // 可以引入fetch来进行Ajax
@@ -14,7 +15,6 @@ export function fetchGet(url, params, headers){
      return (dispatch, getState) => {
         return new Promise(function(resolve, reject){
             dispatch(fetchget(url, params, headers)).then(data=>{
-                console.log(params,2938494)
                 if (data && !data.success) {
                     Modal.error({
                         title: '提示',
@@ -31,7 +31,8 @@ export function fetchGet(url, params, headers){
 
 export function fetchget(url, params, headers) {
     if (process.env.NODE_ENV == "develop") {
-        url = "mock/" + url + ".json"
+        //url = "mock/" + url + ".json"
+        url = serverConfig.serverIp + url
     }
     return (dispatch, getState) => {
         if (params) {
@@ -103,8 +104,9 @@ export function fetchpost(url, formData) {
     return (dispatch, getState) => {
         let method = "POST"
         if (process.env.NODE_ENV == "develop") {
-            url = "mock/" + url + ".json"
-            method = "GET"
+            // url = "mock/" + url + ".json"
+            // method = "GET"
+            url = serverConfig.serverIp + url
         }
 
         let headers = {
@@ -115,8 +117,8 @@ export function fetchpost(url, formData) {
 
         return fetch(url, {
                 method: method,
-                headers: headers,
-                //body: JSON.stringify(formData)
+                // headers: headers,
+                body: JSON.stringify(formData)
             })
             .then((response) => {
                 return response.json();

@@ -14,7 +14,7 @@ const receiveData = data => ({
  @validCode 验证码
 */
 export const userLogin = (userName, password, validCode) => dispatch => {
-    let url = "index/login"
+    let url = "j_spring_security_check"
     let opt = {
         j_username: userName,
         j_password: password,

@@ -7,6 +7,7 @@ import CopyRights from '../../components/copyRight'
 
 import * as RouterConst from '../../static/const'
 import ErrorMessage from '../../static/const/errorMessage'
+import ServerConfig from '../../static/const/serverConfig'
 
 import { userLogin } from './reducer/action'
 import { checkEmail } from '../../utils'
@@ -37,8 +38,8 @@ class Login extends React.Component{
         let { username, password, validCode } = this.state, msg=""
         if(username == ""){
             msg = ErrorMessage.Error_Email_Empty
-        }else if(!checkEmail(username)){
-            msg = ErrorMessage.Error_Email_Invalid
+        // }else if(!checkEmail(username)){
+        //     msg = ErrorMessage.Error_Email_Invalid
         }else if(password == ""){
             msg = ErrorMessage.Error_Password_Empty
         }else if(password.length<5||password.length>12){
@@ -75,7 +76,7 @@ class Login extends React.Component{
                         <div className="login-code">
                             {/*<Checkbox className="checkbox" onChange={(e)=>console.log(e.target.checked)}>7日内免登陆</Checkbox>*/}
                             <Input className="validCode" value={validCode} placeholder="验证码" onChange={(e)=>this.onInputChange(e, "validCode")} />
-                            <span><img onClick={(e)=>e.currentTarget.src='/captcha/generate.do?t='+new Date().getTime()} alt="看不清？点击换一张" src="/captcha/generate.do" /></span>
+                            <span><img onClick={(e)=>e.currentTarget.src=ServerConfig.serverIp + 'captcha/generate.do?t='+new Date().getTime()} alt="看不清？点击换一张" src={ServerConfig.serverIp + "captcha/generate.do"} /></span>
                         </div>
                         <Button className="bnLogin" onClick={()=>this.onLoginHandler()}>登录</Button>
                         <div className="login-tip">还没有账户?  <Link to={ RouterConst.ROUTER_REGISTER }>立即前往</Link></div>

@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+
+import { hashHistory } from 'react-router'
 import Headers from '../../components/header'
 import IndexHeader from '../../components/indexHeader'
 import SiderMenu from '../../components/siderMenu'
@@ -13,7 +15,6 @@ import * as menuData from '../../static/const/menu'
 
 import SiderSearchMenu from '../../components/siderSearch'
 
-
 class App extends React.Component {
     constructor(props) {
         super(props)
@@ -23,15 +24,31 @@ class App extends React.Component {
         }
     }
 
+    checkLogin(props){
+        if(!props.isLogin){
+            switch (props.location.pathname) {
+                case RouterConst.SEARCH_LIST:
+                    hashHistory.push(RouterConst.ROUTER_LOGIN)
+                    return
+            }
+        }
+    }
+
+    componentWillMount(){
+        this.checkLogin(this.props)
+    }
+
+    componentWillReceiveProps(nextProps){
+        this.checkLogin(nextProps)
+    }
 
     componentDidMount() {
-            this.setState({
-                    data: menuData.data
-                })
+        this.setState({
+            data: menuData.data
+        })
     }
-    component
 
-    getMenuByRouter(){
+    getMenuByRouter() {
         switch (this.props.location.pathname) {
             case RouterConst.ROUTER_HOME:
             case RouterConst.ROUTER_LOGIN:
@@ -44,15 +61,15 @@ class App extends React.Component {
             case RouterConst.ROUTER_FAVORITE:
                 return <Sider className="sider siderSearchMenu"><SiderSearchMenu /></Sider>
             default:
-                return <Sider className="sider"><SiderMenu  data={this.state.data} /></Sider>
+                return <Sider className="sider"><SiderMenu data={this.state.data} /></Sider>
         }
     }
 
-    handlerCurrent(e){
+    handlerCurrent(e) {
         console.log(e)
     }
     render() {
-        let curr=this.props.location.query.current;
+        let curr = this.props.location.query.current;
         let top;
         let oClass;
         switch (this.props.location.pathname) {
@@ -62,34 +79,46 @@ class App extends React.Component {
             case RouterConst.ROUTER_FORGET_PW:
             case RouterConst.ROUTER_RESET_PW:
             case RouterConst.USER_MIRROR:
-                top=<Headers />
-                oClass=""
+                top = <Headers />
+                oClass = ""
                 break;
             case RouterConst.SEARCH_LIST:
-                top=<Headers />
-                oClass="oBg2"
+                top = <Headers />
+                oClass = "oBg2"
                 break
             default:
-                top = <IndexHeader/>
-                oClass="oBg"
+                top = <IndexHeader />
+                oClass = "oBg"
                 break
         }
 
         return (
 
-           <div className={oClass}>
-                <Layout style={{minHeight: '100%' }}>
+            <div className={oClass}>
+                <Layout style={{ minHeight: '100%' }}>
                     {top}
-                        <Layout className="wapper">
-                            { this.getMenuByRouter() }
-                            <Content className={oClass?"oBg wrap":"wrap"}>
-                                {React.cloneElement(this.props.children, { key: this.props.location.pathname })}
-                            </Content>
-                        </Layout>
+                    <Layout className="wapper">
+                        {this.getMenuByRouter()}
+                        <Content className={oClass ? "oBg wrap" : "wrap"}>
+                            {React.cloneElement(this.props.children, { key: this.props.location.pathname })}
+                        </Content>
+                    </Layout>
                 </Layout>
             </div>
         );
     }
 }
-export default  App;
 
+App.PropTypes = {
+    isLogin: PropTypes.bool.isRequired
+}
+
+let mapStateToProps = state => ({
+    isLogin: state.loginReducer.isLogin
+})
+
+let mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({}, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)

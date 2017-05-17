@@ -58,7 +58,7 @@ Headers.PropTypes = {
 }
 
 let mapStateToProps = state => ({
-    isLogin: state.bool.isRequired
+    isLogin: state.loginReducer.isLogin
 })
 
 let mapDispatchToProps = (dispatch) => {
