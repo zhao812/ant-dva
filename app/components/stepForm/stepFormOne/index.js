@@ -1,7 +1,7 @@
 import React from 'react'
 import { Form, Select, Input, Button,Radio ,Icon,message,DatePicker,Checkbox} from 'antd';
 import './index.scss' 
-
+import {sheng,shi,qu} from '../../../static/const/city'
 const FormItem = Form.Item;
 const RadioGroup = Radio.Group;
 let isShow=false;
@@ -35,19 +35,40 @@ class StepOne extends React.Component{
         })
     }
     componentDidMount(){
+        
+    }
+    handlerD(){
+            let c=[]
+            //console.log(sheng,12294488585,shi,qu)
+            sheng.data.map((item,key)=> { 
+                c[key]={"name":item.name,"code":item.code,"children":[]}
+            
+                shi.data.map((item2,key2)=>{
+                        if(item2.code.substr(0,3)==item.code.substring(0,3)){
+                            c[key].children[key2]={"name":item2.name,"code":item2.code,"children":[]}
+                            qu.data.map((item3,key3)=>{
+                                if(item3.code.substr(0,4)==item2.code.substr(0,4)){
+                                    c[key].children[key2].children.push({"name":item3.name,"code":item3.code})
+                                }
+                            })
+                        }
+                    })
+
+            }); 
     }
     nextStep(e){
         const {platform,activename,value,display}=this.state;
         if(!activename){
             message.info('活动名称不能为空')
         }else{
-            //this.props.goStep(2,this.state)
+            this.props.goStep(2,this.state)
         }
     }
     render(){
         const {platform,activename,value,display}=this.state;
         return (
            <div className="steps_one">
+
                <FormItem
                     label="活动名称"
                     labelCol={{ span: 4 }}

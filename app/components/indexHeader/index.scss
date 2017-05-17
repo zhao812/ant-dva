@@ -32,12 +32,11 @@
   .wapper{
     width:1280px;
     margin:0 auto;
-    overflow:hidden;
   }
   .right{
     float:right;
     position:relative;
-    margin-left:40px;
+    margin-left:32px;
     &.showInput{
       margin-left:10px;
       .search_input{
@@ -46,6 +45,9 @@
       }
       .search_icon{
         color:#000;
+        background:#fff;
+        padding-right:10px;
+        border-radius: 100%;
       }
     }
     
@@ -53,8 +55,8 @@
   .search_icon{
     cursor: pointer;
     position:absolute;
-    right:14px;
-    top:26px;
+    right:3px;
+    top:25px;
     color:#fff;
     font-size:16px;
     }
