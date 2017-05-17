@@ -7,6 +7,6 @@ let receiveData = data => ({
 })
 
 export const getUserMirror = () => dispatch => {
-    let url = 'mock/userMirror.json'
+    let url = 'userMirror'
     dispatch(HTTPUtil.fetchGet(url, null, null)).then((data)=>dispatch(receiveData(data)))
 }

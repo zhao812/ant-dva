@@ -28,6 +28,7 @@ class SelectContainer extends React.Component {
                         <SelectItem 
                             key={key + "," +index} 
                             title={item.name}
+                            type={item.type || ""}
                             defautlValue={item.defaultValue}
                             options={item.options || []}
                             onChangeHandler={(value)=>this.props.changeFilterMenuSelect(item.id, index, value)}

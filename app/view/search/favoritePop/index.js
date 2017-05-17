@@ -18,7 +18,7 @@ class Favorite extends React.Component{
 
     render(){
         return(
-            <div className="favorite-mask">
+            <div className="favorite-pop-mask">
                 <div className="favorite-container">
                     <button className="bnClose" onClick={()=>this.onCancelHandler()}></button>
                     <div className="favorite-div">

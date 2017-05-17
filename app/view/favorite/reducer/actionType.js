@@ -1,0 +1,1 @@
+export const INIT_FAVORITE_LIST = "INIT_FAVORITE_LIST"

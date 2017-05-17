@@ -5,6 +5,8 @@ import { Icon } from 'antd'
 
 import { onCloseFilter } from '../reducer/actions'
 
+import { getCityNameByValue } from '../../../utils'
+
 import './index.scss'
 
 class SelectResultContainer extends React.Component{
@@ -17,9 +19,15 @@ class SelectResultContainer extends React.Component{
         return this.props.filterMenuList.map((menu, key)=>
             menu.list.map((item, index) => {
                 if(item.isShowResult){
-                    let opt = item.options ? item.options.find(obj=>obj.value==item.defaultValue) : []
+                    let value=""
+                    if(item.type == "city"){
+                        value = getCityNameByValue(item.defaultValue)
+                    }else{
+                        value = item.options ? item.options.find(obj=>obj.value==item.defaultValue).name : ""
+                    }
+                    
                     return <div className="select-result-item">
-                                <span>{ item.name + ": " + opt.name || "" }</span>
+                                <span>{ item.name + ": " + value }</span>
                                 <Icon className="bnClose" type="close" onClick={()=>this.props.onCloseFilter(item.id, index)} />
                             </div>
                 }

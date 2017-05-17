@@ -1,5 +1,5 @@
 {
-    "result": {
+    "data": {
         "username": "钱宝用户名",
         "mirror": [
             {
@@ -274,6 +274,6 @@
         ]
     },
 
-    "message": "",
-    "code": 0
+    "success": true,
+    "message": ""
 }
