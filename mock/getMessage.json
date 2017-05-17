@@ -1,5 +1,5 @@
 {
-    "result":"11111111111111111111",
-    "message":"",
-    "code":0
+  "success": true,
+  "message": "",
+  "data": {}
 }

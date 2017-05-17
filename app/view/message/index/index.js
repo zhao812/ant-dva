@@ -11,17 +11,22 @@ import './index.scss';
 const columns = [{
   title: '预览',
   dataIndex: 'img',
+  width:60,
   render:(value)=>{
     if(value==1){
-      return <span className="dx_icon yulan"></span>
+      return <Icons name="mail" color={'#666'} size={20} />
     }
     else if(value==2){
-      return <span className="wx_icon yulan"></span>
+      return <Icons  name="weixing" color={'#666'} size={20}  />
     }
   }
 }, {
   title: '活动名称',
-  dataIndex: 'name'
+  dataIndex: 'name',
+  width:240,
+  render:(value)=>{
+    return <div className="w200">{value}</div>
+  }
 }, {
   title: '推送渠道',
   dataIndex: 'sendTunnel',
@@ -90,11 +95,11 @@ class Message extends React.Component {
     changeTitle(name) {
     }
     componentDidMount() {
-      this.props.getTableData({"size":10,"page":1})
+      this.props.getTableData(10,1)
     }
 
     handleTableChange(e){
-      this.props.getTableData({"size":10,"page":e})
+      this.props.getTableData(10,e)
     }
 
     handlerCreatMail(){

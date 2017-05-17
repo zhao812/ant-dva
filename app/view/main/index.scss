@@ -1,6 +1,7 @@
 body{
     min-width:1280px;
     min-height:100%;
+    overflow-y:scroll;
 }
 
 .title{
@@ -21,6 +22,9 @@ body{
 }
 
 .oBg{
+    .ant-table-tbody > tr > td{
+        color:#666;
+    }
     height:100%;
     .wrap{
         border-top:0px;
@@ -68,7 +72,8 @@ body{
 }
 
 .oBg2{
+    height:100%;
     .ant-layout{
-        background:#f6f7fa
+        background:#f6f7fa;
     }
 }

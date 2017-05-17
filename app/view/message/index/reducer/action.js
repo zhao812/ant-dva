@@ -6,9 +6,9 @@ const tableData = data => ({
     data : data
 })
 //进入加载数据
-export const getTableData = (data) => dispatch => {
+export const getTableData = (size,page) => dispatch => {
     let url = "activity/list";
-    dispatch(HTTPUtil.fetchGet(url, data, null)).then((data)=>{
+    dispatch(HTTPUtil.fetchGet(url, {size:size,page:page}, null)).then((data)=>{
             dispatch(tableData(data));
     })
 }

@@ -29,6 +29,7 @@ class App extends React.Component {
                     data: menuData.data
                 })
     }
+    component
 
     getMenuByRouter(){
         switch (this.props.location.pathname) {
@@ -77,7 +78,7 @@ class App extends React.Component {
         return (
 
            <div className={oClass}>
-                <Layout style={{ minHeight: '100%' }}>
+                <Layout style={{minHeight: '100%' }}>
                     {top}
                         <Layout className="wapper">
                             { this.getMenuByRouter() }

@@ -21,6 +21,6 @@ export const generateAd = (data) => dispatch => {
 
 //发送到我的手机
 export const getMessage = (data) => dispatch => {
-    let url = "/mock/getMessage.json";
+    let url = "/getMessage";
     dispatch(HTTPUtil.fetchGet(url, {data:data}, null)).then((data)=>data)
 }
