@@ -1,0 +1,91 @@
+.favorite-page-container{
+    padding: 30px 20px 0 20px;
+
+    .favorite-title{
+        border-bottom: 2px solid #666666;
+        padding-bottom: 20px;
+
+        p{
+            font-size: 20px;
+            color: #666666
+        }
+        
+    }
+
+    .favorite-tab{
+        margin-top: 20px;
+        background: #ffffff;
+        border: 1px solid #e2e6ef;
+        padding: 20px 20px 0 20px;
+
+        .bnNew{
+            width: 80px;
+            height: 30px;
+            background: #1a5bfb;
+            color: #fff;
+            padding: 0;
+
+            span{
+                margin: 0;
+                padding: 0;
+            }
+        }
+
+        .table-desc{
+            white-space:nowrap;
+            overflow:hidden;
+            text-overflow:ellipsis;
+            width: 400px;
+        }
+
+        .ant-table-thead > tr > th{
+            background: rgba(0,0,0,0) !important;
+            font-size: 14px;
+            color: #000;
+        }
+
+        .btn_mail, .btn_wx{
+            width: 52px;
+            height: 22px;
+            padding: 0;
+            padding-left: 16px;
+            position: relative;
+
+            .btn-icon{
+                position: absolute;
+                top: 3px;
+                left: 3px;
+            }
+        }
+
+        .btn_mail{
+            margin-right: 10px;
+        }
+
+        .ant-table-pagination{
+            width: 100%;
+            text-align: center;
+            float: none;
+
+            .ant-pagination-item{
+                border: 0;
+                min-width: 6px;
+                margin: 0;
+                a{
+                    margin: 0 4px;
+                }
+            }
+
+            .ant-pagination-next{
+                margin-left: 8px;
+            }
+
+            .ant-pagination-item-active{
+                background: rgba(0,0,0,0);
+                a{
+                    color: #2966fb;
+                }
+            }
+        }
+    }
+}

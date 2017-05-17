@@ -1,4 +1,7 @@
 import React, { PropTypes } from 'react'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+
 import { hashHistory } from 'react-router'
 import { Layout, Menu, Icon, Input, Button } from 'antd'
 
@@ -37,15 +40,30 @@ class Headers extends React.Component {
                     <Menu.Item key="aboutus" className="menuLi">关于我们</Menu.Item>
                 </Menu>
 
-                <div className="login-btns">
-                    <Button className="bnLogin" onClick={() => hashHistory.push(RouterConst.ROUTER_LOGIN) }>登录</Button>
-                    <Button className="bnRegister" onClick={() => hashHistory.push(RouterConst.ROUTER_REGISTER) }>立即注册</Button>
-                </div>
+                {
+                    !this.props.isLogin ? 
+                        <div className="login-btns">
+                            <Button className="bnLogin" onClick={() => hashHistory.push(RouterConst.ROUTER_LOGIN) }>登录</Button>
+                            <Button className="bnRegister" onClick={() => hashHistory.push(RouterConst.ROUTER_REGISTER) }>立即注册</Button>
+                        </div>
+                        : ""
+                }
             </Header>
         )
     }
 
 }
 
+Headers.PropTypes = {
+    isLogin: PropTypes.bool.isRequired
+}
 
-export default Headers;
+let mapStateToProps = state => ({
+    isLogin: state.bool.isRequired
+})
+
+let mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({ }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Headers)

@@ -40,6 +40,7 @@ class App extends React.Component {
             case RouterConst.USER_MIRROR:
                 return ""
             case RouterConst.SEARCH_LIST:
+            case RouterConst.ROUTER_FAVORITE:
                 return <Sider className="sider siderSearchMenu"><SiderSearchMenu /></Sider>
             default:
                 return <Sider className="sider"><SiderMenu  data={this.state.data} /></Sider>

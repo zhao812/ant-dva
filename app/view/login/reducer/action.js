@@ -4,7 +4,7 @@ import { hashHistory } from 'react-router'
 import * as RouterConst from '../../../static/const'
 
 const receiveData = data => ({
-    type: ActionType.UPDATE_USER_INFO,
+    type: ActionType.UPDATE_USER_LOGIN,
     data: data
 })
 

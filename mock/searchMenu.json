@@ -96,7 +96,9 @@
                     },
                     {
                         "id": 8,
-                        "name": "手机归属地"
+                        "defaultValue": "340803",
+                        "name": "手机归属地",
+                        "type": "city"
                     },
                     {
                         "id": 9,
