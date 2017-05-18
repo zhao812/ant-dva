@@ -18,6 +18,18 @@ class Headers extends React.Component {
     }
 
     handleClick(e) {
+        switch(e.key){
+            case 'home':
+                hashHistory.push(RouterConst.ROUTER_HOME)
+                break;
+            case 'user':
+                hashHistory.push(this.props.isLogin ? RouterConst.SEARCH_LIST : RouterConst.ROUTER_LOGIN)
+                break;
+            case 'pic':
+                hashHistory.push(this.props.isLogin ? RouterConst.GET_MESSAGE : RouterConst.ROUTER_LOGIN)
+                break;
+        }
+
         this.setState({selectedTab: e.key})
     }
 

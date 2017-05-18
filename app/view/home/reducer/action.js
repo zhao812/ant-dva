@@ -5,8 +5,9 @@ const receiveData = data => ({
     type: ActionType.HOME_UPDATE,
     data: data
 })
+
 //进入加载数据
 export const getUserNumber = () => dispatch => {
-    let url = "/userNumber";
+    let url = "/user/userNumber.do";
     dispatch(HTTPUtil.fetchGet(url, null, null)).then(data=>dispatch(receiveData(data)))
 }

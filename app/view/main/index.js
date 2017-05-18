@@ -25,13 +25,13 @@ class App extends React.Component {
     }
 
     checkLogin(props){
-        if(!props.isLogin){
-            switch (props.location.pathname) {
-                case RouterConst.SEARCH_LIST:
-                    hashHistory.push(RouterConst.ROUTER_LOGIN)
-                    return
-            }
-        }
+        // if(!props.isLogin){
+        //     switch (props.location.pathname) {
+        //         case RouterConst.SEARCH_LIST:
+        //             hashHistory.push(RouterConst.ROUTER_LOGIN)
+        //             return
+        //     }
+        // }
     }
 
     componentWillMount(){

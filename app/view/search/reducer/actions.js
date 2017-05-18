@@ -74,11 +74,26 @@ let receiveReportData = data => ({
 /**根据筛选条件获取报表 */
 export const getReportData = () => (dispatch, getState) => {
     let state = getState()
-    let url = "reportData";
+    let url = "/search/calculation.do";
     let opt = {
         data: getShowFilterData(state)
     }
-    console.log(opt, "aaaaaaaaaaaaaaaaaa")
+
+    opt = {
+        selectList: [
+            {
+                "value": "w,v",
+                "id": "base_sex"			
+            },
+            {
+                "value": "0-30",
+                "id": "base_age"			
+            }
+        ],
+	    showList: "1,2,3,4,5,6"
+    }
+
+
     dispatch(HTTPUtil.fetchPost(url, opt, null)).then(data=>dispatch(receiveReportData(data)))
 }
 

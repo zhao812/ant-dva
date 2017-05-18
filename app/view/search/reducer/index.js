@@ -143,7 +143,7 @@ export default function update(state = initialState, action) {
         case ActionType.SEARCH_UPDATE_REPORT_DATA:
             return { 
                 ...state, 
-                reportList: action.data.reports,
+                reportList: action.data.items,
              }
         case ActionType.CLOSE_FILTER_MENU_LIST:
             return closeFilterMenuList(state, action.data)

@@ -21,3 +21,10 @@ export const getCityNameByValue = code => {
     return c1.label + "/" +c2.label + "/" +c3.label
 }
 
+export const setCookie = (c_name, value, expiredays=1) =>{
+    var exdate=new Date()
+    exdate.setDate(exdate.getDate() + expiredays)
+    document.cookie=c_name+ "=" +escape(value)+
+    ((expiredays==null) ? "" : ";expires="+exdate.toGMTString())
+}
+

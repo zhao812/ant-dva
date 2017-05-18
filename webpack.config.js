@@ -108,6 +108,15 @@ var config = {
       stats:{colors:true},
       hot: true,
       contentBase: "build/",
+       proxy: [
+         {  
+            '/*.do*': {  
+                target: 'http://10.172.31.228:8080', 
+                changeOrigin: true, 
+                secure: false  
+            }  
+        }
+      ]  
   },
   //其它解决方案配置
   resolve: {
