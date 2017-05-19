@@ -4,7 +4,7 @@ const initialState = {
 }
 export default function update (state = initialState, action){
     switch(action.type){
-        case "123123123123":
+        case "GetUserList":
             return {
                 ...state,
                 a: action.data

@@ -5,6 +5,19 @@ const wechatData = data => ({
     data : data
 })
 
+export const changeName =(name) => dispatch => {
+    dispatch({
+        type : ActionTypes.Change_Name,
+        name: name
+    })
+}
+export const changePeople =(userSelectGroupId) => dispatch => {
+    dispatch({
+        type : ActionTypes.Change_userSelectGroupId,
+        userSelectGroupId: userSelectGroupId
+    })
+}
+
 export const changeTitle =(title) => dispatch => {
     dispatch({
         type : ActionTypes.Change_Title,
@@ -43,10 +56,11 @@ export const changeTxt =(txt,index) => dispatch => {
         index:index
     })
 }
-export const addPic =(pic) => dispatch => {
+export const addPic =(pic,txt) => dispatch => {
     dispatch({
         type : ActionTypes.Add_Pic,
-        pic: pic
+        pic: pic,
+        txt: txt
     })
 }
 export const addTxt =(short) => dispatch => {
@@ -55,6 +69,25 @@ export const addTxt =(short) => dispatch => {
         short: short
     })
 }
+export const oDelete =(index) => dispatch => {
+    dispatch({
+        type : ActionTypes.Delete_file,
+        index: index
+    })
+}
+export const setFileString = (file) => dispatch => {
+    dispatch({
+        type : ActionTypes.File_String,
+        file:file
+    })
+}
+export const setUrl = (url) => dispatch => {
+    dispatch({
+        type : ActionTypes.Set_Url,
+        url:url
+    })
+}
+
 //进入加载数据
 export const commitWechat = (data) => dispatch => {
     let url = "/mock/wechat.json";
@@ -62,3 +95,11 @@ export const commitWechat = (data) => dispatch => {
             dispatch(wechatData(data));
     })
 }
+
+
+//推送人群
+export const getUserList = () => dispatch => {
+    let url = "/portrayal/collection/allList";
+    return dispatch(HTTPUtil.fetchGet(url, null, null))
+}
+

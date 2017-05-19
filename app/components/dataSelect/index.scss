@@ -1,0 +1,17 @@
+.content-wrapper ul.dataSelect {
+    border:0px;
+    margin-top:16px;
+    padding:0px;
+    span{
+        display:block;
+        padding-left:10px;
+        padding-bottom:4px;
+    }
+    li{
+        display:inline-block;
+    }
+    .ant-select-selection{
+        width:74px;
+        margin-right:8px;
+    }
+}

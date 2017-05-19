@@ -14,7 +14,6 @@ export function fetchGet(url, params, headers){
      return (dispatch, getState) => {
         return new Promise(function(resolve, reject){
             dispatch(fetchget(url, params, headers)).then(data=>{
-                console.log(params,2938494)
                 if (data && !data.success) {
                     Modal.error({
                         title: '提示',

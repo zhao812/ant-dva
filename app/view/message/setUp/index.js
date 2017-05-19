@@ -31,6 +31,7 @@ class setUp extends React.Component {
 
     render() {
         return (
+            <div className="content-wrapper"></div>
           <div className="setUp">
               <h3 className="title"><Icon type="apple" />IOS推送配置</h3>
               <div className="content">
