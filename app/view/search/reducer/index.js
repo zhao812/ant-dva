@@ -56,19 +56,19 @@ let changeSelectValue = (state, data) => (
             ...menu,
             list: menu.list.map((obj, index) => {
                 if(obj.id == data.id && index==data.index){
-                    if(data.value == ""){
-                        return {
-                            ...obj,
-                            defaultValue: data.value,
-                            isShowResult: false
-                        }
-                    }else{
+                    // if(data.value == ""){
+                    //     return {
+                    //         ...obj,
+                    //         defaultValue: data.value,
+                    //         isShowResult: false
+                    //     }
+                    // }else{
                         return {
                             ...obj,
                             defaultValue: data.value,
                             isShowResult: true
                         }
-                    }
+                    // }
                 }
                 return obj
             })
@@ -92,7 +92,7 @@ let addFilterMenuList = (state, id) => {
                     list: [...menu.list, item].sort((a, b)=>{
                         let create_a = a.create_time || 0,
                         create_b = b.create_time || 0
-                        return a.id == b.id ? create_b < create_a ? 1 : -1 : b.id < a.id ? 1 : -1
+                        return a.id == b.id ? create_b < create_a ? 1 : -1 : b.order < a.order ? 1 : -1
                     })
                 }
             }

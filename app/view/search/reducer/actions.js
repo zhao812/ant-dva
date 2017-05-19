@@ -8,7 +8,7 @@ let receiveData = data => ({
 
 //加载数据
 export const getSearchMenu = () => dispatch => {
-    let url = "searchMenu";
+    let url = "/search/list.do";
     dispatch(HTTPUtil.fetchGet(url, null, null)).then(data=>dispatch(receiveData(data)))
 }
 
@@ -43,26 +43,35 @@ let getValueById = (list, id) => {
             }
         }
     }
-    console.log(result)
     return result
 }
 
-let getShowFilterData = state => {
-    let showList = state.searchList.menuData, filterList = state.searchList.filterMenuList
-    let result = []
+let getShowList = state => {
+    let showList = state.searchList.menuData, result = []
     for(let i=0; i<showList.length; i++){
         let menu = showList[i]
-        for(let j = 0; j<menu.list.length; j++){
+        for(let j=0; j<menu.list.length; j++){
             let item = menu.list[j]
             if(item.isShow){
-                result.push({
-                    id: item.id,
-                    value: getValueById(filterList, item.id).join(",")
-                })
+                result.push(item.id)
             }
         }
     }
+    return result.join(",")
+}
 
+let getFilterList = state => {
+    let filterList = state.searchList.filterMenuList, showList = state.searchList.menuData, result=[]
+    for(let i=0; i<showList.length; i++){
+        let menu = showList[i]
+        for(let j=0; j<menu.list.length; j++){
+            let item = menu.list[j]
+            result.push({
+                id: item.id,
+                value: getValueById(filterList, item.id).join(",")
+            })
+        }
+    }
     return result
 }
 
@@ -74,11 +83,12 @@ let receiveReportData = data => ({
 /**根据筛选条件获取报表 */
 export const getReportData = () => (dispatch, getState) => {
     let state = getState()
-    let url = "reportData";
+    let url = "/search/calculation.do";
     let opt = {
-        data: getShowFilterData(state)
+        showList: getShowList(state),
+        selectList: getFilterList(state)
     }
-    console.log(opt, "aaaaaaaaaaaaaaaaaa")
+
     dispatch(HTTPUtil.fetchPost(url, opt, null)).then(data=>dispatch(receiveReportData(data)))
 }
 

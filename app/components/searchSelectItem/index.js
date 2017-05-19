@@ -17,8 +17,8 @@ class SelectItem extends React.Component{
     }
 
     onCascaderChange(value){
-        if(value.length == 3){
-            this.props.onChangeHandler(value[2])
+        if(value.length > 0){
+            this.props.onChangeHandler(value[value.length-1])
         }else{
             this.props.onChangeHandler("")
         }
@@ -26,14 +26,14 @@ class SelectItem extends React.Component{
 
     getComponents(){
         let { type, defautlValue } = this.props
-        if(type == "city"){
+        if(type == 3 || type == 4){
             let value = defautlValue ? [defautlValue.substring(0, 2) + "0000", defautlValue.substring(0, 4) + "00", defautlValue] : ""
             return (
                 <Cascader options={CityConst} onChange={(e)=>this.onCascaderChange(e)} value={value} placeholder="未选择" />
             )
         }else{
             return (
-                <Select className="select" value={defautlValue + ""} onChange={this.props.onChangeHandler}>
+                <Select className="select" value={defautlValue + ""} onChange={this.props.onChangeHandler} disabled={type == 0 ? true : false }>
                     {
                         this.props.options.map((obj, index) => 
                             <Select.Option key={index} value={obj.value  + ""}>{obj.name}</Select.Option>
@@ -45,12 +45,12 @@ class SelectItem extends React.Component{
     }
 
     render(){
-        let { title, defautlValue, isShowAdd } = this.props
+        let { title, defautlValue, type } = this.props
         return (
             <div className="selectItem">
                 <div>
                     <span className="selectItem-title">{title}</span>
-                    {isShowAdd ? <Icon className="btn-add" type="plus-circle-o" onClick={this.props.onAddHandler} /> : ""}
+                    {type == 2 ? <Icon className="btn-add" type="plus-circle-o" onClick={this.props.onAddHandler} /> : ""}
                 </div>
                 { this.getComponents() }
             </div>
@@ -64,7 +64,6 @@ SelectItem.PropTypes = {
     options: PropTypes.array.isRequired,
     defautlValue: PropTypes.any,
     onChangeHandler: PropTypes.func.isRequired,
-    isShowAdd: PropTypes.bool.isRequired,
     onAddHandler: PropTypes.func
 }
 

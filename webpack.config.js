@@ -10,7 +10,7 @@ var ROOT_PATH = path.resolve(__dirname, './');
 // 项目源码路径
 var SRC_PATH = ROOT_PATH + '/app';
 // 产出路径
-var DIST_PATH = ROOT_PATH + '/shield';
+var DIST_PATH = ROOT_PATH + '/build';
 // 是否是开发环境
 var __DEV__ = process.env.NODE_ENV !== 'npm install -g babel';
 
@@ -28,8 +28,7 @@ loaders.push({
     test: /\.js$/,
     exclude: /node_modules/,
     loader: ['babel-loader'],
-    include: [path.join(__dirname, './')],
-
+    // include: [path.join(__dirname, './')],
 });
 
 // 编译 sass
@@ -107,7 +106,16 @@ var config = {
   devServer: {
       stats:{colors:true},
       hot: true,
-      contentBase: "shield/",
+      contentBase: "build/",
+       proxy: [
+         {  
+            '/*.do*': {  
+                target: 'http://10.172.31.228:8080', 
+                changeOrigin: true, 
+                secure: false  
+            }  
+        }
+      ]  
   },
   //其它解决方案配置
   resolve: {

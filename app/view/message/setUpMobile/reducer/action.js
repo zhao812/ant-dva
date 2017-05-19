@@ -19,5 +19,5 @@ export const sendMessage = (data) => dispatch => {
 //保存
 export const messageSave = (data) => dispatch => {
     let url = "/message/save";
-    dispatch(HTTPUtil.fetchGet(url, data, null)).then((data)=>data)
+    dispatch(HTTPUtil.fetchPost(url, data, null)).then((data)=>data)
 }

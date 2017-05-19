@@ -8,8 +8,8 @@ import CopyRights from '../../components/copyRight'
 import * as RouterConst from '../../static/const'
 import ErrorMessage from '../../static/const/errorMessage'
 
-import { userLogin } from './reducer/action'
-import { checkEmail } from '../../utils'
+import { userLogin, checkLogin } from './reducer/action'
+import { checkEmail, setCookie } from '../../utils'
 
 import './index.scss'
 
@@ -23,6 +23,12 @@ class Login extends React.Component{
             password: "",
             validCode: ""
         }
+    }
+
+    componentDidMount(){
+        setCookie("token", "", "-1")
+        setCookie("userName", "", "-1")
+        this.props.checkLogin()
     }
 
     /**输入框改变事件 */
@@ -66,7 +72,7 @@ class Login extends React.Component{
                     <div className="login-div">
                         <p className="login-title">用户登录</p>
                         <div className="email-div">
-                            <Input className="email-input" value={username} onChange={(e)=>this.onInputChange(e, "username")} placeholder="注册邮箱" />
+                            <Input className="email-input" value={username} onChange={(e)=>this.onInputChange(e, "username")} placeholder="登录邮箱" />
                         </div>
                         <div className="password-div">
                             <Input className="password-input" type="password" placeholder="6-12位登录密码" maxLength="12" value={password} onChange={(e)=>this.onInputChange(e, "password")} />
@@ -75,7 +81,7 @@ class Login extends React.Component{
                         <div className="login-code">
                             {/*<Checkbox className="checkbox" onChange={(e)=>console.log(e.target.checked)}>7日内免登陆</Checkbox>*/}
                             <Input className="validCode" value={validCode} placeholder="验证码" onChange={(e)=>this.onInputChange(e, "validCode")} />
-                            <span><img onClick={(e)=>e.currentTarget.src='/captcha/generate.do?t='+new Date().getTime()} alt="看不清？点击换一张" src="/captcha/generate.do" /></span>
+                            <span><img onClick={(e)=>e.currentTarget.src='/captcha/generate.do?t='+new Date().getTime()} alt="看不清？点击换一张" src={"/captcha/generate.do"} /></span>
                         </div>
                         <Button className="bnLogin" onClick={()=>this.onLoginHandler()}>登录</Button>
                         <div className="login-tip">还没有账户?  <Link to={ RouterConst.ROUTER_REGISTER }>立即前往</Link></div>
@@ -95,7 +101,7 @@ let mapStateToProps = state => ({
 })
 
 let mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({ userLogin }, dispatch)
+    return bindActionCreators({ userLogin, checkLogin }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login)

@@ -32,7 +32,6 @@ class SelectContainer extends React.Component {
                             defautlValue={item.defaultValue}
                             options={item.options || []}
                             onChangeHandler={(value)=>this.props.changeFilterMenuSelect(item.id, index, value)}
-                            isShowAdd={true}
                             onAddHandler={()=>this.props.addFliterMenuList(item.id)} 
                         />
                     )
