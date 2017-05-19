@@ -18,6 +18,8 @@
 
     .ant-tabs-tabpane{
         padding: 20px 30px;
+        max-height: 190px;
+        overflow: auto;
     }
 }
 

@@ -11,10 +11,10 @@ export default function update (state = initialState, action){
                 ...state,
                 isLogin: true
             }
-        case ActionType.SET_LOGIN_OUT:
+        case ActionType.SET_LOGIN_STATE:
             return {
                 ...state,
-                isLogin: false
+                isLogin: action.data
             }
         default:
             return state

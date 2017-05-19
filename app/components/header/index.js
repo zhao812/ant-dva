@@ -18,18 +18,6 @@ class Headers extends React.Component {
     }
 
     handleClick(e) {
-        switch(e.key){
-            case 'home':
-                hashHistory.push(RouterConst.ROUTER_HOME)
-                break;
-            case 'user':
-                hashHistory.push(this.props.isLogin ? RouterConst.SEARCH_LIST : RouterConst.ROUTER_LOGIN)
-                break;
-            case 'pic':
-                hashHistory.push(this.props.isLogin ? RouterConst.GET_MESSAGE : RouterConst.ROUTER_LOGIN)
-                break;
-        }
-
         this.setState({selectedTab: e.key})
     }
 
@@ -44,9 +32,9 @@ class Headers extends React.Component {
             <Header className="header-div">
                 <div className="logo"></div>
                 <Menu onClick={(e) => this.handleClick(e)} selectedKeys={[this.state.selectedTab]} mode="horizontal" className="menuUl">
-                    <Menu.Item key="home" className="menuLi">首页</Menu.Item>
-                    <Menu.Item key="user" className="menuLi"><Link to='/searchList'>用户画像</Link></Menu.Item>
-                    <Menu.Item key="pic" className="menuLi"><Link to='/message'>画像营销</Link></Menu.Item>
+                    <Menu.Item key="home" className="menuLi"><Link to={RouterConst.ROUTER_HOME}>首页</Link></Menu.Item>
+                    <Menu.Item key="user" className="menuLi"><Link to={RouterConst.SEARCH_LIST}>用户画像</Link></Menu.Item>
+                    <Menu.Item key="pic" className="menuLi"><Link to={RouterConst.GET_MESSAGE}>画像营销</Link></Menu.Item>
                     <Menu.Item key="doc" className="menuLi">说明文档</Menu.Item>
                     <Menu.Item key="aboutus" className="menuLi">关于我们</Menu.Item>
                 </Menu>

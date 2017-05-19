@@ -8,6 +8,6 @@ const receiveData = data => ({
 
 //进入加载数据
 export const getUserNumber = () => dispatch => {
-    let url = "/user/userNumber.do";
+    let url = "/index/userNumber.do";
     dispatch(HTTPUtil.fetchGet(url, null, null)).then(data=>dispatch(receiveData(data)))
 }

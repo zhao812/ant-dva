@@ -15,6 +15,8 @@ import * as menuData from '../../static/const/menu'
 
 import SiderSearchMenu from '../../components/siderSearch'
 
+import { checkLogin} from '../login/reducer/action'
+
 class App extends React.Component {
     constructor(props) {
         super(props)
@@ -25,6 +27,7 @@ class App extends React.Component {
     }
 
     checkLogin(props){
+        let isLogin = false
         // if(!props.isLogin){
         //     switch (props.location.pathname) {
         //         case RouterConst.SEARCH_LIST:
@@ -35,7 +38,7 @@ class App extends React.Component {
     }
 
     componentWillMount(){
-        this.checkLogin(this.props)
+        this.props.checkLogin()
     }
 
     componentWillReceiveProps(nextProps){
@@ -118,7 +121,7 @@ let mapStateToProps = state => ({
 })
 
 let mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({}, dispatch)
+    return bindActionCreators({ checkLogin }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)

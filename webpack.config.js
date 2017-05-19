@@ -28,8 +28,7 @@ loaders.push({
     test: /\.js$/,
     exclude: /node_modules/,
     loader: ['babel-loader'],
-    include: [path.join(__dirname, './')],
-
+    // include: [path.join(__dirname, './')],
 });
 
 // 编译 sass

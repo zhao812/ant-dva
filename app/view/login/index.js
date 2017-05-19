@@ -8,7 +8,7 @@ import CopyRights from '../../components/copyRight'
 import * as RouterConst from '../../static/const'
 import ErrorMessage from '../../static/const/errorMessage'
 
-import { userLogin, setLoginOut } from './reducer/action'
+import { userLogin, checkLogin } from './reducer/action'
 import { checkEmail, setCookie } from '../../utils'
 
 import './index.scss'
@@ -28,7 +28,7 @@ class Login extends React.Component{
     componentDidMount(){
         setCookie("token", "", "-1")
         setCookie("userName", "", "-1")
-        this.props.setLoginOut()
+        this.props.checkLogin()
     }
 
     /**输入框改变事件 */
@@ -43,8 +43,8 @@ class Login extends React.Component{
         let { username, password, validCode } = this.state, msg=""
         if(username == ""){
             msg = ErrorMessage.Error_Email_Empty
-        // }else if(!checkEmail(username)){
-        //     msg = ErrorMessage.Error_Email_Invalid
+        }else if(!checkEmail(username)){
+            msg = ErrorMessage.Error_Email_Invalid
         }else if(password == ""){
             msg = ErrorMessage.Error_Password_Empty
         }else if(password.length<5||password.length>12){
@@ -101,7 +101,7 @@ let mapStateToProps = state => ({
 })
 
 let mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({ userLogin, setLoginOut }, dispatch)
+    return bindActionCreators({ userLogin, checkLogin }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login)

@@ -2,7 +2,7 @@ import * as HTTPUtil from '../../../components/fetch'
 import * as ActionType from './actionType'
 import { hashHistory } from 'react-router'
 import * as RouterConst from '../../../static/const'
-import { setCookie } from '../../../utils'
+import { setCookie, getCookie } from '../../../utils'
 import MD5 from 'MD5'
 import { Modal } from 'antd'
 
@@ -69,8 +69,14 @@ export const resetPassword = password => dispatch => {
     })
 }
 
-export const setLoginOut = () => dispatch => {
+export const checkLogin = () => dispatch =>{
+    let isLogin = false
+    let userName = getCookie("userName"), token = getCookie("token")
+    if(userName && token){
+        isLogin = true
+    }
     dispatch({
-        type: ActionType.SET_LOGIN_OUT,
+        type: ActionType.SET_LOGIN_STATE,
+        data: isLogin
     })
 }

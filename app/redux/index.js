@@ -15,7 +15,6 @@ const reducer = combineReducers({
     routing: routerReducer
 })
 
-
 // 创建一个中间件集合
 const routingMiddleware = routerMiddleware(hashHistory);
 

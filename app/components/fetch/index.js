@@ -1,4 +1,5 @@
 import { Modal, Button } from 'antd';
+import { getCookie } from '../../utils'
 
 var HTTPUtil = {};
 import 'whatwg-fetch'  // 可以引入fetch来进行Ajax
@@ -8,68 +9,64 @@ import 'whatwg-fetch'  // 可以引入fetch来进行Ajax
  * @param params {} 
  * @param headers 
  * @returns {Promise} 
- */  
+ */
 
-export function fetchGet(url, params, headers){
-     return (dispatch, getState) => {
-        return new Promise(function(resolve, reject){
+export function fetchGet(url, params, headers) {
+    return (dispatch, getState) => {
+        return new Promise(function (resolve, reject) {
             let token = getState().loginReducer.token
-            if(token != ""){
-                headers = {...headers, token: token}
+            if (token != "") {
+                headers = { ...headers, token: token }
             }
-            
-            dispatch(fetchget(url, params, headers)).then(data=>{
+
+            dispatch(fetchget(url, params, headers)).then(data => {
                 if (data && !data.success) {
                     Modal.error({
                         title: '提示',
                         content: data.message,
                     });
                     return false;
-                }else if (data && data.success) {
-                    resolve&&resolve(data.data|| null)
+                } else if (data && data.success) {
+                    resolve && resolve(data.data || null)
                 }
             })
         })
-     }
+    }
 }
 
 export function fetchget(url, params, headers) {
     if (process.env.NODE_ENV == "develop") {
-        url = "mock" + url + ".json"
+        // url = "mock" + url + ".json"
     }
-    
+
     return (dispatch, getState) => {
         if (params) {
-           
+
             let paramsArray = [];
-            Object.keys(params).forEach(key => paramsArray.push(key + '=' + params[key]))  
-            if (url.search(/\?/) === -1) {  
-                url += '?' + paramsArray.join('&')  
-            } else {  
-                url += '&' + paramsArray.join('&')  
-            }  
-        }
-
-        headers = { ...headers, 
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            "Access-Control-Allow-Methods":"PUT,POST,GET,DELETE,OPTIONS"
-        }
-
-        return fetch(url, {  
-            method: 'GET',  
-            headers: headers,  
-        })  
-        .then((response) => {  
-            return response.json();
-        })  
-        .then((data) => {  
-            if(data&&data.success!=true){
             Object.keys(params).forEach(key => paramsArray.push(key + '=' + params[key]))
             if (url.search(/\?/) === -1) {
                 url += '?' + paramsArray.join('&')
             } else {
                 url += '&' + paramsArray.join('&')
+            }
+        }
+        
+
+        headers = {
+            ...headers,
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            "Access-Control-Allow-Methods": "PUT,POST,GET,DELETE,OPTIONS"
+        }
+
+        let userName = getCookie("userName"), token = getCookie("token")
+        if (token && userName) {
+            headers = {
+                ...headers,
+                cookie: {
+                    userName: userName,
+                    token: token
+                }
             }
         }
 
@@ -80,9 +77,7 @@ export function fetchget(url, params, headers) {
         .then((response) => {
             return response.json();
         })
-        })
     }
-
 }
 
 
@@ -92,49 +87,56 @@ export function fetchget(url, params, headers) {
  * @param formData   
  * @returns {Promise} 
  */
-export function fetchPost(url, formData){
-     return (dispatch, getState) => {
-        return new Promise(function(resolve, reject){
-            dispatch(fetchpost(url, formData)).then(data=>{
+export function fetchPost(url, formData) {
+    
+    return (dispatch, getState) => {
+        return new Promise(function (resolve, reject) {
+            dispatch(fetchpost(url, formData)).then(data => {
                 if (data && !data.success) {
                     Modal.error({
                         title: '提示',
                         content: data.message,
                     });
                     return false;
-                }else if (data && data.success) {
-                    resolve&&resolve(data.data|| null)
+                } else if (data && data.success) {
+                    resolve && resolve(data.data || null)
                 }
             })
         })
-     }
+    }
 }
 export function fetchpost(url, formData) {
 
     return (dispatch, getState) => {
         let method = "POST", body = JSON.stringify(formData)
         if (process.env.NODE_ENV == "develop") {
-            url = "mock" + url + ".json"
-            method = "GET"
-            body = {}
+            // url = "mock" + url + ".json"
+            // method = "GET"
+            // body = {}
         }
 
         let headers = {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
-            "Access-Control-Allow-Methods":"PUT,POST,GET,DELETE,OPTIONS"
+            "Access-Control-Allow-Methods": "PUT,POST,GET,DELETE,OPTIONS"
         }
 
-        let token = getState().loginReducer.token
-        if(token != ""){
-            headers = {...headers, token: token}
+        let userName = getCookie("userName"), token = getCookie("token")
+        if (token && userName) {
+            headers = {
+                ...headers,
+                cookie: {
+                    userName: userName,
+                    token: token
+                }
+            }
         }
 
         return fetch(url, {
-                method: method,
-                headers: headers,
-                body: body
-            })
+            method: method,
+            headers: headers,
+            body: body
+        })
             .then((response) => {
                 return response.json();
             })

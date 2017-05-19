@@ -15,12 +15,11 @@ class SelectResultContainer extends React.Component{
     }
 
     getItems(){
-        console.log(this.props.filterMenuList)
         return this.props.filterMenuList.map((menu, key)=>
             menu.list.map((item, index) => {
                 if(item.isShowResult){
                     let value=""
-                    if(item.type == "city"){
+                    if(item.type == "3" || item.type == "4"){
                         value = getCityNameByValue(item.defaultValue)
                     }else{
                         value = item.options ? item.options.find(obj=>obj.value==item.defaultValue).name : ""
