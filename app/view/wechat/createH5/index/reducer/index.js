@@ -35,6 +35,7 @@ function deleteFile(index,state){
     return data.filter((item, key)=> index!=key)
 }
 export default function update (state = initialState, action){
+    console.log(action.type)
      switch(action.type){
         case ActionTypes.WECHART:
             return {

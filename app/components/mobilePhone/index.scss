@@ -51,7 +51,7 @@
     background: #fff;
     margin-top: 119px;
     margin-left: 20px;
-    overflow: auto;
+    overflow-x: none;
     border: 1px solid #dedede;
     .content{
       margin-top: 20px;
@@ -84,8 +84,23 @@
     padding-left:8px;
   }
 }
-.iframes{
-  iframe{
-    height:346px;
+.showPhone{
+  height:100%;
+  width:100%;
+  position: relative;
+  img{
+    height:100%;
+    width:100%;
   }
+  div{
+    position:absolute;
+    bottom:0px;
+    background:rgba(0,0,0,.4);
+     width: 100%;
+    padding: 6px;
+  }
+}
+.iframes{
+  height:100%;
+  width:234px;
 }

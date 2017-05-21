@@ -88,12 +88,10 @@ export const setUrl = (url) => dispatch => {
     })
 }
 
-//进入加载数据
+//保存数据
 export const commitWechat = (data) => dispatch => {
-    let url = "/mock/wechat.json";
-    dispatch(HTTPUtil.fetchGet(url, data, null)).then((data)=>{
-            dispatch(wechatData(data));
-    })
+    let url = "/activity/save";
+    return dispatch(HTTPUtil.fetchGet(url, data, null))
 }
 
 

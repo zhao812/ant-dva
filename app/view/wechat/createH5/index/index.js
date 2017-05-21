@@ -52,7 +52,9 @@ class Wechat extends React.Component {
     constructor(props) {
     super(props)
     this.state = {
-            value:1
+            value:1,
+            ishow:0,
+            tabs:1
         }
     }
 handlerChangeName(msg){
@@ -89,6 +91,8 @@ handlerAddClickPic(){
 }
 
 goNext(){
+    
+    console.log(this.state,1393939949404)
     const {name,userSelectGroupId,title,content,linkurl,logoUrl,data}=this.props;
     let msg;
     if(!name){
@@ -104,22 +108,36 @@ goNext(){
     }else if(!linkurl){
         msg="跳转链接不能为空"
     }else if(
-        data.map((item,key)=>{console.log(item)})
-    ){}
+        data.map((item,key)=>{
+            if(!item.pic){
+                 msg="请上传图片"
+            }else if(!item.txt){
+                 msg="请填写短文"
+            }
+        })
+    )
     if(msg){
         Modal.error({
             title: msg
         });
     }
-    // else{
-    //     this.props.commitWechat({title:title,content:content,linkurl:linkurl,logoUrl:logoUrl,data:data})
-    //         hashHistory.push({
-    //             pathname:'wechartNext',
-    //             query:{
-    //                 status:this.state.status
-    //             }
-    //         })
-    // }
+    else{
+        this.props.commitWechat({
+            name:name,
+            userSelectGroupId:userSelectGroupId,
+            title:title,
+            content:content,
+            logoUrl:logoUrl,
+            link:linkurl,
+            shortContent:data,
+            type:2
+        }).then(()=> 
+             hashHistory.push({
+                pathname:'wechartNext',
+            })
+        )
+           
+    }
 }
 handlerImport(){
     hashHistory.push("/importChart")
@@ -141,6 +159,7 @@ handlerDelete(index){
     this.props.oDelete(index)
 }
 handleChangeRadio(e){
+    console.log(e.target.value)
         this.setState({
             value: e.target.value,
             name:""
@@ -158,17 +177,30 @@ componentDidMount(){
       })
     })
   }
-
+  handlerts(msg){
+      this.setState({
+          ishow:1
+      })
+  }
   
+  handlerClick(msg){
+    this.setState({
+      ishow:msg
+    })
+  }
+  handlerTab(e){
+      this.setState({
+          tabs:e
+      })
+  }
 render() {
     
-    const {Population} = this.state;
+    const {Population,ishow,tabs,stepNum,status,value,name} = this.state;
+    const {title,content,linkurl,logoUrl,data,pageUrl,fileString}=this.props;
     const children = [];
     Population&&Population.map((item,index)=> {
         children.push(<Option key={item.id}>{item.name}[{item.createTime}]{item.num}人</Option>);
     });
-    const {stepNum,status,value,name}=this.state;
-    const {title,content,linkurl,logoUrl,data}=this.props;
     let components = data.map((data, index)=>{
             return <Pic key={index} 
             pic={(value)=>this.handlerPic(index, value)} 
@@ -198,7 +230,7 @@ render() {
         };
     return (
     <div className="wechat">
-         <Tabs type="card">
+         <Tabs type="card" onChange={this.handlerTab.bind(this)}>
             <TabPane tab="新建H5页面" key="1">
                 <div className="content">
                     <ul>
@@ -248,7 +280,7 @@ render() {
                     </ul>
                 </div>
                 <div className="textCenter">
-                        <Button className="ts">推送预览</Button>
+                        <Button className="ts" onClick={this.handlerts.bind(this)}>推送预览</Button>
                         <Button className="send"  onClick={this.goNext.bind(this)}>确认发送</Button>
                  </div>
             </TabPane>
@@ -257,22 +289,24 @@ render() {
                         <RadioGroup value={this.state.value}  onChange={this.handleChangeRadio.bind(this)}>
                             <Radio style={radioStyle} value={1}>上传H5代码文件包
                               <Upload   {...props}>
-                                 <Input value={name}  className="sendInput"/><Button className="sendButton">上传</Button>
+                                 <Input value={name}  className="sendInput"/><Button className="sendButton" disabled={value==1?false:true}>上传</Button>
                               </Upload>
                             </Radio>
                             <Radio style={radioStyle} value={2}>上传H5代码文件包
-                                <Input onChange={this.handlerChangePageUrl.bind(this)} readOnly={value==2?false:true} />
+                                <Input value={pageUrl} onChange={this.handlerChangePageUrl.bind(this)} readOnly={value==2?false:true} />
                             </Radio>
                         </RadioGroup>
                </div>
                         
                 <div className="textCenter">
-                        <Button className="ts">推送预览</Button>
+                        <Button className="ts"  onClick={this.handlerts.bind(this)}>推送预览</Button>
                         <Button className="send" >确认发送</Button>
                  </div>
             </TabPane>
         </Tabs>
-         
+        {tabs==1&&ishow!=0?<Mobile oClose={this.handlerClick.bind(this)}  data={data} />:""}
+        
+        {tabs==2&&ishow!=0?<Mobile oClose={this.handlerClick.bind(this)}  fileString={fileString} iframeUrl={pageUrl} />:""}
     </div>
     );
     }

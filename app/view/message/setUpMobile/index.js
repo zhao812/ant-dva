@@ -151,7 +151,7 @@ class setUpMessage extends React.Component {
 
               <li>
                 <span>插入地址</span>
-                <Input placeholder="点击按钮获取地址" value={wapLink} disabled={true} onChange={this.handlerChanges.bind(this,['wapLink'])} />
+                <Input placeholder="点击按钮获取地址" value={wapLink} readOnly onChange={this.handlerChanges.bind(this,['wapLink'])} />
                 <Button  className="sendButton"  onClick={this.handlerAddUrl.bind(this)}>获取</Button>
               </li>
           </ul>
