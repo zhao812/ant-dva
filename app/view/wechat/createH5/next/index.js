@@ -64,8 +64,7 @@ class Wechat extends React.Component {
               <ul>
                   <li>
                       <span>H5链接</span>
-                      <Input value={oUrl} />
-                       <Button className="sendButton">复制</Button>
+                      <Input value={oUrl}  style={{width:358}}/>
                   </li>
                   <li>
                       <span>手机转发</span>

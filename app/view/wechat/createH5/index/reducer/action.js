@@ -63,6 +63,13 @@ export const addPic =(pic,txt) => dispatch => {
         txt: txt
     })
 }
+export const removeData =(data) => dispatch => {
+    dispatch({
+        type : ActionTypes.REMOVE_DATA,
+        data : data
+    })
+}
+
 export const addTxt =(short) => dispatch => {
     dispatch({
         type : ActionTypes.Add_Short,

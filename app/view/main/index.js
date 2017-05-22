@@ -16,7 +16,7 @@ import * as menuData from '../../static/const/menu'
 import SiderSearchMenu from '../../components/siderSearch'
 
 import { checkLogin} from '../login/reducer/action'
-
+import {getCurrent} from '../../components/siderMenu/reducer/action';
 class App extends React.Component {
     constructor(props) {
         super(props)
@@ -52,6 +52,8 @@ class App extends React.Component {
     }
 
     getMenuByRouter() {
+        let text=this.props.location.query.text;
+        text&&this.props.getCurrent(text);
         switch (this.props.location.pathname) {
             case RouterConst.ROUTER_HOME:
             case RouterConst.ROUTER_LOGIN:
@@ -121,7 +123,7 @@ let mapStateToProps = state => ({
 })
 
 let mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({ checkLogin }, dispatch)
+    return bindActionCreators({ checkLogin ,getCurrent}, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)

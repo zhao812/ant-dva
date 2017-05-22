@@ -22,7 +22,8 @@ import {
     addPic,
     oDelete,
     setFileString,
-    setUrl
+    setUrl,
+    removeData
 } from './reducer/action'
 import './index.scss'
 const RadioGroup = Radio.Group;
@@ -107,15 +108,16 @@ goNext(){
         msg="标题图不能为空"
     }else if(!linkurl){
         msg="跳转链接不能为空"
-    }else if(
+    }else{
         data.map((item,key)=>{
-            if(!item.pic){
-                 msg="请上传图片"
-            }else if(!item.txt){
-                 msg="请填写短文"
-            }
-        })
-    )
+                    if(!item.pic){
+                        msg="请上传图片"
+                    }else if(!item.txt){
+                        msg="请填写短文"
+                    }
+                })
+    }
+        
     if(msg){
         Modal.error({
             title: msg
@@ -176,6 +178,15 @@ componentDidMount(){
         Population:data
       })
     })
+    this.props.changeName("")
+    this.props.changePeople("")
+    this.props.changeTitle("")
+    this.props.changeContent("")
+    this.props.changeLogo("")
+    this.props.changeUrl("")
+    this.props.removeData("")
+    // this.props.changePic("")
+    // this.props.changeTxt("")
   }
   handlerts(msg){
       this.setState({
@@ -343,7 +354,8 @@ let mapDispatchToProps = (dispatch) => {
         addPic,
         oDelete,
         setFileString,
-        setUrl
+        setUrl,
+        removeData
     }, dispatch)
 }
 

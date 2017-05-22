@@ -25,31 +25,41 @@ class DataSelect extends React.Component {
             allday:this.handerData(new Date().getFullYear(), (new Date().getMonth()+1))
         })
     }
-   // 
     handleChangeMonth(e){
         this.setState({
             allday:this.handerData(new Date().getFullYear(), e),
             month:e
         },()=>{
             let day=this.state.day<this.state.allday?this.state.day:this.state.allday;
-            this.props.onChange(this.state.month+"-"+day+" "+this.state.hour+":"+this.state.min)
+            let date=new Date().getFullYear()+"-"+this.state.month+"-"+day+" "+this.state.hour+":"+this.state.min+":"+"00"
+            this.props.onChange(new Date(date).getTime())
         })
 
     }
     handleChangeData(e){
         this.setState({
             day:e
-        },()=>this.props.onChange(this.state.month+"-"+this.state.day+" "+this.state.hour+":"+this.state.min))
+        },()=>{
+            let date=new Date().getFullYear()+"-"+this.state.month+"-"+this.state.day+" "+this.state.hour+":"+this.state.min+":"+"00"
+            this.props.onChange(new Date(date).getTime())
+        })
     }
     handleChangeHour(e){
         this.setState({
             hour:e
-        },()=>this.props.onChange(this.state.month+"-"+this.state.day+" "+this.state.hour+":"+this.state.min))
+        },()=>{
+            let date=new Date().getFullYear()+"-"+this.state.month+"-"+this.state.day+" "+this.state.hour+":"+this.state.min+":"+"00"
+            this.props.onChange(new Date(date).getTime())
+         })
     }
     handleChangeMin(e){
         this.setState({
             min:e
-        },()=>this.props.onChange(this.state.month+"-"+this.state.day+" "+this.state.hour+":"+this.state.min))
+        },()=>
+        {
+            let date=new Date().getFullYear()+"-"+this.state.month+"-"+this.state.day+" "+this.state.hour+":"+this.state.min+":"+"00"
+            this.props.onChange(new Date(date).getTime())
+         })
     }
     render() {
         const {month,day,hour,min,allday} = this.state;

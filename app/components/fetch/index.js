@@ -30,9 +30,9 @@ export function fetchGet(url, params, headers){
 }
 
 export function fetchget(url, params, headers) {
-    if (process.env.NODE_ENV == "develop") {
-        url = "mock/" + url + ".json"
-    }
+    // if (process.env.NODE_ENV == "develop") {
+    //     url = "mock/" + url + ".json"
+    // }
 
     return (dispatch, getState) => {
         if (params) {
@@ -104,11 +104,11 @@ export function fetchpost(url, formData) {
 
     return (dispatch, getState) => {
         let method = "POST", body = JSON.stringify(formData)
-        if (process.env.NODE_ENV == "develop") {
-            url = "mock" + url + ".json"
-            method = "GET"
-            body = {}
-        }
+        // if (process.env.NODE_ENV == "develop") {
+        //     url = "mock" + url + ".json"
+        //     method = "GET"
+        //     body = {}
+        // }
 
         let headers = {
             'Accept': 'application/json',

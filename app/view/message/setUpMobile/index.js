@@ -1,6 +1,7 @@
 import React from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import { hashHistory } from 'react-router'
 import { Select, Input, Button,Icon,Modal} from 'antd';
 import NumberInput from '../../../components/numberInput'
 import DataSelect from '../../../components/dataSelect'
@@ -9,10 +10,7 @@ import {getLinkUrl,getUserList,sendMessage,messageSave} from './reducer/action'
 const Option = Select.Option;
 
 import './index.scss'
-let timer=(new Date().getMonth()<10?"0"+(new Date().getMonth()+1):new Date().getMonth()+1)+"-"+
-            (new Date().getDate()<10?"0"+new Date().getDate():new Date().getDate())+" "+
-            (new Date().getHours()<10?"0"+new Date().getHours():new Date().getHours())+":"+
-            (new Date().getMinutes()<10?"0"+new Date().getMinutes():new Date().getMinutes())
+let timer=new Date().getTime();
 class setUpMessage extends React.Component {
   constructor(props) {
         super(props)
@@ -102,11 +100,17 @@ class setUpMessage extends React.Component {
       "name":name,
       "userSelectGroupId":userSelectGroupId,
       "content":wapLink?content+wapLink:content,
-      "phone":tel,
       "type":1,
       "sendType":sendType,
-      "time":time
-    });
+      "sendTime":time,
+      "tunnelId":1
+    }).then(()=> 
+             hashHistory.push({
+                pathname:'message',
+                query: {
+                    text:'a0'
+                }
+            }))
   }
   componentDidMount(){
     this.props.getUserList().then(data=>{this.setState({

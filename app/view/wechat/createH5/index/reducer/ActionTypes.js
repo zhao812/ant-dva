@@ -12,6 +12,7 @@ export const Change_userSelectGroupId = 'Change_userSelectGroupId'
 export const Delete_file = 'Delete_file'
 export const File_String = 'File_String'
 export const Set_Url = 'Set_Url'
+export const REMOVE_DATA = 'REMOVE_DATA'
 
 
 

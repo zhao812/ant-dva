@@ -23,13 +23,12 @@ const columns = [{
 }, {
   title: '活动名称',
   dataIndex: 'name',
-  width:240,
   render:(value)=>{
     return <div className="w200">{value}</div>
   }
 }, {
   title: '推送渠道',
-  dataIndex: 'sendTunnel',
+  dataIndex: 'tunnelId',
   render:(value)=>{
     if(value=="1"){
       return "短信"
@@ -47,38 +46,22 @@ const columns = [{
   title: '目标客户数量',
   dataIndex: 'selectNum'
 },
-// {
-//   title: '激活用户数量',
-//   dataIndex: 'actNum'
-// },
 {
   title: '状态',
   dataIndex: 'status',
   render:(value)=>{
-    if(value=="草稿"){
-      return <div className="icon2 icons">{value}</div>
+     if(value==1){
+      return <div className="icon3 icons">已完成</div>
     }
-    else if(value=="完成"){
-      return <div className="icon3 icons">{value}</div>
-    }
-    else if(value=="等待中"){
-      return <div className="icon1 icons">{value}</div>
+    else if(value==2){
+      return <div className="icon1 icons">等待中</div>
     }
     console.log(value)
   }
 },{
   title: '操作时间',
-  dataIndex: 'createTime'
-},
-/*{
-  title: '跟踪',
-  render: (text, record) => (
-    <span>
-      <Button size="small" className="sbutton" >报表</Button>
-      <Button size="small" className="sbutton"  >重发</Button>
-    </span>
-  ),
-}*/
+  dataIndex: 'sendTime'
+}
 ];
 
 const data = [];
@@ -95,7 +78,7 @@ class Message extends React.Component {
     changeTitle(name) {
     }
     componentDidMount() {
-      this.props.getTableData(10,1)
+      this.props.getTableData(10,0)
     }
 
     handleTableChange(e){
@@ -108,7 +91,7 @@ class Message extends React.Component {
     }
     handlerCreateWeixin(){
        this.props.getCurrent("c2")
-      hashHistory.push('/wechart')
+       hashHistory.push('/wechart')
     }
     render() {
         return (
@@ -117,13 +100,13 @@ class Message extends React.Component {
             <div className="white-bg">
               <Button className="oButton" onClick={this.handlerCreatMail.bind(this)}><Icons className="btn-icon" name="mail" color={'#666'} />新建短信推送</Button>
               <Button className="oButton" onClick={this.handlerCreateWeixin.bind(this)}><Icons  className="btn-icon" name="weixing" color={'#666'} />新建微信推送</Button>
-               <Table 
+              <Table 
                             rowKey="id"
                             columns={columns} 
                             dataSource={this.props.data} 
                             onChange={this.handleTableChange.bind()} />
-                            <Pagination 
-                            onChange={(e)=>this.handleTableChange(e)} total={this.props.count} />
+                            {this.props.count?<Pagination 
+                            onChange={(e)=>this.handleTableChange(e)} total={this.props.count} />:""} 
             </div>
             
           </div>

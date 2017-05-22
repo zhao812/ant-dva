@@ -41,6 +41,12 @@ export default function update (state = initialState, action){
             return {
                 ...state
             }
+            
+        case ActionTypes.REMOVE_DATA:
+            return {
+                ...state,
+                data: [{"pic":"","txt":""}],
+            }
         case ActionTypes.Change_Name:
             return {
                 ...state,
