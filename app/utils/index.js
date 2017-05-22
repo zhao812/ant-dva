@@ -8,6 +8,27 @@ export const checkEmail = email => {
     return true
 }
 
+export const formatDate = (time, format) => {
+    let t = new Date(time);
+    let tf = (i) => { return (i < 10 ? '0' : '') + i }
+    return format.replace(/yyyy|MM|dd|HH|mm|ss/g, (a) => {
+        switch (a) {
+            case 'yyyy':
+                return tf(t.getFullYear());
+            case 'MM':
+                return tf(t.getMonth() + 1);
+            case 'mm':
+                return tf(t.getMinutes());
+            case 'dd':
+                return tf(t.getDate());
+            case 'HH':
+                return tf(t.getHours());
+            case 'ss':
+                return tf(t.getSeconds());
+        }
+    })
+}
+
 export const getCityNameByValue = code => {
     let c1 = Citys.find(c => c.value == code.substring(0, 2) + "0000")
     if(!c1) return ""
@@ -21,11 +42,12 @@ export const getCityNameByValue = code => {
     return c1.label + "/" +c2.label + "/" +c3.label
 }
 
-export const setCookie = (c_name, value, expiredays=null) =>{
+export const setCookie = (c_name, value, expiredays=null, path="/") =>{
     let exdate=new Date()
     exdate.setDate(exdate.getDate() + expiredays)
     document.cookie=c_name+ "=" +escape(value)+
-    ((expiredays==null) ? "" : ";expires="+exdate.toGMTString())
+    ((expiredays==null) ? "" : ";expires="+exdate.toGMTString()) +
+    ((path==null) ? "" : ";path="+path)
 }
 
 export const getCookie = name => {

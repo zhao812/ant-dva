@@ -6,6 +6,10 @@ let receiveData = data => ({
     data: data
 })
 
+export const clearCalculateResult = () => dispatch => {
+    dispatch({type: ActionType.CLEAR_CALCULATE_RESULT})
+}
+
 //加载数据
 export const getSearchMenu = () => dispatch => {
     let url = "/search/list.do";
@@ -67,7 +71,7 @@ let getFilterList = state => {
         for(let j=0; j<menu.list.length; j++){
             let item = menu.list[j]
             result.push({
-                id: item.id,
+                code: item.code,
                 value: getValueById(filterList, item.id).join(",")
             })
         }
@@ -81,7 +85,7 @@ let receiveReportData = data => ({
 })
 
 /**根据筛选条件获取报表 */
-export const getReportData = () => (dispatch, getState) => {
+export const getReportData = (callBack) => (dispatch, getState) => {
     let state = getState()
     let url = "/search/calculation.do";
     let opt = {
@@ -89,7 +93,7 @@ export const getReportData = () => (dispatch, getState) => {
         selectList: getFilterList(state)
     }
 
-    dispatch(HTTPUtil.fetchPost(url, opt, null)).then(data=>dispatch(receiveReportData(data)))
+    dispatch(HTTPUtil.fetchPost(url, opt, null)).then(data=>{dispatch(receiveReportData(data));callBack&&callBack()})
 }
 
 /**添加筛选条件 */
@@ -106,4 +110,10 @@ export const onCloseFilter = (id, index) => dispatch => {
         type: ActionType.CLOSE_FILTER_MENU_LIST,
         data: {id: id, index: index}
     })
+}
+
+/**收藏筛选结果 */
+export const collectionFavrite = opt => dispatch => {
+    let url = '/search/collection.do'
+    return dispatch(HTTPUtil.fetchPost(url, opt, null))
 }

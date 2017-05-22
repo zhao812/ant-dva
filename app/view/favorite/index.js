@@ -18,38 +18,34 @@ class FavoritePage extends React.Component{
 
         this.state = {
             rowData: null,
-            pagination: {
-                pageSize: 10,
-                // onChange: ""
-            },
             columns: [
                 {
                     title: '筛选事件',
-                    dataIndex: 'create_time',
-                    key: 'create_time',
+                    dataIndex: 'createTime',
+                    // key: 'create_time',
                 },
                 {
                     title: '客群名称',
-                    key: 'name',
+                    // key: 'name',
                     dataIndex: 'name',
                     width: 140,
                 },
                 {
                     title: '客群数量',
-                    dataIndex: 'count',
-                    key: 'count',
+                    dataIndex: 'num',
+                    // key: 'count',
                 },
                 {
                     title: '客群描述',
                     dataIndex: 'desc',
-                    key: 'desc',
+                    // key: 'desc',
                     render: (text, record) => (
                         <div className="table-desc">{text}</div>
                     )
                 },
                 {
                     title: '操作',
-                    key: "operation",
+                    // key: "operation",
                     width: 150,
                     render: (text, record) => (
                         <span>
@@ -63,7 +59,19 @@ class FavoritePage extends React.Component{
     }
 
     componentDidMount(){
-        this.props.getFavoriteData()
+        this.sendData()        
+    }
+
+    sendData(pagination){
+        let opt = {
+            page: pagination ? pagination.current : 0,
+            size: 10
+        }
+        this.props.getFavoriteData(opt)
+    }
+
+    onPageChange(pagination){
+        this.sendData(pagination)
     }
 
     onMailHandler(e){
@@ -89,7 +97,8 @@ class FavoritePage extends React.Component{
     }
 
     render(){
-        let { columns, pagination, rowData } = this.state
+        let { columns, loading, rowData } = this.state
+        console.log(this.props.pagination)
         return(
             <div className="favorite-page-container">
                 <div className="favorite-title">
@@ -97,7 +106,14 @@ class FavoritePage extends React.Component{
                 </div>
                 <div className="favorite-tab">
                     <div><Button className="bnNew">新建用户群</Button></div>
-                    <Table columns={columns} dataSource={this.props.favoriteList} pagination={pagination} onRowClick={(e)=>this.onClickHandler(e)} />
+                    <Table
+                            columns={columns} 
+                            dataSource={this.props.favoriteList}
+                            pagination={this.props.pagination}
+                            loading={this.props.loading}
+                            onRowClick={(e)=>this.onClickHandler(e)}
+                            onChange={(pagination)=>this.onPageChange(pagination)}
+                    />
                 </div>
                 { rowData ? <FavoriteItemInfo data={rowData} onClose={()=>this.onCloseHandler()} /> : ""}
             </div>
@@ -106,11 +122,15 @@ class FavoritePage extends React.Component{
 }
 
 FavoritePage.PropTypes = {
-    favoriteList: PropTypes.array.isRequired
+    favoriteList: PropTypes.array.isRequired,
+    loading: PropTypes.bool.isRequired,
+    pagination: PropTypes.object.isRequired
 }
 
 let mapStateToProps = state => ({
-    favoriteList: state.favoriteReducer.favorite_list
+    favoriteList: state.favoriteReducer.favorite_list,
+    loading: state.favoriteReducer.loading,
+    pagination: state.favoriteReducer.pagination
 })
 
 let mapDispatchToProps = (dispatch) => {

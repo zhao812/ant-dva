@@ -20,7 +20,8 @@ class SearchList extends React.Component {
         super(props,context)
 
         this.state = {
-            isShowFavorite: false
+            isShowFavorite: false,
+            btnFavoriteStatus: true
         }
     }
     
@@ -33,7 +34,11 @@ class SearchList extends React.Component {
     }
 
     onCloseFavorite = () => {
-        this.setState({isShowFavorite: false})
+        this.setState({isShowFavorite: false, btnFavoriteStatus: true})
+    }
+
+    onChangeBtnFavoriteStatus = val => {
+        this.setState({btnFavoriteStatus: val})
     }
 
     render(){
@@ -45,7 +50,7 @@ class SearchList extends React.Component {
                 </div>
                 
                 <SelectResultContainer />
-                <SelectContainer onShowFavorite={()=>this.onShowFavorite()}/>
+                <SelectContainer onShowFavorite={()=>this.onShowFavorite()} btnFavoriteStatus={this.state.btnFavoriteStatus} onChangeBtnFavoriteStatus={(value)=>this.onChangeBtnFavoriteStatus(value)}/>
                 <AntVContainer />
                 {this.state.isShowFavorite ? <FavoriteContainer onCloseHandler={()=>this.onCloseFavorite()}/> : ""}
             </div>
@@ -54,7 +59,7 @@ class SearchList extends React.Component {
 }
 
 SearchList.PropTypes = {
-    menuData: PropTypes.array.isRequired
+    menuData: PropTypes.array.isRequired,
 }
 
 let mapStateToProps = state => ({

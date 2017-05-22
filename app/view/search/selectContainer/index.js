@@ -18,6 +18,12 @@ class SelectContainer extends React.Component {
     componentDidMount(){
     }
 
+    onGetReportHandler(){
+        this.props.getReportData(()=>{
+            this.props.onChangeBtnFavoriteStatus(false)
+        })
+    }
+
     getTabs(){
         let TabPane = Tabs.TabPane
 
@@ -41,9 +47,6 @@ class SelectContainer extends React.Component {
     }
 
     render(){
-
-        let { getReportData } = this.props
-
         return (
             <div className="selectContainer">
                 <Tabs defaultActiveKey="0">{ this.getTabs() }</Tabs>
@@ -51,8 +54,8 @@ class SelectContainer extends React.Component {
                 <div className="button-div">
                     <div className="tip-div"><Icon type="exclamation-circle-o" /><span>选择左侧展示选项，获取相应图表展示</span></div>
                     <div className="left-div">
-                        <Button size="large" onClick={this.props.onShowFavorite}>收藏筛选</Button>
-                        <Button size="large" onClick={getReportData}>画像计算</Button>
+                        <Button size="large" onClick={this.props.onShowFavorite} disabled={this.props.btnFavoriteStatus}>收藏筛选</Button>
+                        <Button size="large" onClick={()=>this.onGetReportHandler()}>画像计算</Button>
                     </div>
                 </div>
             </div>
@@ -62,7 +65,9 @@ class SelectContainer extends React.Component {
 
 SelectContainer.PropTypes = {
     filterMenuList: PropTypes.array.isRequired,
-    onShowFavorite: PropTypes.func.isRequired
+    onShowFavorite: PropTypes.func.isRequired,
+    btnFavoriteDisabled: PropTypes.bool.isRequired,
+    onChangeBtnFavoriteStatus: PropTypes.func.isRequired,
 }
 
 let mapStateToProps = state => ({

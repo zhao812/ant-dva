@@ -14,11 +14,6 @@ import 'whatwg-fetch'  // 可以引入fetch来进行Ajax
 export function fetchGet(url, params, headers) {
     return (dispatch, getState) => {
         return new Promise(function (resolve, reject) {
-            let token = getState().loginReducer.token
-            if (token != "") {
-                headers = { ...headers, token: token }
-            }
-
             dispatch(fetchget(url, params, headers)).then(data => {
                 if (data && !data.success) {
                     Modal.error({
@@ -59,19 +54,17 @@ export function fetchget(url, params, headers) {
             "Access-Control-Allow-Methods": "PUT,POST,GET,DELETE,OPTIONS"
         }
 
-        let userName = getCookie("userName"), token = getCookie("token")
-        if (token && userName) {
-            headers = {
-                ...headers,
-                cookie: {
-                    userName: userName,
-                    token: token
-                }
-            }
-        }
-
+        // let userName = getCookie("userName"), token = getCookie("token")
+        // if (token && userName) {
+        //     headers = {
+        //         ...headers,
+        //         userName: userName,
+        //         token: token
+        //     }
+        // }
         return fetch(url, {
             method: 'GET',
+            credentials: 'same-origin',
             headers: headers,
         })
         .then((response) => {
@@ -121,20 +114,19 @@ export function fetchpost(url, formData) {
             "Access-Control-Allow-Methods": "PUT,POST,GET,DELETE,OPTIONS"
         }
 
-        let userName = getCookie("userName"), token = getCookie("token")
-        if (token && userName) {
-            headers = {
-                ...headers,
-                cookie: {
-                    userName: userName,
-                    token: token
-                }
-            }
-        }
+        // let userName = getCookie("userName"), token = getCookie("token")
+        // if (token && userName) {
+        //     headers = {
+        //         ...headers,
+        //         userName: userName,
+        //         token: token
+        //     }
+        // }
 
         return fetch(url, {
             method: method,
             headers: headers,
+            credentials: 'same-origin',
             body: body
         })
             .then((response) => {

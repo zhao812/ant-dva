@@ -86,7 +86,7 @@ class App extends React.Component {
                 oClass = ""
                 break;
             case RouterConst.SEARCH_LIST:
-                top = <Headers />
+                top = <IndexHeader />
                 oClass = "oBg2"
                 break
             default:

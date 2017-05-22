@@ -24,11 +24,11 @@ class FavoriteItemInfo extends React.Component{
                         <p className="favoriteItem-title">客群名称</p>
                         <div className="favoriteItem-item">
                             <div className="title-div">筛选时间:</div>
-                            <div className="content-div">{ data.create_time }</div>
+                            <div className="content-div">{ data.createTime }</div>
                         </div>
                         <div className="favoriteItem-item">
                             <div className="title-div">客群数量:</div>
-                            <div className="content-div">{ data.count }人</div>
+                            <div className="content-div">{ data.num }人</div>
                         </div>
                         <div className="favoriteItem-item">
                             <div className="title-div">客群备注:</div>
@@ -37,7 +37,7 @@ class FavoriteItemInfo extends React.Component{
                         <div className="favoriteItem-item">
                             <div className="title-div-1">标签筛选条件:</div>
                             <div className="favoriteItem-list">
-                                {data.options.map((obj, index) => 
+                                {data.option.map((obj, index) => 
                                     <div className="list-item" key={index}><div>{obj.name}</div><div>{obj.value}</div></div>
                                 )}
                             </div>

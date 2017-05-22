@@ -1,12 +1,14 @@
 import React, { PropTypes } from 'react';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import { Link } from 'react-router'
 import { Input, Button } from 'antd'
 import HomeBanner from './homeBanner'
 import HomeTab from './homeTab'
 import CopyRights from '../../components/copyRight'
 
 import { getUserNumber } from './reducer/action';
+import * as RouterConst from '../../static/const'
 
 import './index.scss';
 
@@ -32,7 +34,7 @@ class Index extends React.Component {
                                 <p>立刻体验，即可享受个性化服务套餐</p>
                                 <div className="input-container">
                                     <Input className="email-input" placeholder="请输入您的电子邮箱" />
-                                    <Button className="email-btn">立即体验</Button>
+                                    <Button className="email-btn"><Link to={RouterConst.ROUTER_LOGIN}>立即体验</Link></Button>
                                 </div>
                             </div>
                         : ""

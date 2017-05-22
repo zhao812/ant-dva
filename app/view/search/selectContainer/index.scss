@@ -52,7 +52,11 @@
         }
 
         button:nth-child(1){
-            background: #69cbd7 !important;
+            background: #69cbd7;
+        }
+
+        button:nth-child(1):disabled{
+            background: #999999;
         }
 
         button:nth-child(2){
