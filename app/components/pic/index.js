@@ -1,7 +1,6 @@
 import React from 'react'
-import { Icon,Button ,Input ,Form,Upload, message } from 'antd'
-
-const FormItem = Form.Item;
+import { Icon,Button ,Input ,Upload, Modal } from 'antd'
+import NumberInput from '../numberInput'
 
 function getBase64(img, callback) {
 const reader = new FileReader();
@@ -12,15 +11,14 @@ reader.readAsDataURL(img);
 function beforeUpload(file) {
 const isJPG = file.type === 'image/jpeg';
 if (!isJPG) {
-message.error('只能输入JPG图片');
+Modal.error('只能输入JPG图片');
 return false;
 }
-const isLt2M = file.size / 1024 / 1024 < 2;
+const isLt2M = file.size / 1024 / 1024 /1024 *300 < 300;
 if (!isLt2M) {
-message.error('图片不能大于2M');
+Modal.error('图片不能大于300K');
 return false;
 }
-//return isJPG && isLt2M;
 return  isLt2M;
 }
 let datas=[]
@@ -40,13 +38,18 @@ handleChange = (info) => {
         });
     }
 }
+handlerChangeContent(index,e){
+    this.props.txt(index,e)
+}
+handlerClick(index,event){
+    event.stopPropagation();
+    this.props.del(index)
+}
 render() {
     const imageUrl = this.state.imageUrl;
     return (
-            <FormItem
-                    label="图片" labelCol={{ span: 4 }}
-                    wrapperCol={{ span: 16 }}
-            >
+            <li className="addPics">
+                <span>页面</span>
                 <Upload className="avatar-uploader"
                         name="avatar"
                         showUploadList={false}
@@ -55,11 +58,24 @@ render() {
                         onChange={this.handleChange}>
                     {
                     imageUrl ?
-                    <img src={imageUrl} alt="" className="avatar"/> :
-                    <Icon type="plus" className="avatar-uploader-trigger"/>
+                    <div>
+                        <img src={imageUrl} alt="" className="avatar"/>
+                        <div className="modfieldUpload">更改</div>
+                        <div className="closeUpload" onClick={this.handlerClick.bind(this,['index','event'])}>
+                            <Icon type="close" className="closeBtn" />
+                        </div>
+                    </div> :
+                    <div>
+                        <div className="add-icon">
+                            <div className="iconBg"></div>
+                            <Icon type="plus" className="avatar-uploader-trigger"/>
+                        </div>
+                        <span>上传图像分辨率1200 x 800，300kb以内</span>
+                    </div>
                     }
                 </Upload>
-            </FormItem>
+                <NumberInput number={180} isOne={6} nInputValue={this.handlerChangeContent.bind(this)} />
+            </li>
         )
     }
 }

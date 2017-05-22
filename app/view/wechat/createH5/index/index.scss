@@ -1,11 +1,146 @@
-.avatar-uploader,
-.avatar-uploader-trigger,
-.avatar {
-  width: 150px;
-  height: 150px;
+.wechat{
+    padding-left:20px;
+    padding-top:40px;
+    .ant-tabs.ant-tabs-card > .ant-tabs-bar .ant-tabs-tab{
+      border:0px;
+      background:none;
+    }
+    .ant-tabs.ant-tabs-card > .ant-tabs-bar .ant-tabs-tab-active{
+      border:1px solid #c8c8c8;
+      background:#fff;
+      color:#000;
+    }
+    .ant-tabs-bar{
+      margin-bottom:0px;
+    }
+    .content{
+      background:#fff;
+      border:1px solid #c8c8c8;
+      border-top:0px;
+      padding:30px 0px 10px 20px; 
+      textarea{
+        border-radius:0;
+      }
+      .addPics textarea,.addPics .numberInput{
+          width:336px;
+          height:174px;
+        }
+      li{
+        margin-bottom:16px;
+        overflow: hidden;
+      }
+      .addPics span.avatar-uploader{
+        position: relative;
+        overflow:hidden;
+        width:336px;
+        height:174px;
+        border-radius:0px;
+        border:1px solid #ddd;
+        background:#e0e0e0;
+        margin-right:20px;
+        text-align:center;
+        .anticon-plus:before{
+          position:absolute;
+          left:13px;
+          top:15px;
+          color:#e0e0e0;
+          margin-bottom:16px;
+        }
+      }
+      li>span{
+        float:left;
+        font-size:14px;
+        width:80px;
+        &.logoUpload{
+          width:56px;
+          height:56px;
+          border:1px dotted #d9d9d9;
+          .avatar-uploader-trigger{
+            color:#c8c8c8;
+            position: relative;
+            top: 12px;
+          }
+          .avatar-uploader,
+          .avatar-uploader-trigger,
+          .avatar{
+            height:56px;
+            width:56px;
+          }
+        }
+      }
+      input,.numberInput,.sel{
+        width:410px;
+        border-radius:0px;
+        display:inline-block;
+      }
+      .ant-select-selection--single{
+        border-radius:0px;
+      }
+      .messageContent{
+        display:table;
+        span{
+          vertical-align: top;
+        }
+      }
+    }
+    .contentImport{
+      label{
+        margin-bottom:24px;
+      }
+      input[type="text"]{
+        margin-left:20px;
+      }
+     .sendButton {
+          border-radius: 0px;
+          background: #1a5bfb;
+          color: #fff;
+          border: 1px solid #1a5bfb;
+          margin-top: -2px;
+      }
+      .sendInput{
+        width:350px;
+      }
+      .ant-upload-list-item{
+        display:none;
+        height:0px;
+      }
+    }
+    .blueBtn{
+      background:#1a5bfb;
+      color:#fff;
+      width:120px;
+      height:40px;
+      font-size:14px;
+      margin-top:10px;
+      margin-left:80px;
+    }
+    
 }
+.addPics{
+  .avatar-uploader,
+  .avatar {
+    width: 125px;
+    height: 174px;
+  }
+  .iconBg{
+    background:#ababab;
+    width:56px;
+    height:56px;
+    border-radius:50%;
+  }
+  .add-icon{
+    position:relative;
+    margin-left: 68px;
+    margin-bottom: 16px;
+    margin-top: 30px;
+  }
+  // .ant-upload.ant-upload-select{
+  //   margin-left:30px;
+  // }
+}
+
 .avatar-uploader {
-  display: block;
+  float:left;
   border: 1px dashed #d9d9d9;
   border-radius: 6px;
   cursor: pointer;
@@ -16,33 +151,51 @@
   font-size: 28px;
   color: #999;
 }
-
-
-.wechat{
-    padding:20px;
-    button{
-      margin-right:20px;
-      margin-bottom:20px;
+.modfieldUpload{
+  background:rgba(0,0,0,.4);
+  color:#fff;  
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  padding: 4px;
+  font-size: 14px;
+}
+.closeUpload{
+  background:#707070;
+  position:absolute;
+  z-index:9000;
+  right: -16px;
+  top: -15px;
+  width:46px;
+  height:46px;
+  border-radius: 50%;
+}
+.closeBtn{
+  color:#fff;
+  font-size:18px;    
+  margin-top: 19px;
+  margin-left: -12px;
+}
+.textCenter{
+        text-align:center;
+        margin-top:30px;
+        button{
+            width:120px;
+            height:40px;
+            color:#fff;
+            font-size:14px;
+            margin-bottom:20px;
+        }
+        .ts{
+            background:#69cbd7;
+            margin-right:20px;
+        }
+        .send{
+            background:#1a5bfb !important;
+        }
+        .ant-btn:not([disabled]):hover{
+          color:#fff;
+          border:0px;
+        }
     }
-}
-
-.flexs{
-  display:flex;
-  form{flex:1;}
-  .avatar-uploader .anticon-plus:before{
-    margin-top:58px;
-  }
-}
-.oHead{
-  padding:4px;
-  background:rgba(0,0,0,.3)
-}
-.oFooter{
-  padding:4px;
-}
-.ant-row.showFalse{
-  display:none;
-}
-.ant-row.showTrue{
-  display:block;
-}

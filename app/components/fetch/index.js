@@ -10,10 +10,9 @@ import 'whatwg-fetch'  // 可以引入fetch来进行Ajax
  * @param headers 
  * @returns {Promise} 
  */
-
-export function fetchGet(url, params, headers) {
-    return (dispatch, getState) => {
-        return new Promise(function (resolve, reject) {
+export function fetchGet(url, params, headers){
+     return (dispatch, getState) => {
+        return new Promise(function(resolve, reject){
             dispatch(fetchget(url, params, headers)).then(data => {
                 if (data && !data.success) {
                     Modal.error({
@@ -30,9 +29,9 @@ export function fetchGet(url, params, headers) {
 }
 
 export function fetchget(url, params, headers) {
-    if (process.env.NODE_ENV == "develop") {
-        // url = "mock" + url + ".json"
-    }
+    // if (process.env.NODE_ENV == "develop") {
+    //     url = "mock/" + url + ".json"
+    // }
 
     return (dispatch, getState) => {
         if (params) {
@@ -102,11 +101,11 @@ export function fetchpost(url, formData) {
 
     return (dispatch, getState) => {
         let method = "POST", body = JSON.stringify(formData)
-        if (process.env.NODE_ENV == "develop") {
-            // url = "mock" + url + ".json"
-            // method = "GET"
-            // body = {}
-        }
+        // if (process.env.NODE_ENV == "develop") {
+        //     url = "mock" + url + ".json"
+        //     method = "GET"
+        //     body = {}
+        // }
 
         let headers = {
             'Accept': 'application/json',
